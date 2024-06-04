@@ -4,10 +4,6 @@ vim.keymap.set("n", "<leader>e", ":Neotree filesystem reveal float toggle=true<C
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>Q", ":q!<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>re", function()
-    require("precognition").toggle()
-end, {})
-
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -16,6 +12,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "<leader>fo", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 

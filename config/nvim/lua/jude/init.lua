@@ -19,14 +19,6 @@ autocmd("TextYankPost", {
     end,
 })
 
-autocmd({ "BufWritePre" }, {
-    group = jude,
-    pattern = "*",
-    callback = function()
-        vim.cmd("lua vim.lsp.buf.format()")
-    end,
-})
-
 autocmd("LspAttach", {
     group = jude,
     callback = function(e)
