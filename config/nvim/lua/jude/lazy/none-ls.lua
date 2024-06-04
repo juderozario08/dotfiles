@@ -42,7 +42,6 @@ return {
                 null_ls.builtins.code_actions.refactoring,
                 null_ls.builtins.code_actions.regal,
                 null_ls.builtins.code_actions.statix,
-                null_ls.builtins.code_actions.ts_node_action,
 
                 -- Diagnostics
                 null_ls.builtins.diagnostics.actionlint,

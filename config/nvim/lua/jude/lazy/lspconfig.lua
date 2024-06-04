@@ -4,7 +4,7 @@ return {
     dependencies = {
         {
             "williamboman/mason-lspconfig.nvim",
-            event = "VeryLazy",
+            lazy = false,
             opts = {
                 auto_install = true,
             },
