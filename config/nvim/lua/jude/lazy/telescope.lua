@@ -10,6 +10,7 @@ return {
 			extensions = {
 				["ui-select"] = require("telescope.themes").get_dropdown({}),
 			},
+            codeactions = true,
 		})
 		require("telescope").load_extension("ui-select")
 		local builtin = require("telescope.builtin")
