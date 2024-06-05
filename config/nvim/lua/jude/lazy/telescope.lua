@@ -10,7 +10,16 @@ return {
 			extensions = {
 				["ui-select"] = require("telescope.themes").get_dropdown({}),
 			},
-            codeactions = true,
+			codeactions = true,
+			defaults = {
+				layout_strategy = "vertical",
+				layout_config = {
+					width = 0.9,
+					height = 0.99,
+					preview_height = 0.6,
+					prompt_position = "top",
+				},
+			},
 		})
 		require("telescope").load_extension("ui-select")
 		local builtin = require("telescope.builtin")
@@ -34,6 +43,7 @@ return {
 		vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 		vim.keymap.set("n", "<leader>gc", builtin.git_commits, {})
 		vim.keymap.set("n", "<leader>gb", builtin.git_bcommits, {})
+		vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
 		vim.keymap.set("n", "<leader>tm", builtin.man_pages, {})
 		vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
 		vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, {})
