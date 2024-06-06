@@ -14,8 +14,8 @@ return {
 			defaults = {
 				layout_strategy = "vertical",
 				layout_config = {
-					width = 0.9,
-					height = 0.99,
+					width = 0.95,
+					height = 0.95,
 					preview_height = 0.6,
 					prompt_position = "top",
 				},
@@ -48,6 +48,8 @@ return {
 		vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
 		vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, {})
 		vim.keymap.set("n", "<leader>fs", builtin.search_history, {})
-		vim.keymap.set("n", "<leader>fc", builtin.diagnostics, {})
+		vim.keymap.set("n", "<leader>di", builtin.diagnostics, {})
+		vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, {})
+		vim.keymap.set("n", "<leader>ls", builtin.lsp_workspace_symbols, {})
 	end,
 }
