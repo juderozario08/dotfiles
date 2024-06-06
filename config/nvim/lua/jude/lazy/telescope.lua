@@ -47,7 +47,6 @@ return {
 		vim.keymap.set("n", "<leader>tm", builtin.man_pages, {})
 		vim.keymap.set("n", "<leader>gr", builtin.lsp_references, {})
 		vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, {})
-		vim.keymap.set("n", "<leader>fs", builtin.search_history, {})
 		vim.keymap.set("n", "<leader>di", builtin.diagnostics, {})
 		vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, {})
 		vim.keymap.set("n", "<leader>ls", builtin.lsp_workspace_symbols, {})
