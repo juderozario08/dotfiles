@@ -6,7 +6,7 @@ local jude = augroup("jude", {})
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup("HighlightYank", {})
 
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
 
 autocmd("TextYankPost", {
     group = yank_group,

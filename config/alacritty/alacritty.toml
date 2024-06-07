@@ -1,5 +1,5 @@
 import = [
-    "~/.config/alacritty/catppuccin-mocha.toml"
+    "~/.config/alacritty/themes/catppuccin_mocha.toml"
 ]
 
 [env]
@@ -9,11 +9,28 @@ TERM = "xterm-256color"
 padding.x = 10
 padding.y = 10
 decorations = "Buttonless"
-opacity = 0.981 
+opacity = 0.985 
 blur = true
 
 option_as_alt = "None"
 
 [font]
-normal.family = "JetBrainsMono Nerd Font Mono"
 size = 12.0
+
+[font.bold]
+family = "MesloLGS Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "MesloLGS Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "MesloLGS Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "MesloLGS Nerd Font Mono"
+style = "Regular"
+
+
