@@ -12,7 +12,7 @@ decorations = "Buttonless"
 opacity = 0.985 
 blur = true
 
-option_as_alt = "None"
+option_as_alt = "Both"
 
 [font]
 size = 12.0

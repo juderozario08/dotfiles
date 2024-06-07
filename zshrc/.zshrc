@@ -5,13 +5,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
+# Enable Powerlevel11k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 
-# NEEDS RUST
-. "$HOME/.cargo/env"
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 
 # ZINIT Installation
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -28,35 +32,28 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 # Load completions
 autoload -U compinit && compinit
 
-# NEEDS eza, fd, tmux, nvim, bat, delta, fzf
 alias so="source ~/.zshrc"
 alias zshconfig="nvim ~/.zshrc"
 alias l='eza --color=always --icons=always --git --long --all --git'
 alias ls='eza --color=always --icons=always --git'
-alias la='eza --all --color=always --icons=always --git'
 alias v='nvim'
+alias cd='z'
 alias va='nvim ~/.config/alacritty/alacritty.toml'
-alias tree='eza --all --tree --icons --git --ignore-glob=node_modules'
+alias vk='nvim ~/.config/kitty/kitty.conf'
+alias tree='eza --tree --icons --git --ignore-glob=node_modules'
 alias cat='bat'
 alias td='tmux detach'
 alias tns='tmux new-session -s'
 alias ta='tmux attach-session -t'
 alias tls='tmux list-sessions'
 alias tka='tmux kill-session -a'
-alias open='xdg-open'
-alias tkt='tmux kill-session -t' 
-alias cd='z'
-
-eval "$(zoxide init zsh)"
-
+alias tkt='tmux kill-session -t'
+alias ip='ipconfig getifaddr en0'
+alias ln='~/symlink.sh'
+ 
 bindkey -e 
 bindkey '^p' history-search-backward
 bindkey '^[[A' history-search-backward
@@ -81,33 +78,26 @@ setopt hist_expire_dups_first
 # Completion Styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu no
-
-# THE FUCK 
-eval "$(thefuck --alias)"
-eval "$(fzf --zsh)"
-
-
-export PATH="/usr/bin/flutter/bin:$PATH"
-# CATPPUCCIN FZF
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+zstyle ':fzf-tab:complete:cd:*' fzf --preview 'eza --icons $realpath'
 
 # Snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 
 zinit cdreplay -q
-
-# SETTING UP BAT DELTA AND EZA THEMES
+eval "$(zoxide init zsh)"
 export BAT_THEME="Catppuccin Mocha"
 export DELTA_THEME="Catppuccin Mocha"
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
-# EXTRA FZF Functionality
+eval "$(fzf --zsh)"
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 source ~/fzf-git.sh/fzf-git.sh
 
+# --- setup fzf theme ---
 export FZF_DEFAULT_COMMAND="fd --hidden --type f --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git"
@@ -131,5 +121,8 @@ _fzf_comprun() {
     esac
 }
  
-export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --color=always --tree --git-ignore --ignore-glob=node_modules {}'"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
