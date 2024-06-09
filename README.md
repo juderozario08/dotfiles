@@ -19,3 +19,6 @@ Also install <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
+
+Config contains p10k for terminal styling, and zinit package manager for terminal plugins. Alacritty is the main terminal. 
+All config files can be found in config folder of this repo. Main theme is Catppuccin for the terminal and TokyoNight for neovim
