@@ -11,7 +11,8 @@ First check curl -v
 <li>
     <a href="https://brew.sh/">Homebrew</a>
 </li>
-```sh
+
+```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
