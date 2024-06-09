@@ -20,6 +20,7 @@ First check curl -v
 <li>
     <a href="https://brew.sh/">Oh My Zsh</a>
 </li>
+
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
