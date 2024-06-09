@@ -33,5 +33,12 @@ All config files can be found in config folder of this repo. Main theme is Catpp
 Using brew just write this
 
 ```sh
-brew install zoxide eza fd fzf vivid
+brew install zoxide eza fd fzf vivid alacritty
 ```
+
+### Cargo Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+### Alacritty
+cargo install alacritty
+
