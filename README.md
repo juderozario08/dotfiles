@@ -29,3 +29,9 @@ All config files can be found in config folder of this repo. Main theme is Catpp
 <li>fd</li>
 <li>fzf</li>
 <li>vivid</li>
+
+Using brew just write this
+
+```sh
+brew install zoxide eza fd fzf vivid
+```
