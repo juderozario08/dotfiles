@@ -1,11 +1,6 @@
 # Dependencies
 
-### Git
-<a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a>
-
-### Curl
-First check curl -v 
-<a href="https://curl.se/download.html">https://curl.se/download.html</a>
+Also install <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> and <a href="https://curl.se/download.html">curl</a>
 
 ### Homebrew
 <li>
