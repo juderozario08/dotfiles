@@ -1,6 +1,3 @@
-# Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 # dotifles symlink for all .dotconfig files 
 echo "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 echo "Backing up ~/.config/alacritty"
@@ -91,7 +88,9 @@ echo ""
 echo "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 echo "Backing up ~/.zshrc"
 mv ~/.zshrc ~/.zshrcbak 2>/dev/null
+mv ~/.zshenv ~/.zshenvbak 2>/dev/null
 ./symlink.sh ~/dotfiles/zshrc/.zshrc ~/.zshrc
+./symlink.sh ~/dotfiles/zshrc/.zshenv ~/.zshenv
 echo "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 echo ""
 
@@ -126,5 +125,4 @@ echo ""
 
 echo "Please run 'source ~/.zshrc' to apply changes"
 
-# Homebrew
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "Then install homebrew rust alacritty vivid ohmyzsh"

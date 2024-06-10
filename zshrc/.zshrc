@@ -43,13 +43,13 @@ alias va='nvim ~/.config/alacritty/alacritty.toml'
 alias vk='nvim ~/.config/kitty/kitty.conf'
 alias tree='eza --tree --icons --git --ignore-glob=node_modules'
 alias cat='bat'
+alias t='tmux'
 alias td='tmux detach'
 alias tns='tmux new-session -s'
 alias ta='tmux attach-session -t'
 alias tls='tmux list-sessions'
 alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -t'
-alias ip='ipconfig getifaddr en0'
 alias ln='~/symlink.sh'
  
 bindkey -e 
@@ -83,12 +83,13 @@ zinit snippet OMZP::git
 zinit snippet OMZP::command-not-found
 
 zinit cdreplay -q
+
 eval "$(zoxide init zsh)"
 export BAT_THEME="Catppuccin Mocha"
 export DELTA_THEME="Catppuccin Mocha"
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
@@ -124,3 +125,6 @@ export FZF_ALT_C_OPTS="--preview 'eza --color=always --tree --git-ignore --ignor
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"

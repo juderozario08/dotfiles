@@ -1,1 +1,0 @@
-/Users/juderozario/dotfiles/zshrc/.zshrc

@@ -7,6 +7,7 @@ return {
 
         harpoon:setup()
 
+        vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end)
         vim.keymap.set("n", "<leader>a", function()
             harpoon:list():add()
         end)

@@ -30,8 +30,6 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
         vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-        vim.keymap.set("n", "<leader>fw", vim.lsp.buf.add_workspace_folder, opts)
-        vim.keymap.set("n", "<leader>fr", vim.lsp.buf.remove_workspace_folder, opts)
         vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "<leader>fo", vim.lsp.buf.format, opts)

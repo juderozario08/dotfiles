@@ -29,11 +29,13 @@ All config files can be found in config folder of this repo. Main theme is Catpp
 <li>fd</li>
 <li>fzf</li>
 <li>vivid</li>
+<li>bat</li>
+<li>tmux</li>
 
 Using brew just write this
 
 ```sh
-brew install zoxide eza fd fzf vivid alacritty
+brew install zoxide eza fd fzf vivid
 ```
 
 ### Cargo Rust

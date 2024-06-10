@@ -15,7 +15,7 @@ blur = true
 option_as_alt = "Both"
 
 [font]
-size = 14.0
+size = 12.5
 
 [font.bold]
 family = "MesloLGS Nerd Font Mono"
