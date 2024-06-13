@@ -128,3 +128,7 @@ export FZF_ALT_C_OPTS="--preview 'eza --color=always --tree --git-ignore --ignor
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
+export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable"
+export ANDROID_HOME="/home/juderozario/Android/Sdk"
+export PATH="/usr/bin/flutter/:$PATH"
+export ANDROID_SDK_ROOT="/home/juderozario/Android/Sdk/"

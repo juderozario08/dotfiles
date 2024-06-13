@@ -51,5 +51,11 @@ return {
         vim.keymap.set("n", "<leader>gi", builtin.lsp_implementations, {})
         vim.keymap.set("n", "<leader>fs", builtin.search_history, {})
         vim.keymap.set("n", "<leader>fc", builtin.diagnostics, {})
+        vim.keymap.set("n", "<leader>fq", function()
+            builtin.quickfix({
+                show_line = true,
+            })
+        end, {})
+        vim.keymap.set("n", "<leader>fj", function() builtin.jumplist({}) end, {})
     end,
 }
