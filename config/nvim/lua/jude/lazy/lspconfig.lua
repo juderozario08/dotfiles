@@ -26,6 +26,39 @@ return {
         lspconfig.tsserver.setup({
             capabilities = capabilities,
         })
+        lspconfig.elixirls.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.eslint.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.golangci_lint_ls.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.htmx.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.jsonls.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.pylsp.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.quick_lint_js.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.vtsls.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.cssls.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.cmake.setup({
+            capabilities = capabilities,
+        })
+        lspconfig.bashls.setup({
+            capabilities = capabilities,
+        })
         lspconfig.rust_analyzer.setup({
             capabilities = capabilities,
         })
