@@ -12,18 +12,10 @@ return {
             },
             codeactions = true,
             defaults = {
-                layout_strategy = "flex",
+                layout_strategy = "vertical",
                 layout_config = {
                     width = 0.97,
                     height = 0.97,
-                    prompt_position = "top",
-                    flip_columns = 150,
-                    horizontal = {
-                        preview_width = 0.6,
-                    },
-                    vertical = {
-                        preview_height = 0.6,
-                    },
                 },
             },
         })

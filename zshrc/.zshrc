@@ -132,3 +132,5 @@ export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable"
 export ANDROID_HOME="/home/juderozario/Android/Sdk"
 export PATH="/usr/bin/flutter/:$PATH"
 export ANDROID_SDK_ROOT="/home/juderozario/Android/Sdk/"
+export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
+
