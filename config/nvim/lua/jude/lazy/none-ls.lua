@@ -13,6 +13,7 @@ return {
                 null_ls.builtins.formatting.markdownlint,
                 null_ls.builtins.formatting.mix,
                 null_ls.builtins.formatting.stylelint,
+                null_ls.builtins.formatting.stylua,
 
                 null_ls.builtins.completion.spell,
                 null_ls.builtins.completion.tags,
