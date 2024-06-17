@@ -1,6 +1,3 @@
-[credential]
-	helper = /usr/local/bin/git-credential-manager
-    credentialStore = cache
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [filter "lfs"]
@@ -49,3 +46,9 @@
 		bold cyan => syntax "#384d5e", \
 		bold yellow => syntax "#544f4e"
 	syntax-theme = "Catppuccin Mocha"
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
