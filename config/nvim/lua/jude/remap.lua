@@ -1,6 +1,17 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>e", ":Neotree filesystem reveal float toggle=true<CR>", { noremap = true, silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>e",
+	":Neotree action=show source=filesystem position=left reveal toggle=true<CR>",
+	{ noremap = true, silent = true }
+)
+vim.keymap.set(
+	"n",
+	"<leader>E",
+	":Neotree action=show source=buffers position=left reveal toggle=true<CR>",
+	{ noremap = true, silent = true }
+)
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>Q", ":q!<CR>", { noremap = true, silent = true })
 
