@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", ":Neotree filesystem reveal float toggle=true<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>Q", ":q!<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader><leader>", ":so<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
