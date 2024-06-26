@@ -1,16 +1,16 @@
 vim.g.mapleader = " "
 
 vim.keymap.set(
-    "n",
-    "<leader>e",
-    ":Neotree action=focus source=filesystem position=left reveal toggle=true<CR>",
-    { noremap = true, silent = true }
+	"n",
+	"<leader>e",
+	":Neotree action=focus source=filesystem float reveal toggle=true<CR>",
+	{ noremap = true, silent = true }
 )
 vim.keymap.set(
-    "n",
-    "<leader>E",
-    ":Neotree action=focus source=buffers position=left reveal toggle=true<CR>",
-    { noremap = true, silent = true }
+	"n",
+	"<leader>E",
+	":Neotree action=focus source=buffers float reveal toggle=true<CR>",
+	{ noremap = true, silent = true }
 )
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>Q", ":q!<CR>", { noremap = true, silent = true })

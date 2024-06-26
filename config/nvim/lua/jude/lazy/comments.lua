@@ -1,41 +1,29 @@
 return {
-    'numToStr/Comment.nvim',
-    config = function()
-        require("Comment").setup({
-            ---Add a space b/w comment and the line
-            padding = true,
-            ---Whether the cursor should stay at its position
-            sticky = true,
-            ---LHS of toggle mappings in NORMAL mode
-            toggler = {
-                ---Line-comment toggle keymap
-                line = 'gcc',
-                ---Block-comment toggle keymap
-                block = 'gbc',
-            },
-            ---LHS of operator-pending mappings in NORMAL and VISUAL mode
-            opleader = {
-                ---Line-comment keymap
-                line = 'gc',
-                ---Block-comment keymap
-                block = 'gb',
-            },
-            ---LHS of extra mappings
-            extra = {
-                ---Add comment on the line above
-                above = 'gcO',
-                ---Add comment on the line below
-                below = 'gco',
-                ---Add comment at the end of line
-                eol = 'gcA',
-            },
-            ---Enable keybindings
-            mappings = {
-                ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-                basic = true,
-                ---Extra mapping; `gco`, `gcO`, `gcA`
-                extra = true,
-            },
-        })
-    end
+	"numToStr/Comment.nvim",
+	config = function()
+		local comment = require("Comment")
+		local ft = require("Comment.ft")
+		comment.setup({
+			padding = true,
+			sticky = true,
+			toggler = {
+				line = "gcc",
+				block = "gbc",
+			},
+			opleader = {
+				line = "gc",
+				block = "gb",
+			},
+			extra = {
+				above = "gcO",
+				below = "gco",
+				eol = "gcA",
+			},
+			mappings = {
+				basic = true,
+				extra = true,
+			},
+		})
+		ft({ "jsx", "tsx" }, { "{/*%s*/}", "{/*%s*/}" })
+	end,
 }
