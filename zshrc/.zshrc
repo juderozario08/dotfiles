@@ -39,6 +39,8 @@ alias l='eza --color=always --icons=always --git --long --all --git'
 alias ls='eza --color=always --icons=always --git'
 alias v='nvim'
 alias cd='z'
+alias smac='ssh juderozario@10.0.0.164'
+alias slinux='ssh juderozario@10.0.0.214'
 alias va='nvim ~/.config/alacritty/alacritty.toml'
 alias vk='nvim ~/.config/kitty/kitty.conf'
 alias tree='eza --tree --icons --git --ignore-glob=node_modules'
@@ -127,10 +129,5 @@ export FZF_ALT_C_OPTS="--preview 'eza --color=always --tree --git-ignore --ignor
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
-export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable"
-export ANDROID_HOME="/home/juderozario/Android/Sdk"
-export PATH="/usr/bin/flutter/:$PATH"
-export ANDROID_SDK_ROOT="/home/juderozario/Android/Sdk/"
 export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
-
+export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"

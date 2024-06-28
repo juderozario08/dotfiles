@@ -11,6 +11,9 @@
 
 for_window [class="^.*"] border pixel 1
 
+exec_always xset s 900
+exec_always xset dpms 0 0 1200
+
 set $mod Mod4
 # set $mod Mod1
 focus_follows_mouse no
@@ -26,6 +29,11 @@ exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 bindsym Print exec maim "/home/$USER/Pictures/$(date).jpg"
 bindsym $mod+Print exec maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
 bindsym Shift+Print exec maim --select "/home/$USER/Pictures/$(date).jpg"
+
+bindsym $mod+plus  gaps inner current plus 5
+bindsym $mod+minus gaps inner current minus 5
+bindsym $mod+Shift+plus  gaps outer current plus 5
+bindsym $mod+Shift+minus gaps outer current minus 5
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec maim | xclip -selection clipboard -t image/png

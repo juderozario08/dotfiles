@@ -9,7 +9,7 @@ TERM = "xterm-256color"
 padding.x = 10
 padding.y = 10
 decorations = "Buttonless"
-opacity = 0.92
+opacity = 0.82
 blur = true
 
 option_as_alt = "Both"
