@@ -1,5 +1,9 @@
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -46,9 +50,3 @@
 		bold cyan => syntax "#384d5e", \
 		bold yellow => syntax "#544f4e"
 	syntax-theme = "Catppuccin Mocha"
-[credential "https://github.com"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
