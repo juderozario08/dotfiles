@@ -24,7 +24,6 @@ autocmd("LspAttach", {
     callback = function(e)
         local opts = { buffer = e.buf }
         vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -35,7 +34,7 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>ds", vim.lsp.buf.document_symbol, opts)
         vim.keymap.set("n", "<leader>fo", function()
             vim.lsp.buf.format()
-            vim.api.nvim_command(':w')
+            vim.api.nvim_command(":w")
         end, opts)
     end,
 })

@@ -31,10 +31,13 @@ return {
             builtin.grep_string({ search = word })
         end)
         vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
-        vim.keymap.set("n", "<leader>lb", function() builtin.live_grep({ grep_open_files = true, }) end, {})
+        vim.keymap.set("n", "<leader>lb", function()
+            builtin.live_grep({ grep_open_files = true })
+        end, {})
         vim.keymap.set("n", "<leader>cb", builtin.current_buffer_fuzzy_find, {})
         vim.keymap.set("n", "<leader>tr", builtin.treesitter, {})
         vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
+        vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
         vim.keymap.set("n", "<leader>gc", builtin.git_commits, {})
         vim.keymap.set("n", "<leader>gb", builtin.git_bcommits, {})
         vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
@@ -48,6 +51,8 @@ return {
                 show_line = true,
             })
         end, {})
-        vim.keymap.set("n", "<leader>fj", function() builtin.jumplist({}) end, {})
+        vim.keymap.set("n", "<leader>fj", function()
+            builtin.jumplist({})
+        end, {})
     end,
 }

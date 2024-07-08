@@ -135,3 +135,11 @@ export ANDROID_SDK_ROOT="/home/juderozario/Android/Sdk/"
 export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
 
 export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/juderozario/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
