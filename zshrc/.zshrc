@@ -128,15 +128,8 @@ export FZF_ALT_C_OPTS="--preview 'eza --color=always --tree --git-ignore --ignor
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
-export PATH="/usr/bin/flutter/:$PATH"
 export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
 export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="/home/juderozario/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-. "$HOME/.cargo/env"
+# Created by `pipx` on 2024-07-15 00:40:39
+export PATH="$PATH:/home/juderozario/.local/bin"
