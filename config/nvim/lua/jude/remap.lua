@@ -15,8 +15,10 @@ vim.keymap.set(
 
 vim.keymap.set("n", "H", [[mzO<ESC>j`z]], { noremap = true, silent = true })
 vim.keymap.set("n", "L", [[mzo<ESC>k`z]], { noremap = true, silent = true })
-vim.keymap.set("n", "<M-_>", ":resize -2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-+>", ":resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-_>", ":horizontal resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-+>", ":horizontal resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-{>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-}>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-_>", ":only<CR>", { noremap = true, silent = true })
 
 vim.keymap.set({ "n", "v" }, "<S-Tab>", [[<<<ESC>]], { noremap = true, silent = true })

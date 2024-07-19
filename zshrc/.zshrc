@@ -51,6 +51,7 @@ alias tls='tmux list-sessions'
 alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -t'
 alias ln='~/symlink.sh'
+alias code='code-insiders'
  
 bindkey -e 
 bindkey '^p' history-search-backward
