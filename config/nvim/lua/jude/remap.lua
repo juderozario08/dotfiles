@@ -1,16 +1,16 @@
 vim.g.mapleader = " "
 
 vim.keymap.set(
-    "n",
-    "<leader>e",
-    ":Neotree action=focus source=filesystem float reveal toggle=true<CR>",
-    { noremap = true, silent = true }
+	"n",
+	"<leader>e",
+	":Neotree action=focus source=filesystem float reveal toggle=true<CR>",
+	{ noremap = true, silent = true }
 )
 vim.keymap.set(
-    "n",
-    "<leader>E",
-    ":Neotree action=focus source=buffers float reveal toggle=true<CR>",
-    { noremap = true, silent = true }
+	"n",
+	"<leader>E",
+	":Neotree action=focus source=buffers float reveal toggle=true<CR>",
+	{ noremap = true, silent = true }
 )
 
 vim.keymap.set("n", "H", [[mzO<ESC>j`z]], { noremap = true, silent = true })
@@ -21,8 +21,8 @@ vim.keymap.set("n", "<M-{>", ":vertical resize -2<CR>", { noremap = true, silent
 vim.keymap.set("n", "<M-}>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-_>", ":only<CR>", { noremap = true, silent = true })
 
-vim.keymap.set({ "n", "v" }, "<S-Tab>", [[<<<ESC>]], { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "<Tab>", [[>><ESC>]], { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<S-Tab>", [[<<<ESC>llll]], { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<Tab>", [[>><ESC>hhhh]], { noremap = true, silent = true })
 vim.keymap.set("i", "<S-Tab>", [[<ESC>>>     i]], { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })

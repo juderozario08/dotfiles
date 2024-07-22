@@ -15,22 +15,20 @@ blur = true
 option_as_alt = "Both"
 
 [font]
-size = 9.75
+size = 10.75
 
 [font.bold]
-family = "MesloLGS Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "MesloLGS Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "MesloLGS Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Italic"
 
 [font.normal]
-family = "MesloLGS Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"
-
-
