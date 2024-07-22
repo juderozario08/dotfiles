@@ -53,6 +53,7 @@ alias tkt='tmux kill-session -t'
 alias ln='~/symlink.sh'
 alias vw='nvim ~/dotfiles/config/.wezterm.lua'
 alias code='code-insiders'
+alias lg='lazygit'
  
 bindkey -e 
 bindkey '^p' history-search-backward
