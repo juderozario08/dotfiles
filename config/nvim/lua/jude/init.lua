@@ -30,9 +30,21 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "<leader>fo", function()
             vim.lsp.buf.format()
-            vim.api.nvim_command(':w')
+            vim.api.nvim_command(":w")
         end, opts)
     end,
+})
+
+autocmd({ "BufWritePre" }, {
+    group = jude,
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
+})
+
+autocmd({ "InsertLeave" }, {
+    group = jude,
+    pattern = "*",
+    command = [[w!]],
 })
 
 vim.g.netrw_browse_split = 0
