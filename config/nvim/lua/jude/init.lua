@@ -9,43 +9,43 @@ local yank_group = augroup("HighlightYank", {})
 vim.o.timeoutlen = 500
 
 autocmd("TextYankPost", {
-    group = yank_group,
-    pattern = "*",
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = "IncSearch",
-            timeout = 150,
-        })
-    end,
+	group = yank_group,
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 150,
+		})
+	end,
 })
 
 autocmd("LspAttach", {
-    group = jude,
-    callback = function(e)
-        local opts = { buffer = e.buf }
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-        vim.keymap.set("n", "<leader>fo", function()
-            vim.lsp.buf.format()
-            vim.api.nvim_command(":w")
-        end, opts)
-    end,
+	group = jude,
+	callback = function(e)
+		local opts = { buffer = e.buf }
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)
+		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<leader>fo", function()
+			vim.lsp.buf.format()
+			vim.api.nvim_command(":w")
+		end, opts)
+	end,
 })
 
 autocmd({ "BufWritePre" }, {
-    group = jude,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
+	group = jude,
+	pattern = "*",
+	command = [[%s/\s\+$//e]],
 })
 
-autocmd({ "InsertLeave" }, {
-    group = jude,
-    pattern = "*",
-    command = [[w!]],
-})
+-- autocmd({ "InsertLeave" }, {
+-- 	group = jude,
+-- 	pattern = "*",
+-- 	command = [[w!]],
+-- })
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
