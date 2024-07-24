@@ -1,5 +1,3 @@
-#!/bin/bash
-
 shell="$SHELL"
 os=$(uname)
 shopt -s nocasematch
@@ -20,6 +18,7 @@ set_zsh_default() {
     fi
 }
 
+# Install Zsh if it is not installed
 if [[ $shell != *"zsh"* ]]; then
     if [[ $os == *"Linux"* ]]; then
         if [[ -f /etc/os-release ]]; then
@@ -54,18 +53,17 @@ if [[ $shell != *"zsh"* ]]; then
             echo "Cannot determine Linux distribution. /etc/os-release file not found."
             exit 1
         fi
-    elif [[ $os == *"Darwin"* ]]; then
-        echo "MacOS detected"
-        install_zsh "brew install zsh"
     else
         echo "Unsupported operating system"
         exit 1
     fi
-
     set_zsh_default
-else
-    echo "Zsh is already your default shell."
 fi
+
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+source ~/.zshrc
 
 # Homebrew installation and update
 if ! command -v brew &>/dev/null; then
@@ -83,10 +81,36 @@ else
     brew update
 fi
 
-echo "ZSH installation complete"
+brew install zsh
 
 brew install git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Function to install Rust using rustup
+install_rust() {
+    if ! command -v rustup &>/dev/null; then
+        echo "Installing Rust..."
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        echo "Rust installed successfully."
+    else
+        echo "Rust is already installed."
+    fi
+}
+install_rust
+
+# Function to update .zshenv
+update_zshenv() {
+    if ! grep -q '\. "$HOME/.cargo/env"' "$HOME/.zshenv"; then
+        echo '. "$HOME/.cargo/env"' >>"$HOME/.zshenv"
+        echo "Added '. \"$HOME/.cargo/env\"' to $HOME/.zshenv"
+    else
+        echo "Line '. \"$HOME/.cargo/env\"' already exists in $HOME/.zshenv"
+    fi
+}
+update_zshenv
+
+source ~/.zshrc
+
 cargo install vivid alacritty
 install_packages() {
     case $1 in
@@ -114,27 +138,6 @@ install_packages() {
     esac
 }
 
-# Function to install Rust using rustup
-install_rust() {
-    if ! command -v rustup &>/dev/null; then
-        echo "Installing Rust..."
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-        echo "Rust installed successfully."
-    else
-        echo "Rust is already installed."
-    fi
-}
-
-# Function to update .zshenv
-update_zshenv() {
-    if ! grep -q '\. "$HOME/.cargo/env"' "$HOME/.zshenv"; then
-        echo '. "$HOME/.cargo/env"' >>"$HOME/.zshenv"
-        echo "Added '. \"$HOME/.cargo/env\"' to $HOME/.zshenv"
-    else
-        echo "Line '. \"$HOME/.cargo/env\"' already exists in $HOME/.zshenv"
-    fi
-}
-
 if [[ -f /etc/os-release ]]; then
     . /etc/os-release
     install_packages "$ID"
@@ -144,13 +147,56 @@ else
 fi
 
 install_rust
-update_zshenv
 
 echo "All packages have been installed successfully."
+
+rm -rf ~/.zshrc 2>/dev/null
+rm -rf ~/.config/alacritty 2>/dev/null
+rm -rf ~/.config/picom 2>/dev/null
+rm -rf ~/.config/backgrounds 2>/dev/null
+rm -rf ~/.config/bat 2>/dev/null
+rm -rf ~/.config/i3 2>/dev/null
+rm -rf ~/.config/nvim 2>/dev/null
+rm -rf ~/.config/picom 2>/dev/null
+rm -rf ~/.config/polybar 2>/dev/null
+rm -rf ~/.config/rofi 2>/dev/null
+rm -rf ~/.config/screenlayout 2>/dev/null
+rm -rf ~/.config/xresources 2>/dev/null
+rm -rf ~/.tmux 2>/dev/null
+rm -rf ~/tpm 2>/dev/null
+rm -rf ~/.tmux.conf 2>/dev/null
+rm -rf ~/fzf-git.sh 2>/dev/null
+rm -rf ~/.gitconfig 2>/dev/null
+rm -rf ~/.wezterm.lua 2>/dev/null
+
+mkdir ~/.config 2>/dev/null
+
+./symlink.sh "~/dotfiles/config/picom" "~/.config/picom"
+./symlink.sh "~/dotfiles/config/backgrounds" "~/.config/backgrounds"
+./symlink.sh "~/dotfiles/config/bat" "~/.config/bat"
+./symlink.sh "~/dotfiles/config/i3" "~/.config/i3"
+./symlink.sh "~/dotfiles/config/i3" "~/.config/i3"
+./symlink.sh "~/dotfiles/config/nvim" "~/.config/nvim"
+./symlink.sh "~/dotfiles/config/polybar" "~/.config/polybar"
+./symlink.sh "~/dotfiles/config/rofi" "~/.config/rofi"
+./symlink.sh "~/dotfiles/config/screenlayout" "~/.config/screenlayout"
+./symlink.sh "~/dotfiles/config/xresources" "~/.config/xresources"
+./symlink.sh "~/dotfiles/tmux/tmux.conf" "~/.tmux.conf"
+./symlink.sh "~/dotfiles/tmux/tmux" "~/.tmux"
+./symlink.sh "~/dotfiles/tmux/tpm" "~/tpm"
+./symlink.sh "~/dotfiles/gitconfig/gitconfig" "~/.gitconfig"
+./symlink.sh "~/dotfiles/fzf/fzf-git.sh" "~/fzf-git.sh"
+
+if [[ $os == *"Linux"* ]]; then
+    ./symlink.sh "~/dotfiles/zshrc/zshrc" "~/.zshrc"
+    ./symlink.sh "~/dotfiles/config/wezterm.lua" "~/.wezterm.lua"
+    ./symlink.sh "~/dotfiles/config/alacritty" "~/.config/alacritty"
+else
+    ./symlink.sh "~/dotfiles/zshrc/maczshrc" "~/.zshrc"
+    ./symlink.sh "~/dotfiles/config/macwezterm.lua" "~/.wezterm.lua"
+    ./symlink.sh "~/dotfiles/config/macalacritty" "~/.config/alacritty"
+fi
+
 shopt -u nocasematch
 
-rm -rf ~/.zshrc
-eval "./symlink.sh ~/dotfiles/zshrc/.maczshrc ~/.zshrc"
-
-rm -rf ~/.config/alacritty
-eval "./symlink.sh ~/dotfiles/config/macalacritty ~/.config/alacritty"
+source ~/.zshrc
