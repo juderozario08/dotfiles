@@ -1,7 +1,6 @@
 shopt -s nocasematch
-git clone https://github.com/juderozario08/dotfiles.git ~/ 2>/dev/null
-cd ~/dotfiles
 
+cd ~/dotfiles
 isLinux() {
     if [[ $OSTYPE == linux* ]]; then
         true
@@ -32,12 +31,12 @@ install_zsh() {
         if isArch; then
             sudo pacman -Syu --noconfirm
             sudo pacman -S --noconfirm zsh
-            sudo pacman -S --needed --noconfirm base-devel git mandb
+            sudo pacman -S --needed --noconfirm base-devel git man-db mandoc
             cd ~
             git clone https://aur.archlinux.org/yay.git
             cd yay
             makepkg -si --noconfirm
-            yay -S --noconfirm wezterm
+            yay -S --noconfirm wezterm alacritty obsidian discord
             cd ~/dotfiles
         else
             sudo apt update
@@ -51,7 +50,7 @@ set_zsh_default() {
     sudo chsh -s /bin/zsh
     chsh -s /bin/zsh
     echo "Zsh set as default shell"
-    echo "Please logout and re-login or restart your system and then re-run this script"
+    echo "Please logout and re-login to your system"
     exit
 }
 
@@ -86,16 +85,19 @@ install_homebrew() {
 install_dependencies() {
     if isLinux; then
         if isArch; then
-            sudo pacman -S --noconfirm fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit
+            sudo pacman -S --noconfirm fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit go
+            sudo pacman -S --noconfirm picom rofi dmenu i3 polybar
+            yay -S --noconfirm font-manager
         else
             sudo apt update
-            sudo apt install -y fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit
+            sudo apt install -y fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit go
+            sudo apt -y picom rofi dmenu i3 polybar
         fi
     else
-        brew install --cask alacritty
+        brew install --cask alacritty wezterm
     fi
     brew install zsh
-    brew install git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm fd htop tokei gcc tmux lazygit
+    brew install git fzf bat eza zoxide git-delta neovim vim ripgrep fd htop tokei gcc tmux lazygit go
     cargo install vivid alacritty
 }
 
@@ -107,6 +109,8 @@ fi
 install_rust
 install_homebrew
 install_dependencies
+
+mkdir ~/.config 2>/dev/null
 
 mv ~/.zshrc ~/.zshrcbak 2>/dev/null
 mv ~/.wezterm.lua ~/.wezterm.luabak 2>/dev/null
@@ -136,8 +140,6 @@ cp -r ~/dotfiles/oh-my-zsh ~/.oh-my-zsh
 cp -r ~/dotfiles/p10k.zsh ~/.p10k.zsh
 cp -r ~/dotfiles/zshrc/bashrc ~/.bashrc
 cp -r ~/dotfiles/zshrc/bash_profile ~/.bash_profile
-
-mkdir ~/.config 2>/dev/null
 
 ./symlink.sh "~/dotfiles/config/picom" "~/.config/picom"
 ./symlink.sh "~/dotfiles/config/backgrounds" "~/.config/backgrounds"
