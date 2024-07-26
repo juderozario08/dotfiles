@@ -1,5 +1,5 @@
 shopt -s nocasematch
-git clone https://github.com/juderozario08/TMUClub.git ~/ 2>/dev/null
+git clone https://github.com/juderozario08/dotfiles.git ~/ 2>/dev/null
 cd ~/dotfiles
 
 isLinux() {
