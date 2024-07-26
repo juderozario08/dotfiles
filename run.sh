@@ -86,11 +86,11 @@ install_dependencies() {
     if isLinux; then
         if isArch; then
             sudo pacman -S --noconfirm fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit go
-            sudo pacman -S --noconfirm picom rofi dmenu i3 polybar
+            sudo pacman -S --noconfirm picom rofi dmenu i3 polybar xclip
             yay -S --noconfirm font-manager
         else
             sudo apt update
-            sudo apt install -y fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit go
+            sudo apt install -y fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit go xclip
             sudo apt -y picom rofi dmenu i3 polybar
         fi
     else
@@ -110,7 +110,12 @@ install_rust
 install_homebrew
 install_dependencies
 
-mkdir ~/.config 2>/dev/null
+if ! command -v ~/.config; then
+    echo "Creating the config directory"
+    mkdir  ~/.config
+fi
+
+
 
 mv ~/.zshrc ~/.zshrcbak 2>/dev/null
 mv ~/.wezterm.lua ~/.wezterm.luabak 2>/dev/null
@@ -140,30 +145,44 @@ cp -r ~/dotfiles/oh-my-zsh ~/.oh-my-zsh
 cp -r ~/dotfiles/p10k.zsh ~/.p10k.zsh
 cp -r ~/dotfiles/zshrc/bashrc ~/.bashrc
 cp -r ~/dotfiles/zshrc/bash_profile ~/.bash_profile
+cp -r ~/dotfiles/config/picom ~/.config/
+cp -r ~/dotfiles/config/backgrounds ~/.config/
+cp -r ~/dotfiles/config/bat ~/.config/
+cp -r ~/dotfiles/config/i3 ~/.config/
+cp -r ~/dotfiles/config/nvim ~/.config/
+cp -r ~/dotfiles/config/polybar ~/.config/
+cp -r ~/dotfiles/config/rofi ~/.config/
+cp -r ~/dotfiles/config/screenlayout ~/.config/
+cp -r ~/dotfiles/config/xresources ~/.config/
+cp -r ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+cp -r ~/dotfiles/tmux/tmux ~/.tmux
+cp -r ~/dotfiles/tmux/tpm ~/tpm
+cp -r ~/dotfiles/gitconfig/gitconfig ~/.gitconfig
+cp -r ~/dotfiles/fzf/fzf-git.sh ~/fzf-git.sh
 
-./symlink.sh "~/dotfiles/config/picom" "~/.config/picom"
-./symlink.sh "~/dotfiles/config/backgrounds" "~/.config/backgrounds"
-./symlink.sh "~/dotfiles/config/bat" "~/.config/bat"
-./symlink.sh "~/dotfiles/config/i3" "~/.config/i3"
-./symlink.sh "~/dotfiles/config/nvim" "~/.config/nvim"
-./symlink.sh "~/dotfiles/config/polybar" "~/.config/polybar"
-./symlink.sh "~/dotfiles/config/rofi" "~/.config/rofi"
-./symlink.sh "~/dotfiles/config/screenlayout" "~/.config/screenlayout"
-./symlink.sh "~/dotfiles/config/xresources" "~/.config/xresources"
-./symlink.sh "~/dotfiles/tmux/tmux.conf" "~/.tmux.conf"
-./symlink.sh "~/dotfiles/tmux/tmux" "~/.tmux"
-./symlink.sh "~/dotfiles/tmux/tpm" "~/tpm"
-./symlink.sh "~/dotfiles/gitconfig/gitconfig" "~/.gitconfig"
-./symlink.sh "~/dotfiles/fzf/fzf-git.sh" "~/fzf-git.sh"
+~/dotfiles/symlink.sh ~/dotfiles/config/picom ~/.config/picom
+~/dotfiles/symlink.sh ~/dotfiles/config/backgrounds ~/.config/backgrounds
+~/dotfiles/symlink.sh ~/dotfiles/config/bat ~/.config/bat
+~/dotfiles/symlink.sh ~/dotfiles/config/i3 ~/.config/i3
+~/dotfiles/symlink.sh ~/dotfiles/config/nvim ~/.config/nvim
+~/dotfiles/symlink.sh ~/dotfiles/config/polybar ~/.config/polybar
+~/dotfiles/symlink.sh ~/dotfiles/config/rofi ~/.config/rofi
+~/dotfiles/symlink.sh ~/dotfiles/config/screenlayout ~/.config/screenlayout
+~/dotfiles/symlink.sh ~/dotfiles/config/xresources ~/.config/xresources
+~/dotfiles/symlink.sh ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+~/dotfiles/symlink.sh ~/dotfiles/tmux/tmux ~/.tmux
+~/dotfiles/symlink.sh ~/dotfiles/tmux/tpm ~/tpm
+~/dotfiles/symlink.sh ~/dotfiles/gitconfig/gitconfig ~/.gitconfig
+~/dotfiles/symlink.sh ~/dotfiles/fzf/fzf-git.sh ~/fzf-git.sh
 
 if ! isLinux; then
-    ./symlink.sh "~/dotfiles/zshrc/maczshrc" "~/.zshrc"
-    ./symlink.sh "~/dotfiles/config/macwezterm.lua" "~/.wezterm.lua"
-    ./symlink.sh "~/dotfiles/config/macalacritty" "~/.config/alacritty"
+    ~/dotfiles/symlink.sh ~/dotfiles/zshrc/maczshrc ~/.zshrc
+    ~/dotfiles/symlink.sh ~/dotfiles/config/macwezterm.lua ~/.wezterm.lua
+    ~/dotfiles/symlink.sh ~/dotfiles/config/macalacritty ~/.config/alacritty
 else
-    ./symlink.sh "~/dotfiles/zshrc/zshrc" "~/.zshrc"
-    ./symlink.sh "~/dotfiles/config/wezterm.lua" "~/.wezterm.lua"
-    ./symlink.sh "~/dotfiles/config/alacritty" "~/.config/alacritty"
+    ~/dotfiles/symlink.sh ~/dotfiles/zshrc/zshrc ~/.zshrc
+    ~/dotfiles/symlink.sh ~/dotfiles/config/wezterm.lua ~/.wezterm.lua
+    ~/dotfiles/symlink.sh ~/dotfiles/config/alacritty ~/.config/alacritty
 fi
 
 shopt -u nocasematch
