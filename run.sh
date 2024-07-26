@@ -58,7 +58,7 @@ set_zsh_default() {
 install_rust() {
     if ! command -v rustc &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-        echo '. "$HOME/.cargo/env"' >>~/.zshrc
+        . $HOME/.cargo/env
     else
         rustup update
     fi
@@ -97,7 +97,7 @@ install_dependencies() {
         brew install --cask alacritty wezterm
     fi
     brew install zsh
-    brew install git fzf bat eza zoxide git-delta neovim vim ripgrep fd htop tokei gcc tmux lazygit go
+    brew install git fzf bat eza zoxide git-delta neovim vim ripgrep fd htop tokei gcc tmux lazygit go gh
     cargo install vivid alacritty
 }
 
@@ -112,13 +112,31 @@ install_dependencies
 
 if ! command -v ~/.config; then
     echo "Creating the config directory"
-    mkdir  ~/.config
+    mkdir ~/.config
 fi
 
+# Backing up the files
+mv ~/.oh-my-zsh ~/.oh-my-zshbak 2>/dev/null
+mv ~/.p10k.zsh ~/.p10k.zshbak 2>/dev/null
+mv ~/.gitconfig ~/.gitconfigbak 2>/dev/null
+mv ~/fzf-git.sh ~/fzf-git.shbak 2>/dev/null
+# Getting the files from repo
+cp -r ~/dotfiles/oh-my-zsh ~/.oh-my-zsh
+cp -r ~/dotfiles/p10k.zsh ~/.p10k.zsh
+cp -r ~/dotfiles/gitconfig/gitconfig ~/.gitconfig
+cp -r ~/dotfiles/fzf/fzf-git.sh ~/fzf-git.sh
 
-
+# Backing up the files
 mv ~/.zshrc ~/.zshrcbak 2>/dev/null
 mv ~/.wezterm.lua ~/.wezterm.luabak 2>/dev/null
+mv ~/.bashrc ~/.bashrcbak 2>/dev/null
+mv ~/.bash_profile ~/.bash_profilebak 2>/dev/null
+# Getting the files from repo
+cp -r ~/dotfiles/zshrc/bashrc ~/.bashrc
+cp -r ~/dotfiles/zshrc/bash_profile ~/.bash_profile
+cp -r ~/dotfiles/zshrc/zshenv ~/.zshenv
+
+# Backing up the files
 mv ~/.config/alacritty ~/.config/alacrittybak 2>/dev/null
 mv ~/.config/picom ~/.config/picombak 2>/dev/null
 mv ~/.config/backgrounds ~/.config/backgroundsbak 2>/dev/null
@@ -130,21 +148,7 @@ mv ~/.config/polybar ~/.config/polybarbak 2>/dev/null
 mv ~/.config/rofi ~/.config/rofibak 2>/dev/null
 mv ~/.config/screenlayout ~/.config/screenlayoutbak 2>/dev/null
 mv ~/.config/xresources ~/.config/xresourcesbak 2>/dev/null
-mv ~/.tmux ~/.tmuxbak 2>/dev/null
-mv ~/.tmux.conf ~/.tmux.confbak 2>/dev/null
-mv ~/.bashrc ~/.bashrcbak 2>/dev/null
-mv ~/.bash_profile ~/.bash_profilebak 2>/dev/null
-mv ~/.oh-my-zsh ~/.oh-my-zshbak 2>/dev/null
-mv ~/.p10k.zsh ~/.p10k.zshbak 2>/dev/null
-
-rm -rf ~/tpm 2>/dev/null
-rm -rf ~/.gitconfig 2>/dev/null
-rm -rf ~/fzf-git.sh 2>/dev/null
-
-cp -r ~/dotfiles/oh-my-zsh ~/.oh-my-zsh
-cp -r ~/dotfiles/p10k.zsh ~/.p10k.zsh
-cp -r ~/dotfiles/zshrc/bashrc ~/.bashrc
-cp -r ~/dotfiles/zshrc/bash_profile ~/.bash_profile
+# Getting the files from repo
 cp -r ~/dotfiles/config/picom ~/.config/
 cp -r ~/dotfiles/config/backgrounds ~/.config/
 cp -r ~/dotfiles/config/bat ~/.config/
@@ -154,11 +158,31 @@ cp -r ~/dotfiles/config/polybar ~/.config/
 cp -r ~/dotfiles/config/rofi ~/.config/
 cp -r ~/dotfiles/config/screenlayout ~/.config/
 cp -r ~/dotfiles/config/xresources ~/.config/
+
+# Backing up the files
+mv ~/.tmux ~/.tmuxbak 2>/dev/null
+mv ~/.tmux.conf ~/.tmux.confbak 2>/dev/null
+mv ~/tpm ~/tpmbak 2>/dev/null
+# Getting the files from repo
 cp -r ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 cp -r ~/dotfiles/tmux/tmux ~/.tmux
 cp -r ~/dotfiles/tmux/tpm ~/tpm
-cp -r ~/dotfiles/gitconfig/gitconfig ~/.gitconfig
-cp -r ~/dotfiles/fzf/fzf-git.sh ~/fzf-git.sh
+
+if isLinux; then
+    cp -r ~/dotfiles/zshrc/zshrc ~/.zshrc
+    cp -r ~/dotfiles/config/wezterm.lua ~/.wezterm.lua
+    cp -r ~/dotfiles/config/alacritty ~/.config/
+    ~/dotfiles/symlink.sh ~/dotfiles/zshrc/zshrc ~/.zshrc
+    ~/dotfiles/symlink.sh ~/dotfiles/config/wezterm.lua ~/.wezterm.lua
+    ~/dotfiles/symlink.sh ~/dotfiles/config/alacritty ~/.config/alacritty
+else
+    cp -r ~/dotfiles/zshrc/maczshrc ~/.zshrc
+    cp -r ~/dotfiles/config/macwezterm.lua ~/.wezterm.lua
+    cp -r ~/dotfiles/config/macalacritty ~/.config/alacritty
+    ~/dotfiles/symlink.sh ~/dotfiles/zshrc/maczshrc ~/.zshrc
+    ~/dotfiles/symlink.sh ~/dotfiles/config/macwezterm.lua ~/.wezterm.lua
+    ~/dotfiles/symlink.sh ~/dotfiles/config/macalacritty ~/.config/alacritty
+fi
 
 ~/dotfiles/symlink.sh ~/dotfiles/config/picom ~/.config/picom
 ~/dotfiles/symlink.sh ~/dotfiles/config/backgrounds ~/.config/backgrounds
@@ -172,20 +196,12 @@ cp -r ~/dotfiles/fzf/fzf-git.sh ~/fzf-git.sh
 ~/dotfiles/symlink.sh ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ~/dotfiles/symlink.sh ~/dotfiles/tmux/tmux ~/.tmux
 ~/dotfiles/symlink.sh ~/dotfiles/tmux/tpm ~/tpm
+~/dotfiles/symlink.sh ~/dotfiles/zshrc/bashrc ~/.bashrc
+~/dotfiles/symlink.sh ~/dotfiles/zshrc/bash_profile ~/.bash_profile
+~/dotfiles/symlink.sh ~/dotfiles/oh-my-zsh ~/.oh-my-zsh
+~/dotfiles/symlink.sh ~/dotfiles/p10k.zsh ~/.p10k.zsh
 ~/dotfiles/symlink.sh ~/dotfiles/gitconfig/gitconfig ~/.gitconfig
-~/dotfiles/symlink.sh ~/dotfiles/fzf/fzf-git.sh ~/fzf-git.sh
 
-if ! isLinux; then
-    ~/dotfiles/symlink.sh ~/dotfiles/zshrc/maczshrc ~/.zshrc
-    ~/dotfiles/symlink.sh ~/dotfiles/config/macwezterm.lua ~/.wezterm.lua
-    ~/dotfiles/symlink.sh ~/dotfiles/config/macalacritty ~/.config/alacritty
-else
-    ~/dotfiles/symlink.sh ~/dotfiles/zshrc/zshrc ~/.zshrc
-    ~/dotfiles/symlink.sh ~/dotfiles/config/wezterm.lua ~/.wezterm.lua
-    ~/dotfiles/symlink.sh ~/dotfiles/config/alacritty ~/.config/alacritty
-fi
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
-shopt -u nocasematch
 source ~/.zshrc
-
-echo "Dotfiles Installation Complete"
