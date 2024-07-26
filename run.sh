@@ -1,180 +1,147 @@
-shell="$SHELL"
-os=$(uname)
 shopt -s nocasematch
+git clone https://github.com/juderozario08/TMUClub.git ~/ 2>/dev/null
+cd ~/dotfiles
+
+isLinux() {
+    if [[ $OSTYPE == linux* ]]; then
+        true
+    else
+        false
+    fi
+}
+
+isArch() {
+    if [[ $(cat /etc/issue) == *arch* ]]; then
+        true
+    else
+        false
+    fi
+}
+
+isZSH() {
+    if [[ $SHELL == *zsh ]]; then
+        echo "ZSH Detected..."
+        true
+    else
+        false
+    fi
+}
 
 install_zsh() {
-    echo "Installing Zsh..."
-    if ! $1; then
-        echo "Failed to install Zsh. Please install it manually."
-        exit 1
+    if ! command -v zsh &>/dev/null; then
+        if isArch; then
+            sudo pacman -Syu --noconfirm
+            sudo pacman -S --noconfirm zsh
+            sudo pacman -S --needed --noconfirm base-devel git mandb
+            cd ~
+            git clone https://aur.archlinux.org/yay.git
+            cd yay
+            makepkg -si --noconfirm
+            yay -S --noconfirm wezterm
+            cd ~/dotfiles
+        else
+            sudo apt update
+            sudo apt install -y zsh git
+        fi
+        echo "Zsh installed"
     fi
 }
 
 set_zsh_default() {
-    echo "Do you want to set Zsh as your default shell? (y/n)"
-    read -r response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-        chsh -s $(which zsh)
-    fi
+    sudo chsh -s /bin/zsh
+    chsh -s /bin/zsh
+    echo "Zsh set as default shell"
+    echo "Please logout and re-login or restart your system and then re-run this script"
+    exit
 }
-
-# Install Zsh if it is not installed
-if [[ $shell != *"zsh"* ]]; then
-    if [[ $os == *"Linux"* ]]; then
-        if [[ -f /etc/os-release ]]; then
-            . /etc/os-release
-            case $ID in
-            arch)
-                echo "Arch Linux detected"
-                install_zsh "sudo pacman -S zsh"
-                ;;
-            ubuntu | debian)
-                echo "${ID^} detected"
-                install_zsh "sudo apt install zsh"
-                ;;
-            fedora)
-                echo "Fedora detected"
-                install_zsh "sudo dnf install zsh"
-                ;;
-            centos)
-                echo "CentOS detected"
-                install_zsh "sudo yum install zsh"
-                ;;
-            opensuse* | suse)
-                echo "openSUSE detected"
-                install_zsh "sudo zypper install zsh"
-                ;;
-            *)
-                echo "Unsupported Linux distribution: $ID"
-                exit 1
-                ;;
-            esac
-        else
-            echo "Cannot determine Linux distribution. /etc/os-release file not found."
-            exit 1
-        fi
-    else
-        echo "Unsupported operating system"
-        exit 1
-    fi
-    set_zsh_default
-fi
-
-# Install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-source ~/.zshrc
-
-# Homebrew installation and update
-if ! command -v brew &>/dev/null; then
-    echo "Installing Homebrew"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    if [[ $os == *"Darwin"* ]]; then
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>~/.zprofile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    elif [[ $os == *"Linux"* ]]; then
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>~/.profile
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    fi
-else
-    echo "Updating Homebrew"
-    brew update
-fi
-
-brew install zsh
-
-brew install git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Function to install Rust using rustup
 install_rust() {
-    if ! command -v rustup &>/dev/null; then
-        echo "Installing Rust..."
+    if ! command -v rustc &>/dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-        echo "Rust installed successfully."
+        echo '. "$HOME/.cargo/env"' >>~/.zshrc
     else
-        echo "Rust is already installed."
+        rustup update
     fi
+    echo "Rust installed"
 }
-install_rust
 
-# Function to update .zshenv
-update_zshenv() {
-    if ! grep -q '\. "$HOME/.cargo/env"' "$HOME/.zshenv"; then
-        echo '. "$HOME/.cargo/env"' >>"$HOME/.zshenv"
-        echo "Added '. \"$HOME/.cargo/env\"' to $HOME/.zshenv"
+# Installing Homebrew
+install_homebrew() {
+    if ! command -v brew &>/dev/null; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        (
+            echo
+            echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+        ) >>$HOME/.zshrc
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        source ~/.zshrc
     else
-        echo "Line '. \"$HOME/.cargo/env\"' already exists in $HOME/.zshenv"
+        brew update
     fi
-}
-update_zshenv
-
-source ~/.zshrc
-
-cargo install vivid alacritty
-install_packages() {
-    case $1 in
-    arch)
-        sudo pacman -S --noconfirm git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm
-        ;;
-    ubuntu | debian)
-        sudo apt update
-        sudo apt install -y git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm
-        ;;
-    fedora)
-        sudo dnf install -y git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm
-        ;;
-    centos)
-        sudo yum install -y epel-release
-        sudo yum install -y git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm
-        ;;
-    opensuse* | suse)
-        sudo zypper install -y git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm
-        ;;
-    *)
-        echo "Unsupported Linux distribution: $1"
-        exit 1
-        ;;
-    esac
+    echo "Homebrew Installed"
 }
 
-if [[ -f /etc/os-release ]]; then
-    . /etc/os-release
-    install_packages "$ID"
-else
-    echo "Cannot determine Linux distribution. /etc/os-release file not found."
-    exit 1
+# Installling dependencies
+install_dependencies() {
+    if isLinux; then
+        if isArch; then
+            sudo pacman -S --noconfirm fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit
+        else
+            sudo apt update
+            sudo apt install -y fzf bat eza zoxide git-delta neovim vim ripgrep fd tmux gcc lazygit
+        fi
+    else
+        brew install --cask alacritty
+    fi
+    brew install zsh
+    brew install git fzf bat eza zoxide git-delta neovim vim ripgrep wezterm fd htop tokei gcc tmux lazygit
+    cargo install vivid alacritty
+}
+
+if ! isZSH; then
+    install_zsh
+    set_zsh_default
 fi
 
 install_rust
+install_homebrew
+install_dependencies
 
-echo "All packages have been installed successfully."
+mv ~/.zshrc ~/.zshrcbak 2>/dev/null
+mv ~/.wezterm.lua ~/.wezterm.luabak 2>/dev/null
+mv ~/.config/alacritty ~/.config/alacrittybak 2>/dev/null
+mv ~/.config/picom ~/.config/picombak 2>/dev/null
+mv ~/.config/backgrounds ~/.config/backgroundsbak 2>/dev/null
+mv ~/.config/bat ~/.config/batbak 2>/dev/null
+mv ~/.config/i3 ~/.config/i3bak 2>/dev/null
+mv ~/.config/nvim ~/.config/nvimbak 2>/dev/null
+mv ~/.config/picom ~/.config/picombak 2>/dev/null
+mv ~/.config/polybar ~/.config/polybarbak 2>/dev/null
+mv ~/.config/rofi ~/.config/rofibak 2>/dev/null
+mv ~/.config/screenlayout ~/.config/screenlayoutbak 2>/dev/null
+mv ~/.config/xresources ~/.config/xresourcesbak 2>/dev/null
+mv ~/.tmux ~/.tmuxbak 2>/dev/null
+mv ~/.tmux.conf ~/.tmux.confbak 2>/dev/null
+mv ~/.bashrc ~/.bashrcbak 2>/dev/null
+mv ~/.bash_profile ~/.bash_profilebak 2>/dev/null
+mv ~/.oh-my-zsh ~/.oh-my-zshbak 2>/dev/null
+mv ~/.p10k.zsh ~/.p10k.zshbak 2>/dev/null
 
-rm -rf ~/.zshrc 2>/dev/null
-rm -rf ~/.config/alacritty 2>/dev/null
-rm -rf ~/.config/picom 2>/dev/null
-rm -rf ~/.config/backgrounds 2>/dev/null
-rm -rf ~/.config/bat 2>/dev/null
-rm -rf ~/.config/i3 2>/dev/null
-rm -rf ~/.config/nvim 2>/dev/null
-rm -rf ~/.config/picom 2>/dev/null
-rm -rf ~/.config/polybar 2>/dev/null
-rm -rf ~/.config/rofi 2>/dev/null
-rm -rf ~/.config/screenlayout 2>/dev/null
-rm -rf ~/.config/xresources 2>/dev/null
-rm -rf ~/.tmux 2>/dev/null
 rm -rf ~/tpm 2>/dev/null
-rm -rf ~/.tmux.conf 2>/dev/null
-rm -rf ~/fzf-git.sh 2>/dev/null
 rm -rf ~/.gitconfig 2>/dev/null
-rm -rf ~/.wezterm.lua 2>/dev/null
+rm -rf ~/fzf-git.sh 2>/dev/null
+
+cp -r ~/dotfiles/oh-my-zsh ~/.oh-my-zsh
+cp -r ~/dotfiles/p10k.zsh ~/.p10k.zsh
+cp -r ~/dotfiles/zshrc/bashrc ~/.bashrc
+cp -r ~/dotfiles/zshrc/bash_profile ~/.bash_profile
 
 mkdir ~/.config 2>/dev/null
 
 ./symlink.sh "~/dotfiles/config/picom" "~/.config/picom"
 ./symlink.sh "~/dotfiles/config/backgrounds" "~/.config/backgrounds"
 ./symlink.sh "~/dotfiles/config/bat" "~/.config/bat"
-./symlink.sh "~/dotfiles/config/i3" "~/.config/i3"
 ./symlink.sh "~/dotfiles/config/i3" "~/.config/i3"
 ./symlink.sh "~/dotfiles/config/nvim" "~/.config/nvim"
 ./symlink.sh "~/dotfiles/config/polybar" "~/.config/polybar"
@@ -187,16 +154,17 @@ mkdir ~/.config 2>/dev/null
 ./symlink.sh "~/dotfiles/gitconfig/gitconfig" "~/.gitconfig"
 ./symlink.sh "~/dotfiles/fzf/fzf-git.sh" "~/fzf-git.sh"
 
-if [[ $os == *"Linux"* ]]; then
-    ./symlink.sh "~/dotfiles/zshrc/zshrc" "~/.zshrc"
-    ./symlink.sh "~/dotfiles/config/wezterm.lua" "~/.wezterm.lua"
-    ./symlink.sh "~/dotfiles/config/alacritty" "~/.config/alacritty"
-else
+if ! isLinux; then
     ./symlink.sh "~/dotfiles/zshrc/maczshrc" "~/.zshrc"
     ./symlink.sh "~/dotfiles/config/macwezterm.lua" "~/.wezterm.lua"
     ./symlink.sh "~/dotfiles/config/macalacritty" "~/.config/alacritty"
+else
+    ./symlink.sh "~/dotfiles/zshrc/zshrc" "~/.zshrc"
+    ./symlink.sh "~/dotfiles/config/wezterm.lua" "~/.wezterm.lua"
+    ./symlink.sh "~/dotfiles/config/alacritty" "~/.config/alacritty"
 fi
 
 shopt -u nocasematch
-
 source ~/.zshrc
+
+echo "Dotfiles Installation Complete"
