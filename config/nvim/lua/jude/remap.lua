@@ -40,6 +40,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { noremap = true, silent = true })
 
 vim.keymap.set({ "n", "v" }, "y", [["+y]], { noremap = true, silent = true })
 vim.keymap.set("n", "yy", [["+Y]], { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<ESC>O", { noremap = true, silent = true })
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { noremap = true, silent = true })
 
