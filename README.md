@@ -1,46 +1,15 @@
-# Dependencies
+## Dotfiles
 
-Also install <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> and <a href="https://curl.se/download.html">curl</a>
-
-### Homebrew
-<li>
-    <a href="https://brew.sh/">Homebrew</a>
-</li>
-
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-### Oh My Zsh
-<li>
-    <a href="https://brew.sh/">Oh My Zsh</a>
-</li>
-
-```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-Config contains p10k for terminal styling, and zinit package manager for terminal plugins. Alacritty is the main terminal. 
-All config files can be found in config folder of this repo. Main theme is Catppuccin for the terminal and TokyoNight for neovim
+### Description
+This repository contains my personal configurations for various tools and applications that I use on a daily basis.
+My daily driver is a Linux machine running Arch Linux with i3 as the window manager.
+The `install.sh` script will create symlinks to the configurations in the appropriate directories and also install all dependencies as needed.
 <br><br>
-## Using brew or the desired package manager, install the following:
-<li>zoxide</li>
-<li>eza</li>
-<li>fd</li>
-<li>fzf</li>
-<li>vivid</li>
-<li>bat</li>
-<li>tmux</li>
 
-Using brew just write this
+NOTE: This will overwrite any existing configurations in your home directory.
+Also if ZSH is not your default shell, the script will change it to ZSH but you will have to run the script again to finish the rest of the process.
+To get my configurations, run the following command:
 
 ```sh
-brew install zoxide eza fd fzf vivid
+git clone https://github.com/juderozario08/dotfiles.git && cd dotfiles && ./install.sh
 ```
-
-### Cargo Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-### Alacritty
-cargo install alacritty
-
