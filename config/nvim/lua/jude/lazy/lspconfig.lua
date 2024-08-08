@@ -34,6 +34,7 @@ return {
                         unusedparams = true,
                     },
                     staticcheck = true,
+                    gofumpt = true,
                 },
             },
         })

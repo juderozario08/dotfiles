@@ -29,6 +29,7 @@ return {
                     gotests = "~/go/bin/gotests",
                     impl = "impl",
                     iferr = "iferr",
+                    golines = "golines",
                 },
             })
         end,

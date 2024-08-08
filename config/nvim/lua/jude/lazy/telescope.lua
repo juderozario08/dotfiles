@@ -40,7 +40,7 @@ return {
         vim.keymap.set("n", "<leader>lb", function()
             builtin.live_grep({ grep_open_files = true })
         end, {})
-        vim.keymap.set("n", "<leader>cb", builtin.current_buffer_fuzzy_find, {})
+        vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, {})
         vim.keymap.set("n", "<leader>tr", builtin.treesitter, {})
         vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 
