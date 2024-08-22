@@ -129,3 +129,5 @@ export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
 
 # Created by `pipx` on 2024-07-15 00:40:39
 export PATH="$PATH:/home/juderozario/.local/bin"
+
+[ -f "/home/juderozario/.ghcup/env" ] && . "/home/juderozario/.ghcup/env" # ghcup-env
