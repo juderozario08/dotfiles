@@ -33,6 +33,10 @@ autocmd("LspAttach", {
             vim.api.nvim_command(":w")
         end, opts)
         vim.keymap.set("n", "<leader>fo", [[mzgg=G'z:w<CR>]], opts)
+        vim.keymap.set("n", "<leader>fo", function()
+            vim.lsp.buf.format()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("mzgg=G'z:w<CR>", true, false, true), "n", true)
+        end, opts)
     end,
 })
 
