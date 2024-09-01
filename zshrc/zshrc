@@ -45,6 +45,7 @@ alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -t'
 alias vw='nvim ~/.wezterm.lua'
 alias code='code-insiders'
+alias uni='ssh jarozari@moon.scs.torontomu.ca'
 alias lg='lazygit'
 alias ln='~/dotfiles/symlink.sh'
 
@@ -129,3 +130,13 @@ export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
 
 # Created by `pipx` on 2024-07-15 00:40:39
 export PATH="$PATH:/home/juderozario/.local/bin"
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/juderozario/.opam/opam-init/init.zsh' ]] || source '/home/juderozario/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+BROWSER=zen-browser
