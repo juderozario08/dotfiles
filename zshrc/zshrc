@@ -47,6 +47,7 @@ alias vw='nvim ~/.wezterm.lua'
 alias code='code-insiders'
 alias uni='ssh jarozari@moon.scs.torontomu.ca'
 alias lg='lazygit'
+alias uni='ssh jarozari@moon.scs.ryerson.ca'
 alias ln='~/dotfiles/symlink.sh'
 
 bindkey -e
