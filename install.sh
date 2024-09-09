@@ -198,7 +198,7 @@ fi
 ~/dotfiles/symlink.sh ~/dotfiles/tmux/tpm ~/tpm
 ~/dotfiles/symlink.sh ~/dotfiles/zshrc/bashrc ~/.bashrc
 ~/dotfiles/symlink.sh ~/dotfiles/zshrc/bash_profile ~/.bash_profile
-~/dotfiles/symlink.sh ~/dotfiles/oh-my-zsh ~/.oh-my-zsh
+~/dotfiles/symlink.sh ~/dotfiles/OHMYZSHCUSTOM ~/.oh-my-zsh
 ~/dotfiles/symlink.sh ~/dotfiles/p10k.zsh ~/.p10k.zsh
 ~/dotfiles/symlink.sh ~/dotfiles/gitconfig/gitconfig ~/.gitconfig
 
