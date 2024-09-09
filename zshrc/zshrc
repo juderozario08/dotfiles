@@ -27,6 +27,7 @@ zinit light Aloxaf/fzf-tab
 autoload -U compinit && compinit
 
 alias so="source ~/.zshrc"
+alias open="xdg-open"
 alias zshconfig="nvim ~/.zshrc"
 alias l='eza --color=always --icons=always --git --long --all --git'
 alias ls='eza --color=always --icons=always --git'
