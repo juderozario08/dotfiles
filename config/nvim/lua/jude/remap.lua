@@ -15,13 +15,13 @@ vim.keymap.set(
 
 vim.keymap.set("n", "H", [[mzO<ESC>j`z]], { noremap = true, silent = true })
 vim.keymap.set("n", "L", [[mzo<ESC>k`z]], { noremap = true, silent = true })
-vim.keymap.set("n", "<M-_>", ":horizontal resize -2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-+>", ":horizontal resize +2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-{>", ":vertical resize -2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-}>", ":vertical resize +2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-_>", ":only<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "M-_", ":horizontal resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "M-+", ":horizontal resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "M-{", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "M-}", ":vertical resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "C-_", ":only<CR>", { noremap = true, silent = true })
 
-vim.keymap.set({ "n", "v" }, "<S-Tab>", [[mz<<<ESC>`zhhhh]], { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "S-Tab", [[mz<<<ESC>`zhhhh]], { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "<Tab>", [[mz>><ESC>`zllll]], { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
@@ -30,8 +30,8 @@ vim.keymap.set("n", "<leader>Q", ":q!<CR>", { noremap = true, silent = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<C-d>", "15jzz", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-u>", "15kzz", { noremap = true, silent = true })
+vim.keymap.set("n", "C-d", "15jzz", { noremap = true, silent = true })
+vim.keymap.set("n", "C-u", "15kzz", { noremap = true, silent = true })
 vim.keymap.set("n", "n", "nzzzv", { noremap = true, silent = true })
 vim.keymap.set("n", "N", "Nzzzv", { noremap = true, silent = true })
 
@@ -43,7 +43,7 @@ vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<ESC>O", { noremap = tru
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { noremap = true, silent = true })
 
-vim.keymap.set("i", "<C-c>", "<Esc>", { noremap = true, silent = true })
+vim.keymap.set("i", "C-c", "<Esc>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>w", ":w!<CR>", { noremap = true, silent = true })
