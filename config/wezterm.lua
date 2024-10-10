@@ -8,7 +8,7 @@ end
 
 config.color_scheme = "tokyonight_night"
 config.font = wezterm.font("FiraCode Nerd Font Mono")
-config.font_size = 11
+config.font_size = 12
 config.automatically_reload_config = true
 config.window_background_opacity = 0.9
 config.window_decorations = "NONE"

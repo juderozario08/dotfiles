@@ -25,19 +25,6 @@ return {
         })
         require("neodev").setup()
         local lspconfig = require("lspconfig")
-        lspconfig.gopls.setup({
-            capabilities = capabilities,
-            settings = {
-                gopls = {
-                    completeUnimported = true,
-                    analyses = {
-                        unusedparams = true,
-                    },
-                    staticcheck = true,
-                    gofumpt = true,
-                },
-            },
-        })
         lspconfig.lua_ls.setup({
             capabilities = capabilities,
             settings = {

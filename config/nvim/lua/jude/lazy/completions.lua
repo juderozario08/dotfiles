@@ -13,11 +13,14 @@ return {
         },
     },
     {
+        "rambhosale/cmp-bootstrap.nvim",
+    },
+    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         config = function()
             local cmp = require("cmp")
-            require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip").setup({})
             cmp.setup({
                 snippet = {
                     expand = function(args)
@@ -38,21 +41,21 @@ return {
                     ["C-e"] = cmp.mapping.abort(),
                     ["C-n"] = cmp.mapping.select_next_item({ select = false }),
                     ["C-p"] = cmp.mapping.select_prev_item({ select = false }),
-                    ["C-y>"] = cmp.mapping.confirm({ select = true }),
+                    ["C-y"] = cmp.mapping.confirm({ select = true }),
                 }),
                 sources = cmp.config.sources({
                     {
                         name = "nvim_lsp",
-                        group_index = 1,
                         entry_filter = function(entry, _)
                             local lsp = require("cmp.types").lsp
                             return lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
                         end,
                     },
-                    { name = "path",     group_index = 1 },
-                    { name = "luasnip",  group_index = 1 },
-                    { name = "nvim_lua", group_index = 2 },
-                    { name = "buffer",   group_index = 3 },
+                    { name = "cmp_bootstrap", },
+                    { name = "path" },
+                    { name = "luasnip" },
+                    { name = "nvim_lua" },
+                    { name = "buffer" },
                 }, {}),
             })
             -- `/` cmdline setup.
@@ -71,6 +74,18 @@ return {
                 }, {
                     { name = "cmdline" },
                 }),
+            })
+
+            cmp.setup({
+                formatting = {
+                    format = function(entry, vim_item)
+                        if entry.source.name == "cmp_bootstrap" then
+                            vim_item.kind = "Class"
+                            vim_item.menu = "bootstrap"
+                        end
+                        return vim_item
+                    end,
+                },
             })
         end,
     },

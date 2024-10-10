@@ -31,4 +31,19 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 
-vim.api.nvim_set_hl(0, "IncSearch", { fg = "#cdd6f4", bg = "#313244" })
+vim.api.nvim_create_augroup('incsearch_highlight', { clear = true })
+
+vim.api.nvim_create_autocmd('CmdlineEnter', {
+    pattern = { '/', '?' },
+    callback = function() vim.opt.hlsearch = true end,
+    group = 'incsearch_highlight',
+})
+
+vim.api.nvim_create_autocmd('CmdlineLeave', {
+    pattern = { '/', '?' },
+    callback = function() vim.opt.hlsearch = false end,
+    group = 'incsearch_highlight',
+})
+
+vim.o.list = true
+vim.o.listchars = 'tab:» ,space:.,precedes:<'
