@@ -79,7 +79,7 @@ return {
             cmp.setup({
                 formatting = {
                     format = function(entry, vim_item)
-                        if entry.source.name == "cmp_bootstrap" then
+                        if vim.bo.filetype == "html" and entry.source.name == "cmp_bootstrap" then
                             vim_item.kind = "Class"
                             vim_item.menu = "bootstrap"
                         end

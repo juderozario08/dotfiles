@@ -35,13 +35,17 @@ vim.api.nvim_create_augroup('incsearch_highlight', { clear = true })
 
 vim.api.nvim_create_autocmd('CmdlineEnter', {
     pattern = { '/', '?' },
-    callback = function() vim.opt.hlsearch = true end,
+    callback = function()
+        vim.opt.hlsearch = true
+    end,
     group = 'incsearch_highlight',
 })
 
 vim.api.nvim_create_autocmd('CmdlineLeave', {
     pattern = { '/', '?' },
-    callback = function() vim.opt.hlsearch = false end,
+    callback = function()
+        vim.opt.hlsearch = false
+    end,
     group = 'incsearch_highlight',
 })
 
