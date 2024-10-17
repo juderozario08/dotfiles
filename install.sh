@@ -12,7 +12,7 @@ echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
 source ~/.zshrc
 
 # Custom ZSH
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # cargo
@@ -29,7 +29,7 @@ cd ..
 sudo pacman -S fd ripgrep npm eza zoxide htop tokei tree bat fzf lazygit --noconfirm
 brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh
 cargo install alacritty vivid
-yay -S discord spotify obsidian obs-studio zen-browser-bin firefox git-credential-manager-bin --noconfirm
+yay -S wezterm alacritty discord spotify obsidian obs-studio zen-browser-bin firefox git-credential-manager-bin --noconfirm
 
 #symlinks
 ~/dotfiles/symlink.sh ~/dotfiles/config/nvim ~/.config/nvim
