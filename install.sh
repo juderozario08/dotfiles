@@ -27,7 +27,7 @@ cd yay
 makepkg -si
 cd ..
 sudo pacman -S fd ripgrep npm eza zoxide htop tokei tree bat fzf lazygit --noconfirm
-brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh
+brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh gh
 cargo install alacritty vivid
 yay -S wezterm alacritty discord spotify obsidian obs-studio zen-browser-bin firefox git-credential-manager-bin --noconfirm
 
