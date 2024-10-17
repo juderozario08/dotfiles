@@ -20,10 +20,16 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
 
 #dependencies
+sudo pacman -S --needed git base-devel
+cd ~
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
 sudo pacman -S fd ripgrep npm eza zoxide htop tokei tree bat fzf lazygit --noconfirm
 brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh
 cargo install alacritty vivid
-yay -S discord spotify obsidian obs-studio zen-browser-bin --noconfirm
+yay -S discord spotify obsidian obs-studio zen-browser-bin firefox git-credential-manager-bin --noconfirm
 
 #symlinks
 ~/dotfiles/symlink.sh ~/dotfiles/config/nvim ~/.config/nvim
@@ -49,3 +55,8 @@ cd ~
 git clone https://github.com/junegunn/fzf-git.sh
 
 source ~/.zshrc
+
+sudo pacman -Syu --noconfirm
+yay -Syu --noconfirm
+
+gh auth login
