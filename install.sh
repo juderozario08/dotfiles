@@ -1,14 +1,8 @@
 #!/bin/bash
 
-# ZSH setup
-sudo pacman -S zsh --noconfirm
-if [ -z "$(echo $SHELL | grep zsh)" ]; then
-    chsh -s /bin/zsh
-fi
-
 # brew setup
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
 source ~/.zshrc
 
 # Custom ZSH
@@ -26,10 +20,13 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd ..
-sudo pacman -S fd ripgrep npm eza zoxide htop tokei tree bat fzf lazygit --noconfirm
-brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh gh
+
+sudo pacman -S fd ripgrep npm eza zoxide htop tokei tree bat fzf lazygit tmux --noconfirm
+brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh gh tmux
 cargo install alacritty vivid
-yay -S wezterm alacritty discord spotify obsidian obs-studio zen-browser-bin firefox git-credential-manager-bin --noconfirm
+yay -S wezterm-git alacritty webcord spotify obsidian obs-studio zen-browser-bin firefox
+yay -S ags dconf dunst fastfetch gtk3 gtk4 hyprland nautilus pavucontrol procps
+yay -S pulse qt6ct rofi starship systemd waybar waypaper wal wlogout xsettingsd sddm
 
 #symlinks
 ~/dotfiles/symlink.sh ~/dotfiles/config/nvim ~/.config/nvim
