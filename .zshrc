@@ -49,7 +49,7 @@ alias code='code-insiders'
 alias uni='ssh jarozari@moon.scs.torontomu.ca'
 alias lg='lazygit'
 alias uni='ssh jarozari@moon.scs.ryerson.ca'
-alias ln='~/dotfiles/symlink.sh'
+alias vh='nvim ~/.config/hypr/hyprland.conf'
 
 bindkey -e
 bindkey '^p' history-search-backward

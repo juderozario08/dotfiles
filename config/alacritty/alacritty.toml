@@ -1,3 +1,8 @@
+import = ["~/.config/alacritty/catppuccin-mocha.toml"]
+
+[env]
+TERM = "xterm-256color"
+
 [font]
 size = 12.0
 
@@ -6,7 +11,7 @@ family = "FiraCode Nerd Font"
 style = "Regular"
 
 [window]
-opacity = 0.7
+opacity = 0.8
 
 [window.padding]
 x = 15
