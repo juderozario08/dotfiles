@@ -2,7 +2,7 @@
 
 # brew setup
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
+#echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
 source ~/.zshrc
 
 # cargo
@@ -12,10 +12,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 #dependencies
 sudo pacman -S --needed git base-devel
 cd ~
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-cd ..
 
 sudo pacman -S fd ripgrep npm eza zoxide htop tokei tree bat fzf lazygit tmux --noconfirm
 brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh gh tmux

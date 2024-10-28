@@ -137,3 +137,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 export ANDROID_HOME='/home/juderozario/Android/Sdk'
+
+# bun completions
+[ -s "/home/juderozario/.bun/_bun" ] && source "/home/juderozario/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

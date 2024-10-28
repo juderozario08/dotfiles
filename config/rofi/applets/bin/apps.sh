@@ -22,29 +22,23 @@ elif [[ ( "$theme" == *'type-2'* ) || ( "$theme" == *'type-4'* ) ]]; then
 fi
 
 # CMDs (add your apps here)
-term_cmd='alacritty'
-file_cmd='thunar'
-text_cmd='geany'
-web_cmd='firefox'
-music_cmd='alacritty -e ncmpcpp'
-setting_cmd='xfce4-settings-manager'
+term_cmd='wezterm'
+file_cmd='nautilus'
+web_cmd='zen-browser'
+setting_cmd='gtk-settings'
 
 # Options
 layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
 	option_1=" Terminal <span weight='light' size='small'><i>($term_cmd)</i></span>"
 	option_2=" Files <span weight='light' size='small'><i>($file_cmd)</i></span>"
-	option_3=" Editor <span weight='light' size='small'><i>($text_cmd)</i></span>"
-	option_4=" Browser <span weight='light' size='small'><i>($web_cmd)</i></span>"
-	option_5=" Music <span weight='light' size='small'><i>($music_cmd)</i></span>"
-	option_6=" Settings <span weight='light' size='small'><i>($setting_cmd)</i></span>"
+	option_3=" Browser <span weight='light' size='small'><i>($web_cmd)</i></span>"
+	option_4=" Settings <span weight='light' size='small'><i>($setting_cmd)</i></span>"
 else
 	option_1=""
 	option_2=""
-	option_3=""
-	option_4=""
-	option_5=""
-	option_6=""
+	option_3=""
+	option_4=""
 fi
 
 # Rofi CMD
@@ -70,13 +64,9 @@ run_cmd() {
 	elif [[ "$1" == '--opt2' ]]; then
 		${file_cmd}
 	elif [[ "$1" == '--opt3' ]]; then
-		${text_cmd}
-	elif [[ "$1" == '--opt4' ]]; then
 		${web_cmd}
-	elif [[ "$1" == '--opt5' ]]; then
-		${music_cmd}
-	elif [[ "$1" == '--opt6' ]]; then
-		${setting_cmd}
+	elif [[ "$1" == '--opt4' ]]; then
+		${settings_cmd}
 	fi
 }
 
@@ -94,11 +84,5 @@ case ${chosen} in
         ;;
     $option_4)
 		run_cmd --opt4
-        ;;
-    $option_5)
-		run_cmd --opt5
-        ;;
-    $option_6)
-		run_cmd --opt6
         ;;
 esac
