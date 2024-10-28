@@ -21,8 +21,8 @@ sudo pacman -S fd ripgrep npm eza zoxide htop tokei tree bat fzf lazygit tmux --
 brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh gh tmux
 cargo install alacritty vivid
 yay -S wezterm-git alacritty webcord spotify obsidian obs-studio zen-browser-bin firefox
-yay -S ags dconf dunst fastfetch gtk3 gtk4 hyprland nautilus pavucontrol procps
-yay -S pulse qt6ct rofi starship systemd waybar waypaper wal wlogout xsettingsd sddm
+yay -S dconf dunst fastfetch gtk3 gtk4 hyprland nautilus pavucontrol
+yay -S pulse qt6ct rofi starship systemd waybar wal wlogout xsettingsd sddm
 
 cd ~
 git clone https://github.com/junegunn/fzf-git.sh

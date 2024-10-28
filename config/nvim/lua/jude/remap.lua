@@ -21,7 +21,7 @@ vim.keymap.set("n", "M-{", ":vertical resize -2<CR>", { noremap = true, silent =
 vim.keymap.set("n", "M-}", ":vertical resize +2<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "C-_", ":only<CR>", { noremap = true, silent = true })
 
-vim.keymap.set({ "n", "v" }, "S-Tab", [[mz<<<ESC>`zhhhh]], { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<S-Tab>", [[mz<<<ESC>`zhhhh]], { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "<Tab>", [[mz>><ESC>`zllll]], { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })

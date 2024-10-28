@@ -130,5 +130,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
 export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
+export PATH="/home/juderozario/.dotnet/tools:$PATH"
 
 BROWSER=/usr/bin/zen-browser
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export ANDROID_HOME='/home/juderozario/Android/Sdk'

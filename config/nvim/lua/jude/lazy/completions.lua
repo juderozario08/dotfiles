@@ -13,9 +13,6 @@ return {
         },
     },
     {
-        "rambhosale/cmp-bootstrap.nvim",
-    },
-    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         config = function()
@@ -44,18 +41,11 @@ return {
                     ["C-y"] = cmp.mapping.confirm({ select = true }),
                 }),
                 sources = cmp.config.sources({
-                    {
-                        name = "nvim_lsp",
-                        entry_filter = function(entry, _)
-                            local lsp = require("cmp.types").lsp
-                            return lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
-                        end,
-                    },
-                    { name = "cmp_bootstrap", },
-                    { name = "path" },
-                    { name = "luasnip" },
-                    { name = "nvim_lua" },
-                    { name = "buffer" },
+                    { name = "nvim_lsp", group_index = 1 },
+                    { name = "path",     group_index = 1 },
+                    { name = "luasnip",  group_index = 1 },
+                    { name = "nvim_lua", group_index = 1 },
+                    { name = "buffer",   group_index = 2 },
                 }, {}),
             })
             -- `/` cmdline setup.
@@ -74,18 +64,6 @@ return {
                 }, {
                     { name = "cmdline" },
                 }),
-            })
-
-            cmp.setup({
-                formatting = {
-                    format = function(entry, vim_item)
-                        if vim.bo.filetype == "html" and entry.source.name == "cmp_bootstrap" then
-                            vim_item.kind = "Class"
-                            vim_item.menu = "bootstrap"
-                        end
-                        return vim_item
-                    end,
-                },
             })
         end,
     },
