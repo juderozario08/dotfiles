@@ -15,7 +15,8 @@
         "group/hardware",
         "tray",
         "clock",
-        "custom/swaync"
+        "custom/swaync",
+        "group/power"
     ],
     "clock": {
         "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
@@ -38,7 +39,11 @@
         "format": "{icon}  {volume}%",
         "format-muted": "",
         "format-icons": {
-            "default": ["", "", " "]
+            "default": [
+                "",
+                "",
+                " "
+            ]
         },
         "on-click": "pavucontrol"
     },
@@ -52,6 +57,33 @@
             "transition-duration": 100,
             "transition-left-to-right": true
         }
+    },
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/shutdown",
+            "custom/reboot",
+            "custom/lock"
+        ],
+        "drawer": {
+            "transition-duration": 100,
+            "transition-left-to-right": false
+        }
+    },
+    "custom/shutdown": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "systemctl poweroff"
+    },
+    "custom/reboot": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "systemctl reboot"
+    },
+    "custom/lock": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "hyprlock"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -79,18 +111,5 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
-    },
-    "custom/spotify": {
-        "format": "{icon} {}",
-        "escape": true,
-        "return-type": "json",
-        "max-length": 40,
-        "interval": 30,
-        "on-click": "playerctl -p spotify play-pause",
-        "on-click-right": "killall spotify",
-        "smooth-scrolling-threshold": 10,
-        "on-scroll-up" : "playerctl -p spotify next",
-        "on-scroll-down" : "playerctl -p spotify previous",
-        "exec-if": "pgrep spotify"
     }
 }

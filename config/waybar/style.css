@@ -70,19 +70,19 @@ button:hover {
 #network,
 #mode,
 #scratchpad {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  margin-left: 4px;
-  margin-right: 4px;
-  padding-left: 8px;
-  padding-right: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #tray {
     margin: 4px;
     border-radius: 20px;
     border: 1px solid @mauve;
-    background-color: rgba(0,0,0,0.5)
+    background-color: rgba(0, 0, 0, 0.5)
 }
 
 #clock {
@@ -150,4 +150,20 @@ button:hover {
     background: inherit;
     color: @mauve;
     border-top: 2px solid @mauve;
+}
+
+#custom-shutdown,
+#custom-reboot,
+#custom-lock {
+    margin: 0 5px;
+}
+
+#custom-lock:hover {
+    color: white;
+}
+#custom-reboot:hover {
+    color: white;
+}
+#custom-shutdown:hover {
+    color: white;
 }
