@@ -144,3 +144,15 @@ export ANDROID_HOME='/home/juderozario/Android/Sdk'
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
+
+fzf-neovim() {
+    local dir
+    dir=$(fd -Ht d --exclude .git --exclude node_modules | fzf)
+    if [ -n "$dir" ]; then
+        cd "$dir"
+        nvim
+    fi
+}
+zle -N fzf-neovim
+bindkey '^[n' fzf-neovim
