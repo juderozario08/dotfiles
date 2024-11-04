@@ -15,8 +15,7 @@
         "group/hardware",
         "tray",
         "clock",
-        "custom/swaync",
-        "group/power"
+        "custom/swaync"
     ],
     "clock": {
         "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
