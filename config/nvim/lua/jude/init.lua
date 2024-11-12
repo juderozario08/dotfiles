@@ -42,11 +42,11 @@ autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
-autocmd({ "VimEnter" }, {
-    group = jude,
-    pattern = "*",
-    command = [[Copilot disable]],
-})
+-- autocmd({ "VimEnter" }, {
+--     group = jude,
+--     pattern = "*",
+--     command = [[Copilot disable]],
+-- })
 
 vim.api.nvim_set_hl(0, 'TrailingWhitespace', { bg = 'LightRed' })
 

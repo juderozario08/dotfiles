@@ -11,6 +11,7 @@ return {
         "neovim/nvim-lspconfig",
         "folke/neoconf.nvim",
         "folke/neodev.nvim",
+        "FractalBoy/perl-language-server"
     },
     config = function()
         require("mason").setup()
@@ -23,7 +24,7 @@ return {
                 })
             end,
         })
-        require("neodev").setup()
+        require("neodev").setup({})
         local lspconfig = require("lspconfig")
         lspconfig.lua_ls.setup({
             capabilities = capabilities,
@@ -33,5 +34,6 @@ return {
                 },
             },
         })
+        lspconfig.perlls.setup({})
     end,
 }
