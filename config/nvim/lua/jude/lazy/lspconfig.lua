@@ -34,6 +34,5 @@ return {
                 },
             },
         })
-        lspconfig.perlls.setup({})
     end,
 }
