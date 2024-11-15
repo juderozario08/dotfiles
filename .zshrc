@@ -126,10 +126,14 @@ export FZF_ALT_C_OPTS="--preview 'eza --color=always --tree --git-ignore --ignor
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
-export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
-export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
+if [ $(uname) != "Darwin"  ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
+    export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
+    export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
+    export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
+fi
+
 export PATH="/home/juderozario/.dotnet/tools:$PATH"
 
 BROWSER=/usr/bin/zen-browser
@@ -144,7 +148,6 @@ export ANDROID_HOME='/home/juderozario/Android/Sdk'
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
 
 fzf-neovim() {
     local dir

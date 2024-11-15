@@ -7,7 +7,7 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = "Catppuccin Mocha (Gogh)"
-config.font = wezterm.font_with_fallback{
+config.font = wezterm.font_with_fallback {
     "FiraCode Nerd Font Mono",
     "CaskaydiaMono Nerd Font Mono",
     "JetBrainsMono Nerd Font"
@@ -17,6 +17,19 @@ config.automatically_reload_config = true
 config.window_background_opacity = 0.80
 config.window_decorations = "NONE"
 config.enable_tab_bar = false
+
+local handle = io.popen("uname")
+if handle then
+    local os_name = handle:read("a")
+    handle:close()
+    os_name = os_name:match("^%s*(.-)%s*$")
+    if os_name ~= "Linux" then
+        config.font_size = 16
+        config.window_decorations = "RESIZE | TITLE"
+        config.macos_window_background_blur = 30
+    end
+end
+
 config.window_padding = {
     left = 10,
     right = 10,
