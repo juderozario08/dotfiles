@@ -26,7 +26,7 @@ if handle then
     if os_name ~= "Linux" then
         config.font_size = 16
         config.window_decorations = "RESIZE | TITLE"
-        config.macos_window_background_blur = 30
+        config.macos_window_background_blur = 60
     end
 end
 
