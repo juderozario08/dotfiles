@@ -27,7 +27,7 @@ zinit light Aloxaf/fzf-tab
 autoload -U compinit && compinit
 
 alias so="source ~/.zshrc"
-alias open="xdg-open"
+alias man="~/man.sh"
 alias zshconfig="nvim ~/.zshrc"
 alias l='eza --color=always --icons=always --git --long --all --git'
 alias ls='eza --color=always --icons=always --git'
@@ -46,9 +46,8 @@ alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -t'
 alias vw='nvim ~/.wezterm.lua'
 alias code='code-insiders'
-alias uni='ssh jarozari@moon.scs.torontomu.ca'
+alias uni="~/uni.sh"
 alias lg='lazygit'
-alias uni='ssh jarozari@moon.scs.ryerson.ca'
 alias vh='nvim ~/.config/hypr/hyprland.conf'
 
 bindkey -e
@@ -132,6 +131,7 @@ if [ $(uname) != "Darwin"  ]; then
     export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
     export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
     export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
+    alias open="xdg-open"
 fi
 
 export PATH="/home/juderozario/.dotnet/tools:$PATH"
@@ -159,3 +159,5 @@ fzf-neovim() {
 }
 zle -N fzf-neovim
 bindkey '^[n' fzf-neovim
+PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
