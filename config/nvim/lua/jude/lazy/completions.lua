@@ -19,9 +19,6 @@ return {
             local cmp = require("cmp")
             require("luasnip").setup({})
             cmp.setup({
-                completion = {
-                    autocomplete = false
-                },
                 snippet = {
                     expand = function(args)
                         require("luasnip").lsp_expand(args.body)
@@ -30,6 +27,7 @@ return {
                 window = {
                     completion = {
                         cmp.config.window.bordered(),
+                        autocomplete = false,
                     },
                     documentation = cmp.config.window.bordered(),
                 },
@@ -47,7 +45,7 @@ return {
                         else
                             cmp.open_docs()
                         end
-                    end,
+                    end
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp", group_index = 1 },
@@ -60,9 +58,8 @@ return {
                     docs = {
                         auto_open = false
                     }
-                },
+                }
             })
-            --
             -- `/` cmdline setup.
             cmp.setup.cmdline("/", {
                 mapping = cmp.mapping.preset.cmdline(),
@@ -81,6 +78,5 @@ return {
                 }),
             })
         end,
-
     },
 }
