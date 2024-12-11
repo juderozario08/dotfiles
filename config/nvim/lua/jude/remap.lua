@@ -43,10 +43,11 @@ vim.keymap.set("n", "<leader>ge", "oif err != nil {<CR>}<ESC>O", { noremap = tru
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { noremap = true, silent = true })
 
-vim.keymap.set("i", "C-c", "<Esc>", { noremap = true, silent = true })
-
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("i", "<C-t>", "<nop>")
+vim.keymap.set("i", "<C-d>", "<nop>")
+vim.keymap.set("i", "<C-c>", "<nop>")
+vim.keymap.set("i", "<C-o>", "<nop>")
 vim.keymap.set("n", "<leader>w", ":w!<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>s", [[mz:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
