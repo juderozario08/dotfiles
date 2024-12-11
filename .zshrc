@@ -29,13 +29,13 @@ autoload -U compinit && compinit
 alias so="source ~/.zshrc"
 alias man="~/man.sh"
 alias zshconfig="nvim ~/.zshrc"
-alias l='eza --color=always --icons=always --git --long --all --git'
-alias ls='eza --color=always --icons=always --git'
+alias l='eza --color=always --icons=always --long --all'
+alias ls='eza --color=always --icons=always'
 alias v='nvim'
 alias cd='z'
 alias va='nvim ~/.config/alacritty/alacritty.toml'
 alias vk='nvim ~/.config/kitty/kitty.conf'
-alias tree='eza --tree --icons --git --ignore-glob=node_modules'
+alias tree='eza --tree --icons --ignore-glob=node_modules'
 alias cat='bat'
 alias t='tmux'
 alias td='tmux detach'
