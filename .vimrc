@@ -33,6 +33,7 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set incsearch
+set rtp+=/opt/homebrew/opt/fzf
 
 set backspace=indent,eol,start
 

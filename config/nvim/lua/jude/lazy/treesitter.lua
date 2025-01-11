@@ -39,6 +39,7 @@ return {
                 separator = nil,
                 zindex = 10,
                 on_attach = nil,
+                max_lines = 5,
             })
         end,
     },

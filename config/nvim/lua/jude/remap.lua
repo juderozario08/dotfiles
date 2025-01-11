@@ -35,6 +35,9 @@ vim.keymap.set("n", "C-u", "15kzz", { noremap = true, silent = true })
 vim.keymap.set("n", "n", "nzzzv", { noremap = true, silent = true })
 vim.keymap.set("n", "N", "Nzzzv", { noremap = true, silent = true })
 
+vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
+vim.keymap.set("n", "k", "gk", { noremap = true, silent = true })
+
 vim.keymap.set("x", "<leader>p", [["_dP]], { noremap = true, silent = true })
 
 vim.keymap.set({ "n", "v" }, "y", [["+y]], { noremap = true, silent = true })
