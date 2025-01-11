@@ -27,7 +27,6 @@ zinit light Aloxaf/fzf-tab
 autoload -U compinit && compinit
 
 alias so="source ~/.zshrc"
-alias man="~/man.sh"
 alias zshconfig="nvim ~/.zshrc"
 alias l='eza --color=always --icons=always --long --all'
 alias ls='eza --color=always --icons=always'
@@ -132,6 +131,8 @@ if [ $(uname) != "Darwin"  ]; then
     export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
     export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
     alias open="xdg-open"
+else
+    alias man="~/man.sh"
 fi
 
 export PATH="/home/juderozario/.dotnet/tools:$PATH"

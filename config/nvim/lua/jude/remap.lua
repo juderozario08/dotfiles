@@ -61,6 +61,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz", { noremap = true, silent = 
 
 vim.keymap.set("v", '<leader>"', [[c"<ESC>pa"<ESC>]])
 vim.keymap.set("v", "<leader>'", [[c'<ESC>pa'<ESC>]])
+vim.keymap.set("v", "<leader>`", [[c`<ESC>pa`<ESC>]])
 vim.keymap.set("v", "<leader>(", [[c(<ESC>pa)<ESC>]])
 vim.keymap.set("v", "<leader>)", [[c(<ESC>pa)<ESC>]])
 vim.keymap.set("v", "<leader>{", [[c{<ESC>pa}<ESC>]])
@@ -70,6 +71,7 @@ vim.keymap.set("v", "<leader>]", [[c[<ESC>pa]<ESC>]])
 
 vim.keymap.set("n", '<leader>"', [[ciw"<ESC>pa"<ESC>]])
 vim.keymap.set("n", "<leader>'", [[ciw'<ESC>pa'<ESC>]])
+vim.keymap.set("n", "<leader>`", [[ciw`<ESC>pa`<ESC>]])
 vim.keymap.set("n", "<leader>(", [[ciw(<ESC>pa)<ESC>]])
 vim.keymap.set("n", "<leader>)", [[ciw(<ESC>pa)<ESC>]])
 vim.keymap.set("n", "<leader>{", [[ciw{<ESC>pa}<ESC>]])
