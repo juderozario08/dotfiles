@@ -1,0 +1,114 @@
+// -*- mode: jsonc -*-
+{
+    "position": "top",
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "custom/spotify",
+        "group/hardware",
+        "tray",
+        "clock",
+        "custom/swaync"
+    ],
+    "clock": {
+        "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "network": {
+        "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>Wireless",
+        "format-ethernet": "<span size='13000' foreground='#f5e0dc'> </span> Wired",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
+        "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                " "
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory"
+        ],
+        "drawer": {
+            "transition-duration": 100,
+            "transition-left-to-right": true
+        }
+    },
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/shutdown",
+            "custom/reboot",
+            "custom/lock"
+        ],
+        "drawer": {
+            "transition-duration": 100,
+            "transition-left-to-right": false
+        }
+    },
+    "custom/shutdown": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "systemctl poweroff"
+    },
+    "custom/reboot": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "systemctl reboot"
+    },
+    "custom/lock": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "hyprlock"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "custom/swaync": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": "",
+            "inhibited-notification": "",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    }
+}

@@ -1,0 +1,5 @@
+[io/missioncenter/MissionCenter]
+window-height=400
+window-width=600
+performance-selected-page='cpu'
+window-selected-page='performance-page'

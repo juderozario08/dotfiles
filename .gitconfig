@@ -1,0 +1,52 @@
+[credential "https://github.com"]
+	helper =
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = Jude Rozario
+	email = juderzro08@gmail.com
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    side-by-side = true
+    features = catppuccin-mocha
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[delta "catppuccin-mocha"]
+	blame-palette = "#1e1e2e #181825 #11111b #313244 #45475a"
+	commit-decoration-style = "box ul"
+	dark = true
+	file-decoration-style = "#cdd6f4"
+	file-style = "#cdd6f4"
+	hunk-header-decoration-style = "box ul"
+	hunk-header-file-style = "bold"
+	hunk-header-line-number-style = "bold #a6adc8"
+	hunk-header-style = "file line-number syntax"
+	line-numbers = true
+	line-numbers-left-style = "#6c7086"
+	line-numbers-minus-style = "bold #f38ba8"
+	line-numbers-plus-style = "bold #a6e3a1"
+	line-numbers-right-style = "#6c7086"
+	line-numbers-zero-style = "#6c7086"
+	minus-emph-style = "bold syntax #53394c"
+	minus-style = "syntax #35293b"
+	plus-emph-style = "bold syntax #40504b"
+	plus-style = "syntax #2c333a"
+	map-styles = \
+		bold purple => syntax "#494060", \
+		bold blue => syntax "#394361", \
+		bold cyan => syntax "#384d5e", \
+		bold yellow => syntax "#544f4e"
+	syntax-theme = "Catppuccin Mocha"

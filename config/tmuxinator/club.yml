@@ -1,0 +1,16 @@
+
+name: club
+root: ~/Projects/TMUClub/
+
+windows:
+  - editor:
+      panes:
+        - nvim
+  - run:
+      layout: even-horizontal
+      panes:
+        - app:
+            - npx expo start
+        - server:
+            - cd api && npm start
+
