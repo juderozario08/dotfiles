@@ -70,4 +70,6 @@ yay -S ttf-fira-code ttf-firacode-nerd ttf-cascadia-code-nerd ttf-cascadia-mono-
 chmod u+x rofiFonts/setup.sh
 ./rofiFonts/setup.sh
 
+curl -fsSL https://bun.sh/install | bash
+
 source "$HOME"/.zshrc
