@@ -22,6 +22,7 @@ cargo install alacritty vivid
 yay -S gtk3 gtk4 hyprland nautilus pavucontrol pulse qt6ct rofi starship systemd waybar wlogout xsettingsd \
     sddm hyprpaper hyprlock hypridle hyprshot hyprutils swaync wezterm-git alacritty webcord obsidian obs-studio \
     zen-browser-bin sddm-sugar-dark mpvpaper betterlockscreen systemd --noconfirm
+sudo pacman -S mandoc man-pages wayland-utils wayland wayland-docs wayland-protocols --noconfirm
 
 cd ~ || exit
 git clone https://github.com/junegunn/fzf-git.sh
