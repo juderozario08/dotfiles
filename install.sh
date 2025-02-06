@@ -16,7 +16,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay || exit
 makepkg -si
 
-sudo pacman -S fd firefox ripgrep npm eza zoxide htop tokei tree bat fzf lazygit tmux btop pyenv vivid deno inetutils nwg-look --noconfirm
+sudo pacman -S fd picom firefox ripgrep npm eza zoxide htop tokei tree bat fzf lazygit tmux btop pyenv vivid deno inetutils nwg-look --noconfirm
 brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh gh tmux
 cargo install alacritty vivid
 yay -S gtk3 gtk4 hyprland nautilus pavucontrol pulse qt6ct rofi starship systemd waybar wlogout xsettingsd \
@@ -68,8 +68,8 @@ sudo cp "$HOME"/.config/rofi/colors/cyberpunk.rasi /usr/share/rofi/themes/
 
 yay -S ttf-fira-code ttf-firacode-nerd ttf-cascadia-code-nerd ttf-cascadia-mono-nerd ttf-jetbrains-mono-nerd
 
-chmod u+x rofiFonts/setup.sh
-./rofiFonts/setup.sh
+#chmod u+x rofiFonts/setup.sh
+#./rofiFonts/setup.sh
 
 curl -fsSL https://bun.sh/install | bash
 
