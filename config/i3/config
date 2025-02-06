@@ -71,6 +71,7 @@ bindsym $mod+Shift+r reload
 bindsym $mod+Shift+m restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+m exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Ctrl+Shift+l exec i3lock -i /home/juderozario/wallpaper/Fantasy-Landscape3_1080p.png -t
 
 # Rofi launcher
 bindsym $mod+Shift+space exec ~/.config/rofi/scripts/powermenu_t1

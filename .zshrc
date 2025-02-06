@@ -163,14 +163,7 @@ bindkey '^[n' fzf-neovim
 PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
 #eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 
-export XDG_SESSION_TYPE=wayland
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
-export QT_QPA_PLATFORM=wayland
-export SDL_VIDEODRIVER=wayland
-export GDK_BACKEND=wayland,x11
-export WLR_NO_HARDWARE_CURSORS=1
-export WAYLAND_DISPLAY=wayland-0
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export MANPAGER="less"
