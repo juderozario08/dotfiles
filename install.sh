@@ -16,19 +16,21 @@ git clone https://aur.archlinux.org/yay.git
 cd yay || exit
 makepkg -si
 
-sudo pacman -S fd picom firefox ripgrep npm eza zoxide htop tokei tree bat fzf lazygit tmux btop pyenv vivid deno inetutils nwg-look --noconfirm
 brew install fd ripgrep npm eza zoxide htop tokei tree bat fzf zsh gh tmux
-cargo install alacritty vivid
-yay -S gtk3 gtk4 hyprland nautilus pavucontrol pulse qt6ct rofi starship systemd waybar wlogout xsettingsd \
+cargo install alacritty
+
+sudo pacman -S fd firefox ripgrep npm eza zoxide htop tokei tree bat fzf lazygit tmux btop pyenv vivid deno \
+    inetutils nwg-look mandoc man-pages wayland-utils wayland wayland-docs wayland-protocols --noconfirm
+
+yay -S gtk3 gtk4 hyprland picom nautilus pavucontrol pulse qt6ct rofi starship systemd waybar wlogout xsettingsd \
     sddm hyprpaper hyprlock hypridle hyprshot hyprutils swaync wezterm-git alacritty webcord obsidian obs-studio \
-    zen-browser-bin sddm-sugar-dark mpvpaper betterlockscreen systemd --noconfirm
-sudo pacman -S mandoc man-pages wayland-utils wayland wayland-docs wayland-protocols --noconfirm
+    zen-browser-bin sddm-sugar-dark mpvpaper betterlockscreen systemd gnome-tweaks lxappearance spicetify-cli \
+    betterdiscord betterdiscordctl powerline neofetch lolcat cowsay bash-pipes cbonsai bpytop \
+    logiops blueman gdm-tools-git polybar polybar-themes-git autotiling rofi arandr \
+    maim xclip hsetroot ttf-fira-code ttf-firacode-nerd ttf-cascadia-code-nerd ttf-cascadia-mono-nerd ttf-jetbrains-mono-nerd --noconfirm
 
 cd ~ || exit
 git clone https://github.com/junegunn/fzf-git.sh
-
-sudo pacman -Syu --noconfirm
-yay -Syu --noconfirm
 
 for i in $(ls -a ~/dotfiles/config/ || exit); do
     rm -rf "$HOME/.config/${i}" 2>/dev/null
@@ -66,11 +68,9 @@ sudo cp "$HOME"/.config/rofi/colors/tokyonight.rasi /usr/share/rofi/themes/
 sudo cp "$HOME"/.config/rofi/colors/catppuccin.rasi /usr/share/rofi/themes/
 sudo cp "$HOME"/.config/rofi/colors/cyberpunk.rasi /usr/share/rofi/themes/
 
-yay -S ttf-fira-code ttf-firacode-nerd ttf-cascadia-code-nerd ttf-cascadia-mono-nerd ttf-jetbrains-mono-nerd
-
-#chmod u+x rofiFonts/setup.sh
-#./rofiFonts/setup.sh
-
 curl -fsSL https://bun.sh/install | bash
 
-source "$HOME"/.zshrc
+sudo pacman -Syu --noconfirm
+yay -Syu --noconfirm
+
+echo "RUN ROFI FONT SETUP AND RESTART YOUR TERMINAL!!!"
