@@ -70,7 +70,7 @@ run_cmd() {
             amixer set Master mute
             systemctl suspend
         elif [[ $1 == '--logout' ]]; then
-            hyprlock
+            i3lock -i /home/juderozario/wallpaper/Fantasy-Landscape3_1080p.png -t
         fi
     else
         exit 0
