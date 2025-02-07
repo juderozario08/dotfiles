@@ -8,6 +8,7 @@ killall -q polybar
 # Launch Polybar, using default config location ~/.config/polybar/config.ini
 if type "xrandr"; then
     for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        echo $m
         MONITOR=$m polybar --reload i3 2>&1 | tee -a /tmp/polybar.log & disown
     done
 else

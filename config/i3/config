@@ -38,8 +38,8 @@ exec --no-startup-id nm-applet
 
 # Screenshots
 bindsym Print exec maim | tee "/home/$USER/Pictures/$(date).png" | xclip -selection clipboard -t image/png
-bindsym $mod+Print exec maim -B --window $(xdotool selectwindow) | tee "/home/$USER/Pictures/$(date)" | xclip -selection clipboard -t image/png
-bindsym $mod+Shift+Print exec maim --select | tee "/home/$USER/Pictures/$(date)" | xclip -selection clipboard -t image/png
+bindsym $mod+Print exec maim -B --window $(xdotool selectwindow) | tee "/home/$USER/Pictures/$(date).png" | xclip -selection clipboard -t image/png
+bindsym $mod+Shift+Print exec maim --select | tee "/home/$USER/Pictures/$(date).png" | xclip -selection clipboard -t image/png
 
 gaps inner 10px
 
