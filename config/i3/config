@@ -119,6 +119,7 @@ bindsym $mod+v floating toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+bindsym $mod+x move workspace to output next
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
