@@ -1,9 +1,5 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-exec_always xset s off
-exec_always xset r rate 200
-exec_always xset dpms 0 0 1200
-
 # Window settings
 for_window [class="^.*"] border pixel 3
 for_window [title="^Volume Control$"] floating enable
@@ -24,6 +20,10 @@ exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 exec_always --no-startup-id xrandr --output DP-2 --auto --left-of DP-0
 exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always xset s off
+exec_always xset dpms 0 0 1200
+exec_always xset r rate 200
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
