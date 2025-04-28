@@ -167,3 +167,5 @@ PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export MANPAGER="less"
+
+[ -f "/home/juderozario/.ghcup/env" ] && . "/home/juderozario/.ghcup/env" # ghcup-env

@@ -22,7 +22,7 @@ exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always xset s off
 exec_always xset dpms 0 0 1200
-exec_always xset r rate 200
+exec_always xset r rate 250
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -142,6 +142,12 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+workspace $ws1 output DP-0
+workspace $ws2 output DP-0
+workspace $ws3 output DP-0
+workspace $ws4 output DP-0
+workspace $ws5 output DP-0
+workspace $ws6 output DP-0
 workspace $ws7 output DP-2
 workspace $ws8 output DP-2
 workspace $ws9 output DP-2
