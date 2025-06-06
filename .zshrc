@@ -133,6 +133,14 @@ if [ $(uname) != "Darwin"  ]; then
     alias open="xdg-open"
 else
     alias man="~/man.sh"
+    export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+    export PATH="$ANDROID_HOME/emulator:$PATH"
+    export PATH="$ANDROID_HOME/platform-tools:$PATH"
+    export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
+    export PATH="$HOME/Library/Android/sdk/cmdline-tools/latest/bin:$PATH"
+    export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 fi
 
 export PATH="/home/juderozario/.dotnet/tools:$PATH"
