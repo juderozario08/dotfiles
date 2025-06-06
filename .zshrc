@@ -178,6 +178,3 @@ export SDL_VIDEODRIVER=wayland
 export GDK_BACKEND=wayland,x11
 export WLR_NO_HARDWARE_CURSORS=1
 export WAYLAND_DISPLAY=wayland-0
-
-
-[ -f "/Users/juderozario/.ghcup/env" ] && . "/Users/juderozario/.ghcup/env" # ghcup-env
