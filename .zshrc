@@ -130,6 +130,10 @@ if [ $(uname) != "Darwin"  ]; then
     export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
     export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
     export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
+    export PATH="$HOME/Downloads/android-studio/bin:$PATH"
+    export ANDROID_HOME="$HOME/Android/Sdk"
+    export PATH="$ANDROID_HOME/emulator:$PATH"
+    export PATH="$ANDROID_HOME/platform-tools:$PATH"
     alias open="xdg-open"
 else
     alias man="~/man.sh"
