@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# brew setup
+brew setup
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>~/.zshrc
 source "$HOME"/.zshrc || exit
