@@ -8,11 +8,10 @@ end
 
 config.color_scheme = "Catppuccin Mocha (Gogh)"
 config.font = wezterm.font_with_fallback {
-    "FiraCode Nerd Font Mono",
-    "CaskaydiaMono Nerd Font Mono",
+    "CaskaydiaCove Nerd Font",
     "JetBrainsMono Nerd Font"
 }
-config.font_size = 14
+config.font_size = 11
 config.automatically_reload_config = true
 config.window_background_opacity = 0.90
 config.window_decorations = "NONE"

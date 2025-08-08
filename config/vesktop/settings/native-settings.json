@@ -1,0 +1,23 @@
+{
+    "plugins": {},
+    "customCspRules": {
+        "wallpapercave.com": [
+            "connect-src",
+            "img-src",
+            "style-src",
+            "font-src"
+        ],
+        "cdnb.artstation.com": [
+            "connect-src",
+            "img-src",
+            "style-src",
+            "font-src"
+        ],
+        "wallpapers.com": [
+            "connect-src",
+            "img-src",
+            "style-src",
+            "font-src"
+        ]
+    }
+}

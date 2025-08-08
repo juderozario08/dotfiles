@@ -142,9 +142,6 @@ fi
 export PATH="/home/juderozario/.dotnet/tools:$PATH"
 
 BROWSER=/usr/bin/zen-browser
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 export ANDROID_HOME='/home/juderozario/Android/Sdk'
 
 # bun completions
@@ -165,11 +162,8 @@ fzf-neovim() {
 zle -N fzf-neovim
 bindkey '^[n' fzf-neovim
 PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
-#eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export MANPAGER="less"
-
-[ -f "/home/juderozario/.ghcup/env" ] && . "/home/juderozario/.ghcup/env" # ghcup-env

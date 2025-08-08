@@ -1,6 +1,6 @@
 #!/bin/bash
 
-brew setup
+# brew setup
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>~/.zshrc
 source "$HOME"/.zshrc || exit
@@ -22,8 +22,8 @@ cargo install alacritty
 sudo pacman -S fd firefox ripgrep npm eza zoxide htop tokei tree bat fzf lazygit tmux btop pyenv vivid deno \
     inetutils nwg-look mandoc man-pages wayland-utils wayland wayland-docs wayland-protocols --noconfirm
 
-yay -S gtk3 gtk4 hyprland picom nautilus pavucontrol pulse qt6ct rofi starship systemd waybar wlogout xsettingsd \
-    sddm hyprpaper hyprlock hypridle hyprshot hyprutils swaync wezterm-git alacritty webcord obsidian obs-studio \
+yay -S gtk3 gtk4 picom nautilus pavucontrol pulse qt6ct rofi starship systemd waybar wlogout xsettingsd \
+    sddm swaync wezterm-git alacritty webcord obsidian obs-studio \
     zen-browser-bin sddm-sugar-dark mpvpaper betterlockscreen systemd gnome-tweaks lxappearance spicetify-cli \
     betterdiscord dunst betterdiscordctl powerline neofetch lolcat cowsay bash-pipes cbonsai bpytop \
     logiops blueman gdm-tools-git polybar polybar-themes-git autotiling rofi arandr \
