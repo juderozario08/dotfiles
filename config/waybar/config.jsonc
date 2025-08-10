@@ -3,7 +3,7 @@
     "layer": "top",
     "position": "top",
     "spacing": 0,
-    "height": 30,
+    "height": 35,
     "modules-left": [
         "hyprland/workspaces",
         "tray"
@@ -15,6 +15,7 @@
     "modules-right": [
         "memory",
         "cpu",
+        "custom/gpu",
         "pulseaudio",
         "bluetooth",
         "network",
@@ -22,11 +23,12 @@
         "battery",
         "group/group-power"
     ],
+    // NOTE: MODULES LEFT START
     "hyprland/workspaces": {
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-            "default": "",
+            "active": "",
             "1": "1",
             "2": "2",
             "3": "3",
@@ -36,8 +38,7 @@
             "7": "7",
             "8": "8",
             "9": "9",
-            "10": "10",
-            "active": "󱓻"
+            "10": "10"
         },
         "persistent-workspaces": {
             "1": [],
@@ -52,27 +53,62 @@
             "10": []
         }
     },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 12
+    },
+    // NOTE: MODULES LEFT END
+    // NOTE: MODULES CENTER START
+    "hyprland/submap": {
+        "format": "{}",
+        "max-length": 8
+    },
     "hyprland/window": {
-        "format": "{title}",
+        "format": "{title}",
         "icon": true,
         "icon-size": 20,
         "rewrite": {
             "(.*) — Mozilla Firefox": "$1"
         }
     },
-    "hyprland/submap": {
-        "format": "{}",
-        "max-length": 8
+    // NOTE: MODULES CENTER END
+    // NOTE: MODULES RIGHT START
+    "memory": {
+        "interval": 30,
+        "format": "   {}%",
+        "max-length": 10
     },
     "cpu": {
         "interval": 1,
-        "format": "  {}%",
+        "format": "  {usage}%",
         "on-click": "wezterm -e btop"
     },
-    "clock": {
-        "format": "{:%A %H:%M}",
-        "format-alt": "{:%d %B W%V %Y}",
-        "tooltip": false
+    "custom/gpu": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 2,
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/gpu_usage.sh"
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "on-click": "pavucontrol",
+        "scroll-step": 5,
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "format-connected": "",
+        "tooltip-format": "Devices connected: {num_connections}",
+        "on-click": "blueberry"
     },
     "network": {
         "format-icons": [
@@ -93,74 +129,10 @@
         "nospacing": 1,
         "on-click": "nm-applet"
     },
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-discharging": "{icon}",
-        "format-charging": "{icon}",
-        "format-plugged": "",
-        "format-icons": {
-            "charging": [
-                "󰢜",
-                "󰂆",
-                "󰂇",
-                "󰂈",
-                "󰢝",
-                "󰂉",
-                "󰢞",
-                "󰂊",
-                "󰂋",
-                "󰂅"
-            ],
-            "default": [
-                "󰁺",
-                "󰁻",
-                "󰁼",
-                "󰁽",
-                "󰁾",
-                "󰁿",
-                "󰂀",
-                "󰂁",
-                "󰂂",
-                "󰁹"
-            ]
-        },
-        "format-full": "󰂅",
-        "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-        "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-        "interval": 5,
-        "states": {
-            "warning": 20,
-            "critical": 10
-        }
-    },
-    "bluetooth": {
-        "format": "",
-        "format-disabled": "󰂲",
-        "format-connected": "",
-        "tooltip-format": "Devices connected: {num_connections}",
-        "on-click": "blueberry"
-    },
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "on-click": "pavucontrol",
-        "scroll-step": 5,
-        "format-muted": "󰝟",
-        "format-icons": {
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        }
-    },
-    "memory": {
-        "interval": 30,
-        "format": "{}% ",
-        "max-length": 10
-    },
-    "tray": {
-        "icon-size": 16,
-        "spacing": 12
+    "clock": {
+        "format": "{:%A %H:%M}",
+        "format-alt": "{:%d %B W%V %Y}",
+        "tooltip": false
     },
     "group/group-power": {
         "orientation": "inherit",
@@ -184,21 +156,66 @@
     "custom/quit": {
         "format": " 󰗼 ",
         "tooltip": false,
+        "tooltip-format": "Exit Hyprland",
         "on-click": "hyprctl dispatch exit"
     },
     "custom/lock": {
         "format": " 󰍁 ",
         "tooltip": false,
+        "tooltip-format": "Lock Screen",
         "on-click": "hyprlock"
     },
     "custom/reboot": {
         "format": " 󰜉 ",
         "tooltip": false,
+        "tooltip-format": "Reboot",
         "on-click": "reboot"
     },
     "custom/power": {
         "format": "  ",
         "tooltip": false,
+        "tooltip-format": "Shutdown",
         "on-click": "shutdown now"
     }
+    // NOTE: MODULES RIGHT END
 }
+// "battery": {
+//     "format": "{capacity}% {icon}",
+//     "format-discharging": "{icon}",
+//     "format-charging": "{icon}",
+//     "format-plugged": "",
+//     "format-icons": {
+//         "charging": [
+//             "󰢜",
+//             "󰂆",
+//             "󰂇",
+//             "󰂈",
+//             "󰢝",
+//             "󰂉",
+//             "󰢞",
+//             "󰂊",
+//             "󰂋",
+//             "󰂅"
+//         ],
+//         "default": [
+//             "󰁺",
+//             "󰁻",
+//             "󰁼",
+//             "󰁽",
+//             "󰁾",
+//             "󰁿",
+//             "󰂀",
+//             "󰂁",
+//             "󰂂",
+//             "󰁹"
+//         ]
+//     },
+//     "format-full": "󰂅",
+//     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+//     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+//     "interval": 5,
+//     "states": {
+//         "warning": 20,
+//         "critical": 10
+//     }
+// },
