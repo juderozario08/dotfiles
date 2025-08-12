@@ -13,6 +13,6 @@ mem_clock=$(nvidia-smi --query-gpu=clocks.mem --format=csv,noheader,nounits | he
 
 # Output JSON to Waybar
 echo "{
-  \"text\": \"  ${usage}%\",
+  \"text\": \" ${usage}%\",
   \"tooltip\": \"GPU 0: ${usage}%\\nMemory Usage: ${mem_usage} MiB / ${mem_total} MiB\\nMemory Bandwidth: ${bw_usage}%\\nCore Clock: ${core_clock} MHz\\nMemory Clock: ${mem_clock} MHz\"
 }" | jq --unbuffered --compact-output

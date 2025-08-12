@@ -1,86 +1,91 @@
 {
     "reload_style_on_change": true,
-    "layer": "top",
+    "layer": "bottom",
     "position": "top",
     "spacing": 0,
-    "height": 35,
+    "margin-left": 5,
+    "margin-right": 5,
     "modules-left": [
-        "hyprland/workspaces",
-        "tray"
-    ],
-    "modules-center": [
-        "hyprland/submap",
-        "hyprland/window"
+        "group/hyprland"
     ],
     "modules-right": [
-        "memory",
-        "cpu",
-        "custom/gpu",
-        "pulseaudio",
-        "bluetooth",
-        "network",
+        "tray",
+        "group/hardware",
+        "group/connectivityAndAudio",
         "clock",
-        "battery",
         "group/group-power"
     ],
-    // NOTE: MODULES LEFT START
+    "group/hyprland": {
+        "orientation": "inherit",
+        "modules": [
+            "hyprland/workspaces",
+            "group/hyprland-window"
+        ]
+    },
     "hyprland/workspaces": {
         "on-click": "activate",
-        "format": "{icon}",
-        "format-icons": {
-            "active": "",
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "10": "10"
-        },
+        "format": "{name}",
         "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
+            "DP-1": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "DP-2": [
+                6,
+                7,
+                8,
+                9,
+                10
+            ]
+        }
+    },
+    "custom/arrow": {
+        "format": "  ",
+        "tooltip": false
+    },
+    "group/hyprland-window": {
+        "orientation": "inherit",
+        "modules": [
+            "custom/arrow",
+            "hyprland/window"
+        ]
+    },
+    "hyprland/window": {
+        "format": "{title} - {initialTitle}",
+        "icon": true,
+        "icon-size": 16,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "$1"
         }
     },
     "tray": {
         "icon-size": 16,
         "spacing": 12
     },
-    // NOTE: MODULES LEFT END
-    // NOTE: MODULES CENTER START
     "hyprland/submap": {
         "format": "{}",
         "max-length": 8
     },
-    "hyprland/window": {
-        "format": "{title}",
-        "icon": true,
-        "icon-size": 20,
-        "rewrite": {
-            "(.*) — Mozilla Firefox": "$1"
-        }
+    "group/hardware": {
+        "orientation": "inherit",
+        "modules": [
+            "cpu",
+            "memory",
+            "custom/gpu"
+        ]
     },
-    // NOTE: MODULES CENTER END
-    // NOTE: MODULES RIGHT START
     "memory": {
         "interval": 30,
-        "format": "   {}%",
-        "max-length": 10
+        "format": "  {}% ",
+        "max-length": 10,
+        "on-click": "wezterm -e btop"
     },
     "cpu": {
         "interval": 1,
-        "format": "  {usage}%",
+        "format": " {usage}%",
         "on-click": "wezterm -e btop"
     },
     "custom/gpu": {
@@ -88,10 +93,19 @@
         "tooltip": true,
         "interval": 2,
         "return-type": "json",
-        "exec": "~/.config/waybar/scripts/gpu_usage.sh"
+        "exec": "~/.config/waybar/scripts/gpu_usage.sh",
+        "on-click": "wezterm -e btop"
+    },
+    "group/connectivityAndAudio": {
+        "orientation": "inherit",
+        "modules": [
+            "pulseaudio",
+            "bluetooth",
+            "network"
+        ]
     },
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
+        "format": "{icon} {volume}%",
         "on-click": "pavucontrol",
         "scroll-step": 5,
         "format-muted": "󰝟",
@@ -106,7 +120,7 @@
     "bluetooth": {
         "format": "",
         "format-disabled": "󰂲",
-        "format-connected": "",
+        "format-connected": " {status}",
         "tooltip-format": "Devices connected: {num_connections}",
         "on-click": "blueberry"
     },
@@ -118,10 +132,10 @@
             "󰤥",
             "󰤨"
         ],
-        "format": "{icon}",
-        "format-wifi": "{icon}",
-        "format-ethernet": "󰀂",
-        "format-disconnected": "󰖪",
+        "format": "{icon} ",
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "󰀂 ",
+        "format-disconnected": "󰖪 ",
         "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
@@ -130,54 +144,78 @@
         "on-click": "nm-applet"
     },
     "clock": {
-        "format": "{:%A %H:%M}",
-        "format-alt": "{:%d %B W%V %Y}",
-        "tooltip": false
-    },
-    "group/group-power": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 100,
-            "children-class": "not-power",
-            "transition-left-to-right": true
+        "format": "{:%A %B %d (%R)} 󰃰 ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
         },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_down",
+            "on-scroll-down": "tz_up",
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
+        }
+    },
+    "group/power-settings": {
+        "orientation": "inherit",
         "modules": [
-            "custom/expand-icon",
             "custom/power",
             "custom/quit",
             "custom/lock",
             "custom/reboot"
         ]
     },
-    "custom/expand-icon": {
-        "format": "",
+    "group/group-power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 100,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "image#arch",
+            "group/power-settings"
+        ]
+    },
+    "image#arch": {
+        "path": "/home/juderozario/.config/waybar/Arch.png",
+        "size": 16,
         "tooltip": false
-    },
-    "custom/quit": {
-        "format": " 󰗼 ",
-        "tooltip": false,
-        "tooltip-format": "Exit Hyprland",
-        "on-click": "hyprctl dispatch exit"
-    },
-    "custom/lock": {
-        "format": " 󰍁 ",
-        "tooltip": false,
-        "tooltip-format": "Lock Screen",
-        "on-click": "hyprlock"
-    },
-    "custom/reboot": {
-        "format": " 󰜉 ",
-        "tooltip": false,
-        "tooltip-format": "Reboot",
-        "on-click": "reboot"
     },
     "custom/power": {
         "format": "  ",
         "tooltip": false,
         "tooltip-format": "Shutdown",
         "on-click": "shutdown now"
+    },
+    "custom/quit": {
+        "format": "󰗼 ",
+        "tooltip": false,
+        "tooltip-format": "Exit Hyprland",
+        "on-click": "hyprctl dispatch exit"
+    },
+    "custom/lock": {
+        "format": "󰍁 ",
+        "tooltip": false,
+        "tooltip-format": "Lock Screen",
+        "on-click": "hyprlock"
+    },
+    "custom/reboot": {
+        "format": "󰜉 ",
+        "tooltip": false,
+        "tooltip-format": "Reboot",
+        "on-click": "reboot"
     }
-    // NOTE: MODULES RIGHT END
 }
 // "battery": {
 //     "format": "{capacity}% {icon}",
