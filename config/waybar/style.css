@@ -24,7 +24,8 @@ window#waybar {
 #hardware,
 #connectivityAndAudio,
 #clock,
-#power-settings {
+#power-settings,
+#custom-notification {
     padding: 0px 5px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -34,6 +35,10 @@ window#waybar {
     border-style: solid;
     background-color: @base;
     border-color: @surface1;
+}
+
+#custom-notification {
+    padding: 0px 10px 0px 7px;
 }
 
 #workspaces {

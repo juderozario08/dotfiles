@@ -12,8 +12,12 @@
         "group/hardware",
         "group/connectivityAndAudio",
         "clock",
-        "group/group-power"
+        "custom/notification"
     ],
+    "custom/notification": {
+        "format": "",
+        "on-click": "swaync-client -op"
+    },
     "group/hyprland": {
         "orientation": "inherit",
         "modules": [
@@ -43,12 +47,13 @@
         },
         "format-window-separator": "",
         "window-rewrite": {
-            "title<.*youtube.*>": " ",
+            "title<.*youtube.*>": " 󰗃",
             "title<.*gmail.*>": " 󰊫",
             "title<.*messages.*>": " 󰭹",
-            "title<.*chatgpt.*>": " 󰧑",
-            "youtubetitle<Picture-in-Picture>": " ",
-            "class<firefox>": " ",
+            "class<.*brave.*> title<.*chatgpt.*>": " 󰧑",
+            "youtubetitle<Picture-in-Picture>": " 󰗃",
+            "class<.*brave.*>": " ",
+            "class<firefox>": " ",
             "class<firefox> title<.*github.*>": " ",
             "class<.*obs.*studio.*>": " ",
             "wezterm": " ",
