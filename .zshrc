@@ -167,3 +167,11 @@ PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export MANPAGER="less"
+
+export PATH=$PATH:/home/juderozario/.spicetify
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/juderozario/.dart-cli-completion/zsh-config.zsh ]] && . /home/juderozario/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+

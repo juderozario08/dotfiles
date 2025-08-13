@@ -3,9 +3,8 @@
     "layer": "bottom",
     "position": "top",
     "spacing": 0,
-    "margin-left": 5,
-    "margin-right": 5,
     "modules-left": [
+        "image#arch",
         "group/hyprland"
     ],
     "modules-right": [
@@ -24,7 +23,8 @@
     },
     "hyprland/workspaces": {
         "on-click": "activate",
-        "format": "{name}",
+        "format": "{name}{windows}",
+        "window-rewrite-default": "",
         "persistent-workspaces": {
             "DP-1": [
                 1,
@@ -40,6 +40,27 @@
                 9,
                 10
             ]
+        },
+        "format-window-separator": "",
+        "window-rewrite": {
+            "title<.*youtube.*>": " ",
+            "title<.*gmail.*>": " 󰊫",
+            "title<.*messages.*>": " 󰭹",
+            "title<.*chatgpt.*>": " 󰧑",
+            "youtubetitle<Picture-in-Picture>": " ",
+            "class<firefox>": " ",
+            "class<firefox> title<.*github.*>": " ",
+            "class<.*obs.*studio.*>": " ",
+            "wezterm": " ",
+            "alacritty": " ",
+            "code": " 󰨞",
+            "spotify": " ",
+            "vesktop": " 󰙯",
+            "rofi": " 󰀻",
+            "obsidian": " 󰠮",
+            "kdenlive": " ",
+            "pinta": " ",
+            "localsend": " 󰆨"
         }
     },
     "custom/arrow": {
@@ -54,15 +75,15 @@
         ]
     },
     "hyprland/window": {
-        "format": "{title} - {initialTitle}",
+        "format": "{title}",
         "icon": true,
-        "icon-size": 16,
+        "icon-size": 14,
         "rewrite": {
             "(.*) — Mozilla Firefox": "$1"
         }
     },
     "tray": {
-        "icon-size": 16,
+        "icon-size": 14,
         "spacing": 12
     },
     "hyprland/submap": {
@@ -166,55 +187,10 @@
             "on-scroll-down": "shift_up"
         }
     },
-    "group/power-settings": {
-        "orientation": "inherit",
-        "modules": [
-            "custom/power",
-            "custom/quit",
-            "custom/lock",
-            "custom/reboot"
-        ]
-    },
-    "group/group-power": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 100,
-            "children-class": "not-power",
-            "transition-left-to-right": false
-        },
-        "modules": [
-            "image#arch",
-            "group/power-settings"
-        ]
-    },
     "image#arch": {
         "path": "/home/juderozario/.config/waybar/Arch.png",
-        "size": 16,
+        "size": 18,
         "tooltip": false
-    },
-    "custom/power": {
-        "format": "  ",
-        "tooltip": false,
-        "tooltip-format": "Shutdown",
-        "on-click": "shutdown now"
-    },
-    "custom/quit": {
-        "format": "󰗼 ",
-        "tooltip": false,
-        "tooltip-format": "Exit Hyprland",
-        "on-click": "hyprctl dispatch exit"
-    },
-    "custom/lock": {
-        "format": "󰍁 ",
-        "tooltip": false,
-        "tooltip-format": "Lock Screen",
-        "on-click": "hyprlock"
-    },
-    "custom/reboot": {
-        "format": "󰜉 ",
-        "tooltip": false,
-        "tooltip-format": "Reboot",
-        "on-click": "reboot"
     }
 }
 // "battery": {
