@@ -28,7 +28,7 @@
     "hyprland/workspaces": {
         "on-click": "activate",
         "format": "{name}{windows}",
-        "window-rewrite-default": "",
+        "window-rewrite-default": " ",
         "persistent-workspaces": {
             "DP-1": [
                 1,
@@ -65,7 +65,8 @@
             "obsidian": " 󰠮",
             "kdenlive": " ",
             "pinta": " ",
-            "localsend": " 󰆨"
+            "localsend": " 󰆨",
+            "class<.*jetbrains-studio.*>": " 󰀴"
         }
     },
     "custom/arrow": {

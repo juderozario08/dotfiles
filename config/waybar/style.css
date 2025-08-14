@@ -120,6 +120,7 @@ window#waybar {
 
 #bluetooth {
     padding-right: 6px;
+    padding-left: 4px;
 }
 
 tooltip {
