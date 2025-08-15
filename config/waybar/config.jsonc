@@ -28,7 +28,8 @@
     "hyprland/workspaces": {
         "on-click": "activate",
         "format": "{name}{windows}",
-        "window-rewrite-default": " ",
+        // "window-rewrite-default": " ",
+        "window-rewrite-default": "",
         "persistent-workspaces": {
             "DP-1": [
                 1,
@@ -51,7 +52,7 @@
             "title<.*gmail.*>": " 󰊫",
             "title<.*messages.*>": " 󰭹",
             "class<.*brave.*> title<.*chatgpt.*>": " 󰧑",
-            "youtubetitle<Picture-in-Picture>": " 󰗃",
+            "title<Picture-in-Picture>": " 󰗃",
             "class<.*brave.*>": " ",
             "class<firefox>": " ",
             "class<firefox> title<.*github.*>": " ",

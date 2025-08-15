@@ -1,38 +1,33 @@
+-- return {
+--     "mason-org/mason-lspconfig.nvim",
+--     opts={
+--         ensure_installed = { "lua_ls", "rust_analyzer" },
+--     }
+--     lazy = false,
+--     dependencies = {
+--         {
+--             "mason-org/mason.nvim",
+--             opts = {}
+--         },
+--         "neovim/nvim-lspconfig",
+--     }
+--     -- config = function()
+--         -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+--         -- function(server_name)
+--         --     require("lspconfig")[server_name].setup({
+--         --         capabilities = capabilities,
+--         --     })
+--         -- end,
+--     -- end,
+-- }
+
 return {
-    "williamboman/mason.nvim",
-    lazy = false,
-    dependencies = {
-        {
-            "williamboman/mason-lspconfig.nvim",
-            opts = {
-                auto_install = true,
-            },
-        },
-        "neovim/nvim-lspconfig",
-        "folke/neoconf.nvim",
-        "folke/neodev.nvim",
-        "FractalBoy/perl-language-server"
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+        ensure_installed = { "lua_ls", "rust_analyzer" },
     },
-    config = function()
-        require("mason").setup()
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        require("neoconf").setup()
-        require("mason-lspconfig").setup_handlers({
-            function(server_name)
-                require("lspconfig")[server_name].setup({
-                    capabilities = capabilities,
-                })
-            end,
-        })
-        require("neodev").setup({})
-        local lspconfig = require("lspconfig")
-        lspconfig.lua_ls.setup({
-            capabilities = capabilities,
-            settings = {
-                Lua = {
-                    completion = { callSnippet = "Replace" },
-                },
-            },
-        })
-    end,
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+    },
 }
