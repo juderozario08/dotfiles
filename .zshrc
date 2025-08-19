@@ -130,19 +130,12 @@ if [ $(uname) != "Darwin"  ]; then
     export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
     export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
     export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
-    export PATH="$HOME/Downloads/android-studio/bin:$PATH"
-    export ANDROID_HOME="$HOME/Android/Sdk"
-    export PATH="$ANDROID_HOME/emulator:$PATH"
-    export PATH="$ANDROID_HOME/platform-tools:$PATH"
     alias open="xdg-open"
 else
     alias man="~/man.sh"
 fi
 
 export PATH="/home/juderozario/.dotnet/tools:$PATH"
-
-BROWSER=/usr/bin/zen-browser
-export ANDROID_HOME='/home/juderozario/Android/Sdk'
 
 # bun completions
 [ -s "/home/juderozario/.bun/_bun" ] && source "/home/juderozario/.bun/_bun"
@@ -174,4 +167,3 @@ export PATH=$PATH:/home/juderozario/.spicetify
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/juderozario/.dart-cli-completion/zsh-config.zsh ]] && . /home/juderozario/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
-
