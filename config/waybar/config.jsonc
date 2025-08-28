@@ -9,6 +9,7 @@
     ],
     "modules-right": [
         "tray",
+        "group/media",
         "group/hardware",
         "group/connectivityAndAudio",
         "clock",
@@ -62,7 +63,6 @@
             "code": " 󰨞",
             "spotify": " ",
             "vesktop": " 󰙯",
-            "rofi": " 󰀻",
             "obsidian": " 󰠮",
             "kdenlive": " ",
             "pinta": " ",
@@ -199,6 +199,47 @@
         "path": "/home/juderozario/.config/waybar/Arch.png",
         "size": 18,
         "tooltip": false
+    },
+    "custom/mediaPlayPause": {
+        "format": "{icon}",
+        "return-type": "json",
+        "format-icons": {
+            "Playing": "",
+            "Paused": "",
+            "Stopped": "",
+            "No players found": ""
+        },
+        "max-length": 70,
+        "exec": "while true; do if playerctl -a status >/dev/null 2>&1; then playerctl -a metadata --format '{\"text\": \"{{playerName}}\", \"tooltip\": \"{{artist}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\"}'; else echo '{\"text\":\"\",\"tooltip\":\"No players\",\"alt\":\"No players found\"}'; fi; usleep 50000; done",
+        "on-click": "playerctl play-pause"
+    },
+    "custom/prevMedia": {
+        "format": "󰒮",
+        "return-type": "json",
+        "tooltip": true,
+        "tooltip-format": "Previous",
+        "on-click": "playerctl previous"
+    },
+    "custom/nextMedia": {
+        "format": "󰒭",
+        "return-type": "json",
+        "tooltip": true,
+        "tooltip-format": "Next",
+        "on-click": "playerctl previous"
+    },
+    "custom/playerName": {
+        "format": "{text}",
+        "return-type": "json",
+        "exec": "playerctl -a metadata --format '{{playerName}}' -F | while read -r name; do cap=$(printf '%s' \"$name\" | sed 's/^./\\U&/'); printf '{\"text\":\"%s\"}\\n' \"$cap\"; done"
+    },
+    "group/media": {
+        "orientation": "inherit",
+        "modules": [
+            "custom/playerName",
+            "custom/prevMedia",
+            "custom/mediaPlayPause",
+            "custom/nextMedia"
+        ]
     }
 }
 // "battery": {

@@ -22,6 +22,7 @@ window#waybar {
 
 #workspaces,
 #hardware,
+#media,
 #connectivityAndAudio,
 #clock,
 #power-settings,
@@ -126,4 +127,23 @@ window#waybar {
 tooltip {
     padding: 2px;
     background-color: @mantle;
+}
+
+#custom-prevMedia,
+#custom-nextMedia {
+    padding: 0px 8px 0px 8px;
+    font-size: 18px;
+    margin-bottom: 1px;
+}
+
+#custom-nextMedia {
+    padding-right: 4px;
+}
+
+#custom-playerName {
+    margin-bottom: 2px;
+}
+
+#media {
+    color: @rosewater;
 }
