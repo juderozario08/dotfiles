@@ -211,7 +211,7 @@
         },
         "max-length": 70,
         "exec": "while true; do if playerctl -a status >/dev/null 2>&1; then playerctl -a metadata --format '{\"text\": \"{{playerName}}\", \"tooltip\": \"{{artist}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\"}'; else echo '{\"text\":\"\",\"tooltip\":\"No players\",\"alt\":\"No players found\"}'; fi; usleep 50000; done",
-        "on-click": "playerctl play-pause"
+        "on-click": "playerctl -a play-pause"
     },
     "custom/prevMedia": {
         "format": "󰒮",
