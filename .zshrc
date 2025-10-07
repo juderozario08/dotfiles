@@ -130,6 +130,13 @@ if [ $(uname) != "Darwin"  ]; then
     export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
     export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
     export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
+    export XDG_SESSION_TYPE=wayland
+    export XDG_RUNTIME_DIR=/run/user/$(id -u)
+    export QT_QPA_PLATFORM=wayland
+    export SDL_VIDEODRIVER=wayland
+    export GDK_BACKEND=wayland,x11
+    export WLR_NO_HARDWARE_CURSORS=1
+    export WAYLAND_DISPLAY=wayland-0
     alias open="xdg-open"
 else
     alias man="~/man.sh"
@@ -169,12 +176,6 @@ fzf-neovim() {
 zle -N fzf-neovim
 bindkey '^[n' fzf-neovim
 PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
-#eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
-
-export XDG_SESSION_TYPE=wayland
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
-export QT_QPA_PLATFORM=wayland
-export SDL_VIDEODRIVER=wayland
-export GDK_BACKEND=wayland,x11
-export WLR_NO_HARDWARE_CURSORS=1
-export WAYLAND_DISPLAY=wayland-0
+PATH="$PATH:/Users/juderozario/Downloads/eclipse_macosx(1)/bin/x86_64_macosx"
+export DYLD_LIBRARY_PATH="$HOME/Downloads/eclipse_macosx(1)/tcltk/x86_64_macosx/lib:$DYLD_LIBRARY_PATH"
+export DISPLAY=:0
