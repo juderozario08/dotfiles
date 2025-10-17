@@ -11,7 +11,7 @@ config.font = wezterm.font_with_fallback {
     "CaskaydiaCove Nerd Font",
     "JetBrainsMono Nerd Font"
 }
-config.font_size = 11
+config.font_size = 13
 config.automatically_reload_config = true
 config.window_background_opacity = 0.90
 config.window_decorations = "NONE"

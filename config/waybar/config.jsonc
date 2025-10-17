@@ -67,6 +67,8 @@
             "kdenlive": " ",
             "pinta": " ",
             "localsend": " 󰆨",
+            "virtualbox": " ",
+            "nautilus": " ",
             "class<.*jetbrains-studio.*>": " 󰀴"
         }
     },

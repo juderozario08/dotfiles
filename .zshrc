@@ -45,7 +45,7 @@ alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -t'
 alias vw='nvim ~/.wezterm.lua'
 alias code='code-insiders'
-alias uni="~/uni.sh"
+alias uni="ssh jarozari@moon.cs.torontomu.ca"
 alias lg='lazygit'
 alias vh='nvim ~/.config/hypr/hyprland.conf'
 
@@ -167,3 +167,10 @@ export PATH=$PATH:/home/juderozario/.spicetify
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/juderozario/.dart-cli-completion/zsh-config.zsh ]] && . /home/juderozario/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+#
+## Commands for for docker
+alias dcbuild='docker-compose build'
+alias dcup='docker-compose up'
+alias dcdown='docker-compose down'
+alias dockps='docker ps --format "{{.ID}}  {{.Names}}"'
+docksh() { docker exec -it $1 /bin/zsh; }
