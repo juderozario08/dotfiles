@@ -174,3 +174,5 @@ alias dcup='docker-compose up'
 alias dcdown='docker-compose down'
 alias dockps='docker ps --format "{{.ID}}  {{.Names}}"'
 docksh() { docker exec -it $1 /bin/zsh; }
+
+export SDL_VIDEODRIVER=wayland
