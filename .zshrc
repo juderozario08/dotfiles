@@ -154,7 +154,11 @@ else
     PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
     PATH="$PATH:$HOME/Downloads/eclipse_macosx(1)/bin/x86_64_macosx"
     export DYLD_LIBRARY_PATH="$HOME/Downloads/eclipse_macosx(1)/tcltk/x86_64_macosx/lib:$DYLD_LIBRARY_PATH"
+    #export DYLD_LIBRARY_PATH=/opt/homebrew/lib
     export DISPLAY=:0
+    export PATH="$PATH:$HOME/Downloads/instantclient_23_3"
+    PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
+    export PATH="$PATH:/Applications/SWI-Prolog.app/Contents/MacOS"
 fi
 
 # bun

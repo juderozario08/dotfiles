@@ -9,6 +9,7 @@ end
 config.color_scheme = "Catppuccin Mocha (Gogh)"
 config.font = wezterm.font_with_fallback {
     "CaskaydiaCove Nerd Font",
+    "FiraCode Nerd Font Mono",
     "JetBrainsMono Nerd Font"
 }
 config.font_size = 13

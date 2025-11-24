@@ -51,6 +51,39 @@ autocmd({ "BufWritePre" }, {
 
 vim.api.nvim_set_hl(0, 'TrailingWhitespace', { bg = 'LightRed' })
 
+-- Auto-start SWI-Prolog LSP when opening Prolog files
+--[[ autocmd("FileType", {
+  pattern = { "prolog", "pl" }, -- filetypes to attach to
+  callback = function(args)
+    local bufnr = args.buf
+
+    -- Define the command to start the Prolog LSP
+    local cmd = {
+      "swipl",
+      "-g", "use_module(library(lsp_server))",
+      "-g", "lsp_server:main",
+      "-t", "halt",
+      "--", "stdio"
+    }
+
+    -- Start the LSP client
+    vim.lsp.start({
+      name = "prolog_lsp",
+      cmd = cmd,
+      root_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)), -- or use vim.fn.getcwd()
+      autostart = true,
+      capabilities = vim.lsp.protocol.make_client_capabilities(),
+      on_attach = function(client, bufnr)
+        print("✅ Prolog LSP attached to buffer " .. bufnr)
+        -- Optional LSP keymaps
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
+      end,
+    })
+  end,
+}) ]]
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
