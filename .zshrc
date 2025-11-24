@@ -45,7 +45,7 @@ alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -t'
 alias vw='nvim ~/.wezterm.lua'
 alias code='code-insiders'
-alias uni="~/uni.sh"
+alias uni="ssh jarozari@moon.cs.torontomu.ca"
 alias lg='lazygit'
 alias vh='nvim ~/.config/hypr/hyprland.conf'
 
@@ -176,6 +176,8 @@ fzf-neovim() {
 zle -N fzf-neovim
 bindkey '^[n' fzf-neovim
 PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
-PATH="$PATH:/Users/juderozario/Downloads/eclipse_macosx(1)/bin/x86_64_macosx"
-export DYLD_LIBRARY_PATH="$HOME/Downloads/eclipse_macosx(1)/tcltk/x86_64_macosx/lib:$DYLD_LIBRARY_PATH"
-export DISPLAY=:0
+export PATH="$PATH:/Applications/SWI-Prolog.app/Contents/MacOS"
+export DYLD_LIBRARY_PATH=/opt/homebrew/lib
+export PATH="$PATH:$HOME/Downloads/instantclient_23_3"
+export PATH="$PATH:/Users/juderozario/Downloads/eclipse_macosx/bin/x86_64_macosx"
+export PATH="$PATH:/Users/juderozario/.local/bin"
