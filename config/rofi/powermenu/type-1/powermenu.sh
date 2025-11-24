@@ -11,11 +11,11 @@
 
 # Current Theme
 dir="$HOME/.config/rofi/powermenu/type-1"
-theme='style-5'
+theme='style-1'
 
 # CMDs
 uptime="$(uptime -p | sed -e 's/up //g')"
-host=$(hostname)
+host=$(/bin/cat /etc/hostname)
 
 # Options
 shutdown=' Shutdown'
@@ -70,7 +70,11 @@ run_cmd() {
             amixer set Master mute
             systemctl suspend
         elif [[ $1 == '--logout' ]]; then
-            i3lock -i /home/juderozario/wallpaper/Fantasy-Landscape3_1080p.png -t
+            if [[ $XDG_SESSION_TYPE == 'wayland'  ]]; then
+                hyprlock
+            else
+                i3lock -i /home/juderozario/wallpaper/Fantasy-Landscape3_1080p.png -t
+            fi
         fi
     else
         exit 0

@@ -45,7 +45,7 @@ alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -t'
 alias vw='nvim ~/.wezterm.lua'
 alias code='code-insiders'
-alias uni="~/uni.sh"
+alias uni="ssh jarozari@moon.cs.torontomu.ca"
 alias lg='lazygit'
 alias vh='nvim ~/.config/hypr/hyprland.conf'
 
@@ -138,6 +138,9 @@ if [ $(uname) != "Darwin"  ]; then
     export WLR_NO_HARDWARE_CURSORS=1
     export WAYLAND_DISPLAY=wayland-0
     alias open="xdg-open"
+    export SDL_VIDEODRIVER=wayland
+    export PATH=$PATH:/home/juderozario/.spicetify
+    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 else
     alias man="~/man.sh"
     export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
@@ -148,18 +151,11 @@ else
     export PATH="$HOME/Library/Android/sdk/cmdline-tools/latest/bin:$PATH"
     export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
     export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
+    PATH="$PATH:$HOME/Downloads/eclipse_macosx(1)/bin/x86_64_macosx"
+    export DYLD_LIBRARY_PATH="$HOME/Downloads/eclipse_macosx(1)/tcltk/x86_64_macosx/lib:$DYLD_LIBRARY_PATH"
+    export DISPLAY=:0
 fi
-
-export PATH="/home/juderozario/.dotnet/tools:$PATH"
-
-BROWSER=/usr/bin/zen-browser
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-export ANDROID_HOME='/home/juderozario/Android/Sdk'
-
-# bun completions
-[ -s "/home/juderozario/.bun/_bun" ] && source "/home/juderozario/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -173,9 +169,18 @@ fzf-neovim() {
         nvim
     fi
 }
+
 zle -N fzf-neovim
 bindkey '^[n' fzf-neovim
-PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
-PATH="$PATH:/Users/juderozario/Downloads/eclipse_macosx(1)/bin/x86_64_macosx"
-export DYLD_LIBRARY_PATH="$HOME/Downloads/eclipse_macosx(1)/tcltk/x86_64_macosx/lib:$DYLD_LIBRARY_PATH"
-export DISPLAY=:0
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export MANPAGER="less"
+
+## Commands for for docker
+alias dcbuild='docker-compose build'
+alias dcup='docker-compose up'
+alias dcdown='docker-compose down'
+alias dockps='docker ps --format "{{.ID}}  {{.Names}}"'
+docksh() { docker exec -it $1 /bin/zsh; }

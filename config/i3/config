@@ -15,6 +15,7 @@ focus_follows_mouse no
 # Auto exec
 exec --no-startup-id picom
 exec --no-startup-id xrdb -merge ~/.Xresources
+exec xset r rate 350 50
 exec_always --no-startup-id feh --randomize --bg-fill ~/wallpaper
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 exec_always --no-startup-id xrandr --output DP-2 --auto --left-of DP-0
@@ -22,7 +23,6 @@ exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always xset s off
 exec_always xset dpms 0 0 1200
-exec_always xset r rate 250
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -84,7 +84,7 @@ bindsym $mod+space exec ~/.config/rofi/scripts/launcher_t3
 bindsym $mod+Ctrl+space exec ~/.config/rofi/scripts/launcher_t1
 
 # Application shortcuts
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec alacritty
 bindsym $mod+e exec nautilus
 bindsym $mod+b exec firefox
 bindsym $mod+q exec kitty

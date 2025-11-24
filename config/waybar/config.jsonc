@@ -1,114 +1,286 @@
-// -*- mode: jsonc -*-
 {
+    "reload_style_on_change": true,
+    "layer": "bottom",
     "position": "top",
+    "spacing": 0,
     "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/submap"
-    ],
-    "modules-center": [
-        "hyprland/window"
+        "image#arch",
+        "group/hyprland"
     ],
     "modules-right": [
-        "network",
-        "pulseaudio",
-        "custom/spotify",
-        "group/hardware",
         "tray",
+        "group/media",
+        "group/hardware",
+        "group/connectivityAndAudio",
         "clock",
-        "custom/swaync"
+        "custom/notification"
     ],
-    "clock": {
-        "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "custom/notification": {
+        "format": "",
+        "on-click": "swaync-client -op"
     },
-    "submap": {
-        "format": "<span style=\"italic\">{}</span>"
+    "group/hyprland": {
+        "orientation": "inherit",
+        "modules": [
+            "hyprland/workspaces",
+            "group/hyprland-window"
+        ]
     },
-    "network": {
-        "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>Wireless",
-        "format-ethernet": "<span size='13000' foreground='#f5e0dc'> </span> Wired",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
-        "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{name}{windows}",
+        // "window-rewrite-default": " ",
+        "window-rewrite-default": "",
+        "persistent-workspaces": {
+            "DP-1": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "DP-2": [
+                6,
+                7,
+                8,
+                9,
+                10
+            ]
+        },
+        "format-window-separator": "",
+        "window-rewrite": {
+            "title<.*youtube.*>": " 󰗃",
+            "title<.*gmail.*>": " 󰊫",
+            "title<.*google.*messages.*>": " 󰭹",
+            "class<.*brave.*> title<.*chatgpt.*>": " 󰧑",
+            "title<Picture-in-Picture>": " 󰗃",
+            "class<.*brave.*>": " ",
+            "class<firefox>": " ",
+            "class<firefox> title<.*github.*>": " ",
+            "class<.*obs.*studio.*>": " ",
+            "wezterm": " ",
+            "alacritty": " ",
+            "code": " 󰨞",
+            "spotify": " ",
+            "vesktop": " 󰙯",
+            "obsidian": " 󰠮",
+            "kdenlive": " ",
+            "pinta": " ",
+            "localsend": " 󰆨",
+            "virtualbox": " ",
+            "nautilus": " ",
+            "class<.*jetbrains-studio.*>": " 󰀴"
+        }
+    },
+    "custom/arrow": {
+        "format": "  ",
+        "tooltip": false
+    },
+    "group/hyprland-window": {
+        "orientation": "inherit",
+        "modules": [
+            "custom/arrow",
+            "hyprland/window"
+        ]
+    },
+    "hyprland/window": {
+        "format": "{title}",
+        "icon": true,
+        "icon-size": 14,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "$1"
+        }
     },
     "tray": {
-        "spacing": 10
+        "icon-size": 14,
+        "spacing": 12
+    },
+    "hyprland/submap": {
+        "format": "{}",
+        "max-length": 8
+    },
+    "group/hardware": {
+        "orientation": "inherit",
+        "modules": [
+            "cpu",
+            "memory",
+            "custom/gpu"
+        ]
+    },
+    "memory": {
+        "interval": 30,
+        "format": "  {}% ",
+        "max-length": 10,
+        "on-click": "wezterm -e btop"
+    },
+    "cpu": {
+        "interval": 1,
+        "format": " {usage}%",
+        "on-click": "wezterm -e btop"
+    },
+    "custom/gpu": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 2,
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/gpu_usage.sh",
+        "on-click": "wezterm -e btop"
+    },
+    "group/connectivityAndAudio": {
+        "orientation": "inherit",
+        "modules": [
+            "pulseaudio",
+            "bluetooth",
+            "network"
+        ]
     },
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "",
+        "format": "{icon} {volume}%",
+        "on-click": "pavucontrol",
+        "scroll-step": 5,
+        "format-muted": "󰝟",
         "format-icons": {
             "default": [
                 "",
                 "",
-                " "
+                ""
             ]
+        }
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "format-connected": " {status}",
+        "tooltip-format": "Devices connected: {num_connections}",
+        "on-click": "blueberry"
+    },
+    "network": {
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "format": "{icon} ",
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": " ",
+        "format-disconnected": "󰖪 ",
+        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 3,
+        "nospacing": 1,
+        "on-click": "nm-applet"
+    },
+    "clock": {
+        "format": "{:%A %B %d (%R)} 󰃰 ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "on-click": "gnome-calendar",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
         },
-        "on-click": "pavucontrol"
-    },
-    "group/hardware": {
-        "orientation": "horizontal",
-        "modules": [
-            "cpu",
-            "memory"
-        ],
-        "drawer": {
-            "transition-duration": 100,
-            "transition-left-to-right": true
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_down",
+            "on-scroll-down": "tz_up",
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
         }
     },
-    "group/power": {
-        "orientation": "horizontal",
-        "modules": [
-            "custom/shutdown",
-            "custom/reboot",
-            "custom/lock"
-        ],
-        "drawer": {
-            "transition-duration": 100,
-            "transition-left-to-right": false
-        }
-    },
-    "custom/shutdown": {
-        "tooltip": false,
-        "format": "",
-        "on-click": "systemctl poweroff"
-    },
-    "custom/reboot": {
-        "tooltip": false,
-        "format": "",
-        "on-click": "systemctl reboot"
-    },
-    "custom/lock": {
-        "tooltip": false,
-        "format": "",
-        "on-click": "hyprlock"
-    },
-    "cpu": {
-        "format": "{usage}% ",
+    "image#arch": {
+        "path": "/home/juderozario/.config/waybar/Arch.png",
+        "size": 18,
         "tooltip": false
     },
-    "memory": {
-        "format": "{}% "
-    },
-    "custom/swaync": {
-        "tooltip": false,
+    "custom/mediaPlayPause": {
         "format": "{icon}",
-        "format-icons": {
-            "notification": "",
-            "none": "",
-            "dnd-notification": "",
-            "dnd-none": "",
-            "inhibited-notification": "",
-            "inhibited-none": "",
-            "dnd-inhibited-notification": "",
-            "dnd-inhibited-none": ""
-        },
         "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "escape": true
+        "format-icons": {
+            "Playing": "",
+            "Paused": "",
+            "Stopped": "",
+            "No players found": ""
+        },
+        "max-length": 70,
+        "exec": "while true; do if playerctl -a status >/dev/null 2>&1; then playerctl -a metadata --format '{\"text\": \"{{playerName}}\", \"tooltip\": \"{{artist}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\"}'; else echo '{\"text\":\"\",\"tooltip\":\"No players\",\"alt\":\"No players found\"}'; fi; usleep 50000; done",
+        "on-click": "playerctl -a play-pause"
+    },
+    "custom/prevMedia": {
+        "format": "󰒮",
+        "return-type": "json",
+        "tooltip": true,
+        "tooltip-format": "Previous",
+        "on-click": "playerctl previous"
+    },
+    "custom/nextMedia": {
+        "format": "󰒭",
+        "return-type": "json",
+        "tooltip": true,
+        "tooltip-format": "Next",
+        "on-click": "playerctl previous"
+    },
+    "custom/playerName": {
+        "format": "{text}",
+        "return-type": "json",
+        "exec": "playerctl -a metadata --format '{{playerName}}' -F | while read -r name; do cap=$(printf '%s' \"$name\" | sed 's/^./\\U&/'); printf '{\"text\":\"%s\"}\\n' \"$cap\"; done"
+    },
+    "group/media": {
+        "orientation": "inherit",
+        "modules": [
+            "custom/playerName",
+            "custom/prevMedia",
+            "custom/mediaPlayPause",
+            "custom/nextMedia"
+        ]
     }
 }
+// "battery": {
+//     "format": "{capacity}% {icon}",
+//     "format-discharging": "{icon}",
+//     "format-charging": "{icon}",
+//     "format-plugged": "",
+//     "format-icons": {
+//         "charging": [
+//             "󰢜",
+//             "󰂆",
+//             "󰂇",
+//             "󰂈",
+//             "󰢝",
+//             "󰂉",
+//             "󰢞",
+//             "󰂊",
+//             "󰂋",
+//             "󰂅"
+//         ],
+//         "default": [
+//             "󰁺",
+//             "󰁻",
+//             "󰁼",
+//             "󰁽",
+//             "󰁾",
+//             "󰁿",
+//             "󰂀",
+//             "󰂁",
+//             "󰂂",
+//             "󰁹"
+//         ]
+//     },
+//     "format-full": "󰂅",
+//     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+//     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+//     "interval": 5,
+//     "states": {
+//         "warning": 20,
+//         "critical": 10
+//     }
+// },

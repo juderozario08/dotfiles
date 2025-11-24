@@ -40,3 +40,4 @@ set backspace=indent,eol,start
 filetype plugin indent on
 
 syntax enable
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf

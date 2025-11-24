@@ -1,169 +1,149 @@
 @import "mocha.css";
 
 * {
-    font-family: "Cantarell";
-    font-size: 16px;
-    min-height: 0;
-    font-weight: bold;
+    font-size: 14px;
 }
 
 window#waybar {
-    background: transparent;
-    background-color: rgba(17, 17, 27, 0.7);
-    color: @overlay0;
-    transition-property: background-color;
-    transition-duration: 0.1s;
-    border-bottom: 1px solid @overlay1;
+    background-color: @crust;
+    padding: 20px;
+    font-family: "CaskaydiaCove Nerd Font";
 }
 
 #window {
-    margin: 8px;
-    color: white;
-    padding-left: 8;
-    padding-right: 8;
+    font-weight: 500;
 }
 
-button {
-    box-shadow: inset 0 -3px transparent;
-    border: none;
-    border-radius: 0;
+.modules-left,
+.modules-right {
+    margin-left: 12px;
+    margin-right: 6px;
 }
 
-button:hover {
-    background: inherit;
-    color: @mauve;
-    border-top: 2px solid @mauve;
-}
-
-#workspaces button {
-    padding: 0 4px;
-}
-
-#workspaces button.focused {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: @rosewater;
-    border-bottom: 2px solid @rosewater;
-}
-
-#workspaces button.active {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: @mauve;
-    border-bottom: 2px solid @mauve;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#pulseaudio,
+#workspaces,
+#hardware,
+#media,
+#connectivityAndAudio,
 #clock,
-#custom-swaync,
-#custom-spotify,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#wireplumber,
-#tray,
-#network,
-#mode,
-#scratchpad {
-    margin-top: 2px;
-    margin-bottom: 2px;
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
+#power-settings,
+#custom-notification {
+    padding: 0px 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    background-color: @base;
+    border-color: @surface1;
 }
 
-#tray {
-    margin: 4px;
-    border-radius: 20px;
-    border: 1px solid @mauve;
-    background-color: rgba(0, 0, 0, 0.5)
+#custom-notification {
+    padding: 0px 10px 0px 7px;
+}
+
+#workspaces {
+    margin-left: 10px;
+}
+
+#connectivityAndAudio {
+    color: @lavender;
 }
 
 #clock {
-    color: @maroon;
-    border-bottom: 2px solid @maroon;
+    color: @peach;
 }
 
-#clock.date {
+#hardware {
     color: @mauve;
-    border-bottom: 2px solid @mauve;
 }
 
+#tray {
+    background-color: transparent;
+    padding: 0px 10px;
+}
+
+#clock {
+    padding-left: 15px;
+}
+
+#workspaces button {
+    all: initial;
+    margin: 4px 4px;
+    font-weight: bold;
+    box-shadow: none;
+    text-shadow: none;
+    color: @rosewater;
+    padding: 0px 6px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+}
+
+#workspaces button.empty {
+    color: @overlay2;
+}
+
+#workspaces button:hover {
+    opacity: 0.8;
+}
+
+#workspaces button.active {
+    background-color: transparent;
+    border-bottom-color: @maroon;
+    color: @maroon;
+}
+
+#cpu,
+#memory,
+#pulseaudio,
+#bluetooth {
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-right-color: @surface1;
+}
+
+#cpu,
 #pulseaudio {
-    color: @blue;
-    border-bottom: 2px solid @blue;
-}
-
-#network {
-    color: @yellow;
-    border-bottom: 2px solid @yellow;
-}
-
-#idle_inhibitor {
-    margin-right: 12px;
-    color: #7cb342;
-}
-
-#idle_inhibitor.activated {
-    color: @red;
-}
-
-#battery {
-    color: @green;
-    border-bottom: 2px solid @green;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
-    margin-right: 0;
-}
-
-#custom-vpn {
-    color: @lavender;
-    border-radius: 15px;
-    padding-left: 6px;
     padding-right: 6px;
 }
 
-#custom-spotify {
-    background-color: green;
+#memory {
+    padding-right: 0px;
 }
 
-#custom-swaync {
-    padding-right: 10px;
-    padding-left: 5px;
-    border-bottom: 2px solid @mauve;
+#custom-gpu,
+#network {
+    padding-left: 6px
 }
 
-#custom-swaync:hover {
-    background: inherit;
-    color: @mauve;
-    border-top: 2px solid @mauve;
+
+#bluetooth {
+    padding-right: 6px;
+    padding-left: 4px;
 }
 
-#custom-shutdown,
-#custom-reboot,
-#custom-lock {
-    margin: 0 5px;
+tooltip {
+    padding: 2px;
+    background-color: @mantle;
 }
 
-#custom-lock:hover {
-    color: white;
+#custom-prevMedia,
+#custom-nextMedia {
+    padding: 0px 8px 0px 8px;
+    font-size: 18px;
+    margin-bottom: 1px;
 }
-#custom-reboot:hover {
-    color: white;
+
+#custom-nextMedia {
+    padding-right: 4px;
 }
-#custom-shutdown:hover {
-    color: white;
+
+#custom-playerName {
+    margin-bottom: 2px;
+}
+
+#media {
+    color: @rosewater;
 }

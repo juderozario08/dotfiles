@@ -19,7 +19,7 @@ killall -e xdg-desktop-portal
 sleep 1
 
 # start xdg-desktop-portal-hyprland
-/usr/lib/xdg-desktop-portal-hyprland &
+/usr/lib/xdg-desktop-portal-hyprland & /usr/lib/xdg-desktop-portal-wlr
 sleep 2
 
 # start xdg-desktop-portal-gtk
