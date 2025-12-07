@@ -136,7 +136,7 @@ if [ $(uname) != "Darwin"  ]; then
     export SDL_VIDEODRIVER=wayland
     export GDK_BACKEND=wayland,x11
     export WLR_NO_HARDWARE_CURSORS=1
-    export WAYLAND_DISPLAY=wayland-0
+    export WAYLAND_DISPLAY=wayland-1
     alias open="xdg-open"
     export SDL_VIDEODRIVER=wayland
     export PATH=$PATH:/home/juderozario/.spicetify
@@ -180,11 +180,13 @@ bindkey '^[n' fzf-neovim
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export MANPAGER="less"
+export MANPAGER="nvim +Man!"
+
+
 
 ## Commands for for docker
 alias dcbuild='docker-compose build'
 alias dcup='docker-compose up'
 alias dcdown='docker-compose down'
 alias dockps='docker ps --format "{{.ID}}  {{.Names}}"'
-docksh() { docker exec -it $1 /bin/zsh; }
+docksh() { docker exec -it $1 /bin/bash; }
