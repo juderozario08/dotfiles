@@ -1,12 +1,11 @@
+[[ -n "$ZSH_VERSION" ]] || return
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-export ZSH="$HOME/.oh-my-zsh"
-
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
 
 # ZINIT Installation
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -26,14 +25,30 @@ zinit light Aloxaf/fzf-tab
 # Load completions
 autoload -U compinit && compinit
 
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+EDITOR=""
+if [ $(uname) != "Darwin"  ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    export HOMEBREW_PATH="/home/linuxbrew/.linuxbrew"
+    export PATH="$HOMEBREW_PATH/bin:$HOME/.spicetify:$PATH"
+    export EDITOR='/bin/nvim'
+else
+    export HOMERBEW_PATH="/opt/homebrew"
+    export PATH="$HOMEBREW_PATH/opt/ruby/bin:$HOMEBREW_PATH/opt/man-db/libexec/bin:$PATH"
+    export EDITOR="$HOMEBREW_PATH/bin/nvim"
+fi
+
+alias v="$EDITOR"
+alias zshconfig="$EDITOR ~/.zshrc"
+alias va="$EDITOR ~/.config/alacritty/alacritty.toml"
+alias vk="$EDITOR ~/.config/kitty/kitty.conf"
+alias vw="$EDITOR ~/.wezterm.lua"
+alias vh="$EDITOR ~/.config/hypr/hyprland.conf"
 alias so="source ~/.zshrc"
-alias zshconfig="nvim ~/.zshrc"
 alias l='eza --color=always --icons=always --long --all'
 alias ls='eza --color=always --icons=always'
-alias v='nvim'
 alias cd='z'
-alias va='nvim ~/.config/alacritty/alacritty.toml'
-alias vk='nvim ~/.config/kitty/kitty.conf'
 alias tree='eza --tree --icons --ignore-glob=node_modules'
 alias cat='bat'
 alias t='tmux'
@@ -43,11 +58,7 @@ alias ta='tmux attach-session -t'
 alias tls='tmux list-sessions'
 alias tka='tmux kill-session -a'
 alias tkt='tmux kill-session -t'
-alias vw='nvim ~/.wezterm.lua'
-alias code='code-insiders'
 alias uni="ssh jarozari@moon.cs.torontomu.ca"
-alias lg='lazygit'
-alias vh='nvim ~/.config/hypr/hyprland.conf'
 
 bindkey -e
 bindkey '^p' history-search-backward
@@ -121,49 +132,6 @@ _fzf_comprun() {
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --color=always --tree --git-ignore --ignore-glob=node_modules {}'"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-if [ $(uname) != "Darwin"  ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
-    export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/go/bin"
-    export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"
-    export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
-    export XDG_SESSION_TYPE=wayland
-    export XDG_RUNTIME_DIR=/run/user/$(id -u)
-    export QT_QPA_PLATFORM=wayland
-    export SDL_VIDEODRIVER=wayland
-    export GDK_BACKEND=wayland,x11
-    export WLR_NO_HARDWARE_CURSORS=1
-    export WAYLAND_DISPLAY=wayland-1
-    alias open="xdg-open"
-    export SDL_VIDEODRIVER=wayland
-    export PATH=$PATH:/home/juderozario/.spicetify
-    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-else
-    alias man="~/man.sh"
-    export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
-    export ANDROID_HOME="$HOME/Library/Android/sdk"
-    export PATH="$ANDROID_HOME/emulator:$PATH"
-    export PATH="$ANDROID_HOME/platform-tools:$PATH"
-    export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
-    export PATH="$HOME/Library/Android/sdk/cmdline-tools/latest/bin:$PATH"
-    export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-    PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
-    PATH="$PATH:$HOME/Downloads/eclipse_macosx(1)/bin/x86_64_macosx"
-    export DYLD_LIBRARY_PATH="$HOME/Downloads/eclipse_macosx(1)/tcltk/x86_64_macosx/lib:$DYLD_LIBRARY_PATH"
-    #export DYLD_LIBRARY_PATH=/opt/homebrew/lib
-    export DISPLAY=:0
-    export PATH="$PATH:$HOME/Downloads/instantclient_23_3"
-    PATH="/opt/homebrew/opt/man-db/libexec/bin:$PATH"
-    export PATH="$PATH:/Applications/SWI-Prolog.app/Contents/MacOS"
-fi
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 fzf-neovim() {
     local dir
@@ -178,15 +146,5 @@ zle -N fzf-neovim
 bindkey '^[n' fzf-neovim
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export MANPAGER="nvim +Man!"
-
-
-
-## Commands for for docker
-alias dcbuild='docker-compose build'
-alias dcup='docker-compose up'
-alias dcdown='docker-compose down'
-alias dockps='docker ps --format "{{.ID}}  {{.Names}}"'
-docksh() { docker exec -it $1 /bin/bash; }
