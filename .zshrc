@@ -29,9 +29,12 @@ autoload -U compinit && compinit
 
 EDITOR=""
 if [ $(uname) != "Darwin"  ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    export HOMEBREW_PATH="/home/linuxbrew/.linuxbrew"
-    export PATH="$HOMEBREW_PATH/bin:$HOME/.spicetify:$PATH"
+    if [ -d "/home/linuxbrew" ]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        export HOMEBREW_PATH="/home/linuxbrew/.linuxbrew"
+        export PATH="${HOMEBREW_PATH}/bin:${PATH}"
+    fi
+    export PATH="$HOME/.spicetify:$PATH"
     export EDITOR='/bin/nvim'
 else
     export HOMERBEW_PATH="/opt/homebrew"
