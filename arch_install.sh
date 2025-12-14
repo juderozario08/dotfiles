@@ -27,8 +27,8 @@ fi
 yay -Syu --needed git base-devel fd ripgrep npm eza zoxide btop tokei bat fzf zsh tmux deno alacritty firefox paru \
     pyenv vivid inetutils nwg-look man-db man-pages gtk3 gtk4 picom nautilus pavucontrol sddm usleep lazygit font-manager \
     i3-wm hyprland obsidian obs-studio sddm-sugar-dark mpvpaper betterlockscreen systemd gnome-tweaks usleep \
-    lxappearance spicetify-cli bash-pipes blueman polybar rofi maim xclip ttf-firacode-nerd lua luarocks \
-    hyprpaper hyprlock hypridle hyprshot grim swaync --noconfirm
+    lxappearance spicetify-cli bash-pipes blueman polybar rofi maim xclip ttf-firacode-nerd lua luarocks vesktop \
+    hyprpaper hyprlock hypridle hyprshot grim swaync wezterm-nightly-bin hyprcursor --noconfirm
 
 if [ ! -d "$HOME/fzf-git.sh" ]; then
     cd ~
@@ -71,19 +71,19 @@ for i in $(/bin/ls -a "$HOME"/dotfiles/config | tail -n +3); do
     ln -s "${HOME}/dotfiles/config/${i}" "$HOME/.config/$i"
 done
 
-# sudo cp "$HOME"/.config/rofi/colors/tokyonight.rasi /usr/share/rofi/themes/
-# sudo cp "$HOME"/.config/rofi/colors/catppuccin.rasi /usr/share/rofi/themes/
-# sudo cp "$HOME"/.config/rofi/colors/cyberpunk.rasi /usr/share/rofi/themes/
+sudo cp "$HOME"/.config/rofi/colors/tokyonight.rasi /usr/share/rofi/themes/
+sudo cp "$HOME"/.config/rofi/colors/catppuccin.rasi /usr/share/rofi/themes/
+sudo cp "$HOME"/.config/rofi/colors/cyberpunk.rasi /usr/share/rofi/themes/
 
-# sudo pacman -Syu --noconfirm && yay -Syu --noconfirm
+ sudo pacman -Syu --noconfirm && yay -Syu --noconfirm
 
-# "$HOME"/dotfiles/rofiFonts/setup.sh
+ "$HOME"/dotfiles/rofiFonts/setup.sh
 
-#if [[ "$(echo "$SHELL" | grep zsh)" ]]; then
-#    source "$HOME"/.zshrc
-#else
-#    chsh -s /bin/zsh
-#    echo "Please close and reopen the terminal. Or logout and log back int to the session for the SHELL change to take affect!"
-#fi
+if [[ "$(echo "$SHELL" | grep zsh)" ]]; then
+    source "$HOME"/.zshrc
+else
+    chsh -s /bin/zsh
+    echo "Please close and reopen the terminal. Or logout and log back int to the session for the SHELL change to take affect!"
+fi
 
 sudo -k
