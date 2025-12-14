@@ -149,9 +149,9 @@ zle -N fzf-neovim
 bindkey '^[n' fzf-neovim
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
-bindkey "\\e[1;3C" forward-word  # Alt + Right
-bindkey "\\e[1;3D" backward-word # Alt + Left
+bindkey "\\e[1;3C" forward-word
+bindkey "\\e[1;3D" backward-word
 
-# bun
-export PATH="$BUN_INSTALL/bin:$PATH"
 export MANPAGER="nvim +Man!"
+
+export PATH=$PATH:/home/juderozario/.spicetify

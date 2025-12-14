@@ -359,7 +359,10 @@
             "enabled": false
         },
         "PinDMs": {
-            "enabled": true
+            "enabled": true,
+            "userBasedCategoryList": {
+                "1152203611980431380": []
+            }
         },
         "PlainFolderIcon": {
             "enabled": false
@@ -587,6 +590,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1765693298407
+        "settingsSyncVersion": 1765741062370
     }
 }
