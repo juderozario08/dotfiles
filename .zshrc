@@ -34,8 +34,8 @@ if [ $(uname) != "Darwin"  ]; then
         export HOMEBREW_PATH="/home/linuxbrew/.linuxbrew"
         export PATH="${HOMEBREW_PATH}/bin:${PATH}"
     fi
-    export PATH="$HOME/.spicetify:$PATH"
     export EDITOR='/bin/nvim'
+    export SDL_VIDEODRIVER=wayland
 else
     export HOMERBEW_PATH="/opt/homebrew"
     export PATH="$HOMEBREW_PATH/opt/ruby/bin:$HOMEBREW_PATH/opt/man-db/libexec/bin:$PATH"

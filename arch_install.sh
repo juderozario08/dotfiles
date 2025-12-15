@@ -45,7 +45,7 @@ install_dependencies() {
         i3-wm hyprland obsidian obs-studio sddm-sugar-dark mpvpaper betterlockscreen systemd gnome-tweaks usleep \
         lxappearance spotify bash-pipes blueman polybar rofi maim xclip ttf-firacode-nerd lua luarocks vesktop \
         hyprpaper hyprlock hypridle hyprshot grim swaync wezterm-nightly-bin hyprcursor xdg-desktop-portal-hyprland \
-        qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg gum eog --noconfirm
+        qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg gum eog spicetify-cli --noconfirm
 
     if [ ! -e "$HOME/fzf-git.sh" ]; then
         cd ~
@@ -84,6 +84,9 @@ link_dots() {
     remove_path_if_exists "$HOME/.gitconfig"
     remove_path_if_exists "$HOME/wallpaper"
     remove_path_if_exists "$HOME/.Xresources"
+    remove_path_if_exists "$HOME/.clang-format"
+    remove_path_if_exists "$HOME/.fehbg"
+    remove_path_if_exists "$HOME/.clangd"
 
     link_path "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
     link_path "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
@@ -98,6 +101,9 @@ link_dots() {
     link_path "$HOME/dotfiles/wallpaper" "$HOME/wallpaper"
     link_path "$HOME/dotfiles/.Xresources" "$HOME/.Xresources"
     link_path "$HOME/dotfiles/.gtkrc-2.0" "$HOME/.gtkrc-2.0"
+    link_path "$HOME/dotfiles/.clang-format" "$HOME"/.clang-format
+    link_path "$HOME/dotfiles/.fehbg" "$HOME"/.fehbg
+    link_path "$HOME/dotfiles/.clangd" "$HOME/.clangd"
 
     for i in $(/bin/ls -a "$HOME"/dotfiles/config | tail -n +3); do
         remove_path_if_exists "$HOME/.config/${i}"

@@ -6,7 +6,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.color_scheme = "Catppuccin Mocha (Gogh)"
+config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
 	"CaskaydiaCove Nerd Font",
 	"FiraCode Nerd Font Mono",

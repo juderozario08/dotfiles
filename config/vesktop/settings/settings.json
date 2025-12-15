@@ -362,7 +362,9 @@
             "enabled": true,
             "userBasedCategoryList": {
                 "1152203611980431380": []
-            }
+            },
+            "canCollapseDmSection": false,
+            "pinOrder": 0
         },
         "PlainFolderIcon": {
             "enabled": false
@@ -590,6 +592,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1765741062370
+        "settingsSyncVersion": 1765817209945
     }
 }
