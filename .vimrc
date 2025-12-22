@@ -7,6 +7,8 @@ nnoremap <leader>e :Ex<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader><leader> :so %<CR>
 nnoremap <leader>fo mzgg0=G`z
+nnoremap <C-d> 15jzz
+nnoremap <C-u> 15kzz
 nnoremap H mzO<ESC>`z
 nnoremap L mzo<ESC>`z
 nnoremap J mz

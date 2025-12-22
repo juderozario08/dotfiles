@@ -1,4 +1,7 @@
 [[ -n "$ZSH_VERSION" ]] || return
+export ZSH="$HOME/.oh-my-zsh"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -34,8 +37,9 @@ if [ $(uname) != "Darwin"  ]; then
         export HOMEBREW_PATH="/home/linuxbrew/.linuxbrew"
         export PATH="${HOMEBREW_PATH}/bin:${PATH}"
     fi
+    export PATH=$PATH:/home/juderozario/.spicetify
     export EDITOR='/bin/nvim'
-    export SDL_VIDEODRIVER=wayland
+    export SDL_VIDEODRIVER=Wayland
 else
     export HOMERBEW_PATH="/opt/homebrew"
     export PATH="$HOMEBREW_PATH/opt/ruby/bin:$HOMEBREW_PATH/opt/man-db/libexec/bin:$PATH"
@@ -153,5 +157,3 @@ bindkey "\\e[1;3C" forward-word
 bindkey "\\e[1;3D" backward-word
 
 export MANPAGER="nvim +Man!"
-
-export PATH=$PATH:/home/juderozario/.spicetify

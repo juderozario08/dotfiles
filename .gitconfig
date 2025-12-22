@@ -52,3 +52,5 @@
 	syntax-theme = Catppuccin Mocha
 [credential]
 	helper = store
+[init]
+	defaultBranch = main
