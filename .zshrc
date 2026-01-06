@@ -30,18 +30,18 @@ autoload -U compinit && compinit
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-EDITOR=""
-if [ $(uname) != "Darwin"  ]; then
+export EDITOR="nvim"
+if [[ $(uname) != "Darwin" ]]; then
     if [ -d "/home/linuxbrew" ]; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         export HOMEBREW_PATH="/home/linuxbrew/.linuxbrew"
         export PATH="${HOMEBREW_PATH}/bin:${PATH}"
     fi
-    export PATH=$PATH:/home/juderozario/.spicetify
+    export PATH="$PATH:/home/juderozario/.spicetify"
     export EDITOR='/bin/nvim'
-    export SDL_VIDEODRIVER=Wayland
+    export SDL_VIDEODRIVER=wayland
 else
-    export HOMERBEW_PATH="/opt/homebrew"
+    export HOMEBREW_PATH="/opt/homebrew"
     export PATH="$HOMEBREW_PATH/opt/ruby/bin:$HOMEBREW_PATH/opt/man-db/libexec/bin:$PATH"
     export EDITOR="$HOMEBREW_PATH/bin/nvim"
 fi

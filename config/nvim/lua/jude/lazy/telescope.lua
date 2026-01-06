@@ -43,6 +43,7 @@ return {
         vim.keymap.set("n", "<C-f>", builtin.current_buffer_fuzzy_find, {})
         vim.keymap.set("n", "<leader>tr", builtin.treesitter, {})
         vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
+        vim.keymap.set("n", "<leader>ch", builtin.command_history, {})
 
         vim.keymap.set("n", "<leader>gc", builtin.git_commits, {})
         vim.keymap.set("n", "<leader>gb", builtin.git_bcommits, {})
