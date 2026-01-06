@@ -149,11 +149,30 @@ fzf-neovim() {
     fi
 }
 
+autoload -Uz edit-command-line
+autoload zmv
+zle -N edit-command-line
 zle -N fzf-neovim
 bindkey '^[n' fzf-neovim
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey "\\e[1;3C" forward-word
 bindkey "\\e[1;3D" backward-word
+bindkey '^x^e' edit-command-line
 
 export MANPAGER="nvim +Man!"
+
+alias -s md="bat"
+alias -s go="$EDITOR"
+alias -s c="$EDITOR"
+alias -s cpp="$EDITOR"
+alias -s rs="$EDITOR"
+alias -s js="$EDITOR"
+alias -s ts="$EDITOR"
+alias -s json="jless"
+
+alias -g NE='2>/dev/null'
+alias -g ND='>/dev/null'
+alias -g NUL='>/dev/null 2>1'
+alias -g JQ='| jq'
+alias -g C='| wl-copy'
