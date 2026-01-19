@@ -27,6 +27,7 @@ vim.keymap.set({ "n", "v" }, "<Tab>", [[mz>><ESC>`zllll]], { noremap = true, sil
 
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>Q", ":q!<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
