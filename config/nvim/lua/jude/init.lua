@@ -20,17 +20,19 @@ autocmd("TextYankPost", {
     end,
 })
 
+local keyset = vim.keymap.set
+
 autocmd("LspAttach", {
     group = jude,
     callback = function(e)
         local opts = { buffer = e.buf }
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        vim.keymap.set("n", "C-s", vim.lsp.buf.signature_help, opts)
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-        vim.keymap.set("n", "<leader>=", vim.lsp.buf.format, opts)
-        vim.keymap.set("n", "<leader>fo", function()
+        keyset("n", "K", vim.lsp.buf.hover, {})
+        keyset("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        keyset("n", "gD", vim.lsp.buf.declaration, opts)
+        keyset("n", "C-s", vim.lsp.buf.signature_help, opts)
+        keyset("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        keyset("n", "<leader>=", vim.lsp.buf.format, opts)
+        keyset("n", "<leader>fo", function()
             vim.lsp.buf.format()
             vim.cmd(":w")
         end, opts)
