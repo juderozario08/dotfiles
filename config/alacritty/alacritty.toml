@@ -1,0 +1,33 @@
+general.import = ["~/.config/alacritty/themes/tokyo-night.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 13.5
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "CaskaydiaCove Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "CaskaydiaCove Nerd Font"
+style = "Italic"
+
+[window]
+padding.x = 14
+padding.y = 14
+decorations = "None"
+opacity = 0.9
+blur = true
+option_as_alt = "OnlyLeft"
+
+[selection]
+save_to_clipboard = true
+
+[keyboard]
+bindings = [ { key = "F11", action = "ToggleFullscreen" } ]

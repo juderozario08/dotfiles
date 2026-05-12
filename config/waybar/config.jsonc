@@ -1,0 +1,206 @@
+{
+    "reload_style_on_change": true,
+    "layer": "bottom",
+    "position": "top",
+    "spacing": 0,
+    "modules-left": [
+        "image#arch",
+        "group/hyprland",
+        "group/hardware"
+    ],
+    "modules-center":[
+        "group/media"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "tray",
+        "clock",
+        "custom/notification"
+    ],
+    "custom/notification": {
+        "format": "󰂚",
+        "on-click": "swaync-client -op"
+    },
+    "group/hyprland": {
+        "orientation": "inherit",
+        "modules": [
+            "hyprland/workspaces",
+            "group/hyprland-window"
+        ]
+    },
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{name}{windows}",
+        // "window-rewrite-default": " ",
+        "window-rewrite-default": "",
+        "persistent-workspaces": {
+            "DP-1": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "HDMI-A-1": [
+                6,
+                7,
+                8,
+                9,
+                0
+            ]
+        },
+        "format-window-separator": "",
+        "window-rewrite": {
+            "title<.*youtube.*>": "󰗃",
+            "title<.*gmail.*>": "󰊫",
+            "title<.*google.*messages.*>": "󰭹",
+            "title<Picture-in-Picture>": "󰗃",
+            "class<.*brave.*>": "",
+            "class<firefox>": "󰈹",
+            "class<firefox> title<.*github.*>": "",
+            "class<.*obs.*studio.*>": "",
+            "wezterm": "",
+            "alacritty": "",
+            "code": "󰨞",
+            "spotify": "",
+            "vesktop": "󰙯",
+            "discord": "󰙯",
+            "obsidian": "󰠮",
+            "localsend": "󰆨",
+            "nautilus": "",
+            "class<.*jetbrains-studio.*>": "󰀴",
+            "steam": ""
+        }
+    },
+    "group/hyprland-window": {
+        "orientation": "inherit",
+        "modules": [
+            "hyprland/window"
+        ]
+    },
+    "hyprland/window": {
+        "format": "{initialTitle}",
+        "icon": false,
+        "rewrite": {
+            "Mozilla Firefox": "Firefox",
+            "wezterm": "Wezterm",
+            "(.*)music.youtube(.*)": "YouTube Music",
+            "(.*)www.youtube(.*)": "YouTube",
+            "": "Desktop"
+        }
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 12
+    },
+    "hyprland/submap": {
+        "format": "{}",
+        "max-length": 8
+    },
+    "group/hardware": {
+        "orientation": "inherit",
+        "modules": [
+            "cpu",
+            "memory",
+            "custom/gpu"
+        ]
+    },
+    "memory": {
+        "interval": 30,
+        "format": "  {}% ",
+        "max-length": 10,
+        "on-click": "wezterm -e btop"
+    },
+    "cpu": {
+        "interval": 1,
+        "format": " {usage}%",
+        "on-click": "wezterm -e btop"
+    },
+    "custom/gpu": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 2,
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/gpu_usage.sh",
+        "on-click": "wezterm -e btop"
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "on-click": "pavucontrol",
+        "scroll-step": 5,
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    "bluetooth": {
+        "format-disabled": "󰂲 Disabled",
+        "format-off": "󰂲 Off",
+        "format-on": " On",
+        "format-connected": " {device_alias}",
+        "tooltip": true,
+        "tooltip-format": "Devices connected: {num_connections}",
+        "on-click": "blueman-manager"
+    },
+    "network": {
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "  ⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "format-disconnected": "󰖪 ",
+        "tooltip": true,
+        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 3,
+        "nospacing": 1,
+        "on-click": "nm-applet"
+    },
+    "clock": {
+        "format": "󰸗 {:%a %b %d %H:%M:%S}",
+        "on-click": "gnome-calendar",
+        "interval": 1
+    },
+    "image#arch": {
+        "path": "/home/juderozario/.config/waybar/Arch.png",
+        "size": 20,
+        "tooltip": false
+    },
+    "custom/mediaPlayPause": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/playbutton.sh",
+        "on-click": "~/.config/waybar/scripts/clickplay.sh"
+    },
+    "custom/prevMedia": {
+        "format": "󰒮",
+        "on-click": "playerctl previous"
+    },
+    "custom/nextMedia": {
+        "format": "󰒭",
+        "on-click": "playerctl previous"
+    },
+    "custom/playerName": {
+        "format": "  {}",
+        "exec": "~/.config/waybar/scripts/medianame.sh",
+    },
+    "group/media": {
+        "orientation": "inherit",
+        "modules": [
+            "custom/playerName",
+            "custom/prevMedia",
+            "custom/mediaPlayPause",
+            "custom/nextMedia"
+        ]
+    }
+}
