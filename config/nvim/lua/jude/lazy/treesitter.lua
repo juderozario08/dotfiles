@@ -3,6 +3,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         event = "VeryLazy",
         branch = "master",
+        commit="cf12346a",
         build = ":TSUpdate",
         lazy = false,
         config = function()
@@ -23,8 +24,11 @@ return {
                 },
                 sync_install = false,
                 auto_install = true,
-                highlight = { enable = true },
-                indent = { enable = true },
+                highlight = { enable = true, disable = { "markdown", "markdown_inline" } },
+                indent = {
+                    enable = true,
+                    disable = { "cpp" }
+                }
             })
         end,
     },
@@ -40,7 +44,14 @@ return {
                 mode = "cursor",
                 separator = nil,
                 zindex = 10,
-                on_attach = nil,
+                on_attach = function(bufnr)
+                    local ft = vim.bo[bufnr].filetype
+                    if ft == "markdown" or ft == "markdown_inline" then
+                        return false
+                    else
+                        return true
+                    end
+                end,
                 max_lines = 5,
             })
         end,

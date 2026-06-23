@@ -18,6 +18,10 @@ return {
                     width = 0.97,
                     height = 0.97,
                 },
+                file_ignore_patterns = {
+                    "third_party/",
+                    "%.md$"
+                },
             },
         })
         pcall(telescope.load_extension, "fzf")
@@ -25,7 +29,12 @@ return {
         telescope.load_extension("ui-select")
 
         local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+        vim.keymap.set("n", "<leader>ff", function()
+            builtin.find_files({
+                no_ignore = false,
+                hidden = true
+            })
+        end, {})
         vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
         vim.keymap.set("n", "<leader>fg", function()
             local word = vim.fn.expand("<cword>")
@@ -43,7 +52,11 @@ return {
         vim.keymap.set("n", "<leader>gc", builtin.git_commits, {})
         vim.keymap.set("n", "<leader>gb", builtin.git_bcommits, {})
         vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
-        vim.keymap.set("n", "<leader>gf", builtin.git_files, {})
+        vim.keymap.set("n", "<leader>gf", function()
+            builtin.git_files({
+                no_ignore = false
+            })
+        end, {})
 
         vim.keymap.set("n", "<leader>tm", builtin.man_pages, {})
         vim.keymap.set("n", "<leader>fs", builtin.search_history, {})

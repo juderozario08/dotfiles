@@ -188,7 +188,7 @@
     },
     "custom/nextMedia": {
         "format": "󰒭",
-        "on-click": "playerctl previous"
+        "on-click": "playerctl next"
     },
     "custom/playerName": {
         "format": "  {}",

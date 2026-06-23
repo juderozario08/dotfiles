@@ -68,7 +68,7 @@ alias so="source ~/.zshrc"
 alias l='eza --color=always --icons=always --long --all'
 alias ls='eza --color=always --icons=always'
 alias cd='z'
-alias tree='eza --tree --icons --ignore-glob=node_modules'
+alias tree='eza --tree --icons --ignore-glob="node_modules|third_party"'
 alias cat='bat'
 alias t='tmux'
 alias td='tmux detach'
@@ -205,3 +205,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH=/opt/rocm/bin:$PATH
+export ROCM_PATH=/opt/rocm
+export HIP_PATH=/opt/rocm
+export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
