@@ -20,7 +20,6 @@ return {
                 },
                 file_ignore_patterns = {
                     "third_party/",
-                    "%.md$"
                 },
             },
         })

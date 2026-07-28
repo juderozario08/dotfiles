@@ -6,7 +6,8 @@ return {
     opts = {},
     config = function()
         require("render-markdown").setup({
-            latex = { enabled = false }
+            latex = { enabled = false },
+            enabled = false
         })
     end
 }
