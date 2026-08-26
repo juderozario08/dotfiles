@@ -44,6 +44,8 @@ else
     export HOMEBREW_PATH="/opt/homebrew"
     export PATH="$HOMEBREW_PATH/opt/ruby/bin:$HOMEBREW_PATH/opt/man-db/libexec/bin:$PATH"
     export EDITOR="$HOMEBREW_PATH/bin/nvim"
+    export ANDROID_HOME=/home/juderozario/Android/Sdk
+    export QT_QPA_PLATFORM=xcb
     __conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"

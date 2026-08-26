@@ -57,6 +57,7 @@
             "title<.*gmail.*>": "󰊫",
             "title<.*google.*messages.*>": "󰭹",
             "title<Picture-in-Picture>": "󰗃",
+            "title<.*IDE.*>": "󰨞",
             "class<.*brave.*>": "",
             "class<firefox>": "󰈹",
             "class<firefox> title<.*github.*>": "",
