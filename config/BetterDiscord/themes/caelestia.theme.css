@@ -58,7 +58,7 @@ body {
   --remove-bg-layer: off; /* turn on to remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
   --panel-blur: off; /* turn on to blur the background of panels */
   --blur-amount: 12px; /* amount of blur */
-  --bg-floating: #24283B; /* you can set this to a more opaque color if floating panels look too transparent */
+  --bg-floating: #0D0F17; /* you can set this to a more opaque color if floating panels look too transparent */
   /* chatbar options */
   --custom-chatbar: off; /* off: default chatbar, separated: chatbar separated from chat */
   --chatbar-height: 47px; /* height of the chatbar (56px by default, 47px to align with user panel, 56px recommended for separated) */
@@ -70,17 +70,17 @@ body {
 :root {
   --colors: on; /* turn off to use discord default colors */
   /* text colors */
-  --text-0: #1A1B26; /* text on colored elements */
+  --text-0: #090A0F; /* text on colored elements */
   --text-1: rgb(77.7647058824%, 81.2941176471%, 96.4705882353%); /* bright text on colored elements */
   --text-2: rgb(76.5294117647%, 80.2549019608%, 96.2745098039%); /* headings and important text */
   --text-3: #C0CAF5; /* normal text */
-  --text-4: #565F89; /* icon buttons and channels */
-  --text-5: #565F89; /* muted channels/chats and timestamps */
+  --text-4: #2F354F; /* icon buttons and channels */
+  --text-5: #2F354F; /* muted channels/chats and timestamps */
   /* background and dark colors */
-  --bg-1: #414868; /* dark buttons when clicked */
-  --bg-2: #3B4261; /* dark buttons */
-  --bg-3: #24283B; /* spacing, secondary elements */
-  --bg-4: #2A2F41; /* main background color */
+  --bg-1: #1C2033; /* dark buttons when clicked */
+  --bg-2: #151827; /* dark buttons */
+  --bg-3: #0D0F17; /* spacing, secondary elements */
+  --bg-4: #10131E; /* main background color */
   --hover: rgba(192, 202, 245, 0.08); /* channels and buttons when hovered */
   --active: rgba(192, 202, 245, 0.1); /* channels and buttons when clicked or selected */
   --active-2: rgba(192, 202, 245, 0.2); /* extra state for transparent buttons */
@@ -119,9 +119,9 @@ body {
   --streaming: var(--purple-2); /* change to #593695 for default */
   --offline: var(--text-4); /* change to #83838b for default offline color */
   /* border colors */
-  --border-light: rgba(86, 95, 137, 0); /* light border color */
-  --border: rgba(86, 95, 137, 0.2); /* normal border color */
-  --button-border: rgba(86, 95, 137, 0); /* neutral border color of buttons */
+  --border-light: rgba(47, 53, 79, 0); /* light border color */
+  --border: rgba(47, 53, 79, 0.2); /* normal border color */
+  --button-border: rgba(47, 53, 79, 0); /* neutral border color of buttons */
   /* base colors */
   --red-1: #F7768E;
   --red-2: rgb(96.4678837052%, 39.5125084517%, 50.108857336%);

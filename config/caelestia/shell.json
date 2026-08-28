@@ -1,6 +1,7 @@
 {
     "services": {
         "audioIncrement": 0.02,
-        "maxVolume": 1.0
+        "maxVolume": 1.0,
+        "useFahrenheit": false
     }
 }

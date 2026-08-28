@@ -42,30 +42,30 @@
   --interactive-muted: #484a57;
 
   /* Background Color */
-  --background-primary: #1a1b26;
-  --background-secondary: #171722;
-  --background-secondary-alt: #13131a;
-  --background-tertiary: #16161e;
-  --background-tertiary-alt: #13131a;
-  --background-accent: #434461;
-  --background-floating: #161620;
-  --background-modifier-hover: #212331c0;
-  --background-modifier-active: #282a3680;
-  --background-modifier-selected: #24263171;
-  --background-modifier-accent: #21212c;
-  --background-mentioned: #252836;
-  --border-mentioned: #474c64;
-  --background-mentioned-hover: #2f3344;
-  --accent-color: #365aaa;
+  --background-primary: #090a0f;
+  --background-secondary: #0c0e15;
+  --background-secondary-alt: #08090d;
+  --background-tertiary: #06070a;
+  --background-tertiary-alt: #050508;
+  --background-accent: #1e2235;
+  --background-floating: #0c0e15;
+  --background-modifier-hover: #171b2b80;
+  --background-modifier-active: #1e223580;
+  --background-modifier-selected: #24294080;
+  --background-modifier-accent: #151824;
+  --background-mentioned: #182038;
+  --border-mentioned: #7aa2f7;
+  --background-mentioned-hover: #1e2847;
+  --accent-color: #7aa2f7;
 
   /* Folder Color */
-  --folder-color: #272a36d0;
-  --folder-color-light: #2f3342d0;
+  --folder-color: #171b2bd0;
+  --folder-color-light: #1e2235d0;
 
   /* Input Box Color */
-  --input-box-bg: #14141b;
-  --input-box-border: #0f0f14;
-  --input-box-border-focus: #1b1c26;
+  --input-box-bg: #0c0e15;
+  --input-box-border: #06070a;
+  --input-box-border-focus: #171b2b;
 
   /* Scrollbars Color */
   --scrollbar-thin-thumb: transparent;

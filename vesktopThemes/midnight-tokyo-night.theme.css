@@ -85,10 +85,10 @@ body {
     --text-5: #414868; /* muted channels/chats and timestamps */
 
     /* background and dark colors */
-    --bg-1: hsl(230, 22%, 25%); /* dark buttons when clicked */
-    --bg-2: hsl(230, 21%, 19%); /* dark buttons */
-    --bg-3: #16161d; /* spacing, secondary elements */
-    --bg-4: #1a1b26; /* main background color */
+    --bg-1: #1c2033; /* dark buttons when clicked */
+    --bg-2: #141724; /* dark buttons */
+    --bg-3: #0c0e15; /* spacing, secondary elements */
+    --bg-4: #090a0f; /* main background color */
     --hover: hsla(225, 22%, 41%, 0.125); /* channels and buttons when hovered */
     --active: hsla(225, 22%, 41%, 0.267); /* channels and buttons when clicked or selected */
     --active-2: hsla(225, 22%, 41%, 0.333); /* extra state for transparent buttons */

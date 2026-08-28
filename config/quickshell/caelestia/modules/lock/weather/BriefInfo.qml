@@ -44,7 +44,7 @@ ColumnLayout {
         visible: root.rootHeight > Tokens.sizes.lock.showWeatherDetailsHeight
         Layout.alignment: Qt.AlignHCenter
         animate: true
-        text: qsTr("Feels like %1").arg(Weather.temp)
+        text: qsTr("Feels like %1").arg(Weather.feelsLike)
         color: Colours.palette.m3onSurfaceVariant
         font: Tokens.font.body.large
     }
