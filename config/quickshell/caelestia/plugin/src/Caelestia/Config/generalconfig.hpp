@@ -30,16 +30,16 @@ class GeneralIdle : public settings::ObjectNode {
     CONFIG_GLOBAL_PROPERTY(QVariantList, timeouts,
         DEFAULT_ARG({
             vmap({
-                { u"timeout"_s, 180 },
+                { u"timeout"_s, 600 },
                 { u"idleAction"_s, u"lock"_s },
             }),
             vmap({
-                { u"timeout"_s, 300 },
+                { u"timeout"_s, 1200 },
                 { u"idleAction"_s, u"dpms off"_s },
                 { u"returnAction"_s, u"dpms on"_s },
             }),
             vmap({
-                { u"timeout"_s, 600 },
+                { u"timeout"_s, 1320 },
                 { u"idleAction"_s, QStringList{ u"suspendThenHibernate"_s } },
             }),
         }))
