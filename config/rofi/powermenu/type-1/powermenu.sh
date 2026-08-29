@@ -71,7 +71,7 @@ run_cmd() {
             systemctl suspend
         elif [[ $1 == '--logout' ]]; then
             if [[ $XDG_SESSION_TYPE == 'wayland'  ]]; then
-                hyprlock
+                loginctl lock-session
             else
                 i3lock -i /home/juderozario/wallpaper/Fantasy-Landscape3_1080p.png -t
             fi
@@ -91,7 +91,7 @@ $reboot)
     run_cmd --reboot
     ;;
 $lock)
-    hyprlock
+    loginctl lock-session
     ;;
 $suspend)
     run_cmd --suspend

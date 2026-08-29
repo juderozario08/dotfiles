@@ -1,4 +1,34 @@
 {
+    "general": {
+        "idle": {
+            "lockBeforeSleep": true,
+            "inhibitWhenAudio": true,
+            "inhibitWhenCharging": false,
+            "timeouts": [
+                {
+                    "timeout": 600,
+                    "idleAction": "lock"
+                },
+                {
+                    "timeout": 1200,
+                    "idleAction": "dpms off",
+                    "returnAction": "dpms on"
+                },
+                {
+                    "timeout": 1320,
+                    "idleAction": [
+                        "suspendThenHibernate"
+                    ]
+                }
+            ]
+        }
+    },
+    "lock": {
+        "enabled": true,
+        "useWallpaper": true,
+        "enableFprint": false,
+        "enableHowdy": false
+    },
     "services": {
         "audioIncrement": 0.02,
         "maxVolume": 1.0,

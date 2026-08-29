@@ -80,7 +80,7 @@ run_cmd() {
 			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
 			elif [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
-                hyprlock
+                loginctl lock-session
 			fi
 		fi
 	else
@@ -98,10 +98,10 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		if [[ -x '/usr/bin/hyprlock' ]]; then
-			hyprlock
-        elif [[ -x '/usr/bin/betterlockscreen' ]]; then
+        if [[ -x '/usr/bin/betterlockscreen' ]]; then
             betterlockscreen -l
+        else
+			loginctl lock-session
 		fi
         ;;
     $suspend)
