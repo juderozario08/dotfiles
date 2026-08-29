@@ -4,7 +4,7 @@ local terminalBak = "alacritty"
 local browser = "firefox"
 local browserBak = "brave-nightly"
 local discord = "vesktop"
-local fileManager = "nautilus"
+-- local fileManager = "nautilus"
 local launcher = "caelestia shell drawers toggle launcher"
 local command = "~/.config/rofi/scripts/launcher_t1"
 local power = "~/.config/rofi/scripts/powermenu_t1"
@@ -23,7 +23,7 @@ hl.bind(mainMod .. " + CTRL + C", hl.dsp.exec_cmd("caelestia clipboard"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(browserBak))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(discord))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " start --class yazi yazi"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(launcher))
 hl.bind(mainMod .. " + CTRL + SPACE", hl.dsp.exec_cmd(command))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd(power))

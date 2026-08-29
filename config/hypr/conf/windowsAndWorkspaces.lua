@@ -64,6 +64,15 @@ hl.window_rule({
     center = true,
 })
 
+hl.window_rule({
+    name = "yazi",
+    match = { class = "(.*yazi.*)" },
+    float = true,
+    size = { 1600, 1000 },
+    center = true,
+})
+
+
 -- Gnome Calendar
 hl.window_rule({
     name = "calendar",
