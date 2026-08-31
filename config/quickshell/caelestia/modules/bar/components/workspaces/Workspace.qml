@@ -52,7 +52,7 @@ RowLayout {
         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
         Layout.preferredWidth: Tokens.sizes.bar.innerWidth - Tokens.padding.small
         Layout.preferredHeight: Tokens.sizes.bar.innerWidth - Tokens.padding.small
-        sourceComponent: Config.bar.workspaces.displayType === BarEnums.Text ? textComponent : shapeComponent
+        sourceComponent: Config.bar.workspaces.displayType === BarWorkspaceDisplay.Text ? textComponent : shapeComponent
 
         onItemChanged: root.updateShape()
     }
