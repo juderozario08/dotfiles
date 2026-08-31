@@ -10,11 +10,6 @@
                     "idleAction": "lock"
                 },
                 {
-                    "timeout": 1200,
-                    "idleAction": "dpms off",
-                    "returnAction": "dpms on"
-                },
-                {
                     "timeout": 1320,
                     "idleAction": [
                         "suspendThenHibernate"
@@ -25,7 +20,7 @@
     },
     "lock": {
         "enabled": true,
-        "useWallpaper": true,
+        "useWallpaper": false,
         "enableFprint": false,
         "enableHowdy": false
     },
