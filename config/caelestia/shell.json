@@ -18,6 +18,9 @@
             ]
         }
     },
+    "background": {
+        "wallpaperEnabled": false
+    },
     "lock": {
         "enabled": true,
         "useWallpaper": false,
