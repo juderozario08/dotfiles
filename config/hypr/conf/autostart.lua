@@ -4,6 +4,7 @@
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("caelestia shell")
+    hl.exec_cmd("hyprpaper")
     hl.exec_cmd("dbus-update-activation-environment")
     hl.exec_cmd("systemctl")
     hl.exec_cmd("wl-paste")
@@ -12,4 +13,5 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("swaync")
     hl.exec_cmd("emacs")
     hl.exec_cmd("nm-applet")
+    hl.exec_cmd("mpvpaper -o \"no-audio --loop-playlist\" HDMI-A-1 ~/wallpaper/videos")
 end)
