@@ -37,7 +37,7 @@ hl.bind("ALT + PRINT", hl.dsp.exec_cmd("hyprshot -m window --clipboard-only"))
 hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 hl.bind(mainMod .. " + SHIFT + T", function()
     hl.dispatch(hl.dsp.window.bring_to_top())
-    hl.dispatch(hl.dsp.exec_cmd(terminal .. "-e btop"))
+    hl.dispatch(hl.dsp.exec_cmd(terminal .. " -e btop"))
 end)
 
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
@@ -53,7 +53,8 @@ hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 
-hl.bind(mainMod .. " + TAB", hl.dsp.focus({ urgent_or_last = true }))
+hl.bind(mainMod .. " + TAB", hl.dsp.window.cycle_next())
+hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.window.cycle_next({ prev = true }))
 
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
