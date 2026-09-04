@@ -23,7 +23,7 @@
     },
     "lock": {
         "enabled": true,
-        "useWallpaper": false,
+        "useWallpaper": true,
         "enableFprint": false,
         "enableHowdy": false
     },

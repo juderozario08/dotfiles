@@ -65,7 +65,7 @@ alias zshconfig="$EDITOR ~/.zshrc"
 alias va="$EDITOR ~/.config/alacritty/alacritty.toml"
 alias vk="$EDITOR ~/.config/kitty/kitty.conf"
 alias vw="$EDITOR ~/.wezterm.lua"
-alias vh="$EDITOR ~/.config/hypr/hyprland.conf"
+alias vh="$EDITOR ~/.config/hypr/hyprland.lua"
 alias so="source ~/.zshrc"
 alias l='eza --color=always --icons=always --long --all'
 alias ls='eza --color=always --icons=always'

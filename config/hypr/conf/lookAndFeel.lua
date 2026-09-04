@@ -56,6 +56,7 @@ hl.config({
         animate_mouse_windowdragging = true,
         focus_on_activate = true,
         allow_session_lock_restore = true,
+        on_focus_under_fullscreen = 1,
     },
 
     animations = {

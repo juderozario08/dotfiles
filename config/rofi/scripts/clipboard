@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+## Author : Antigravity
+## Rofi   : Clipboard Manager (Cliphist + Rofi)
+
+dir="$HOME/.config/rofi/launchers/type-1"
+theme='clipboard'
+
+if [ ! -f "${dir}/${theme}.rasi" ]; then
+    theme='style-11'
+fi
+
+case "${1:-}" in
+    -d|--delete)
+        selected=$(cliphist list | rofi -dmenu -theme "${dir}/${theme}.rasi" -p "󰆴 Delete" -placeholder "Select item to delete...")
+        if [ -n "$selected" ]; then
+            echo "$selected" | cliphist delete
+        fi
+        ;;
+    -c|--clear|--wipe)
+        cliphist wipe
+        ;;
+    *)
+        selected=$(cliphist list | rofi -dmenu -theme "${dir}/${theme}.rasi" -p " Clipboard" -placeholder "Search clipboard...")
+        if [ -n "$selected" ]; then
+            echo "$selected" | cliphist decode | wl-copy
+        fi
+        ;;
+esac
