@@ -17,7 +17,11 @@ hl.bind(mainMod .. " + Y", function()
     hl.dispatch(hl.dsp.focus({ workspace = 6 }))
     hl.dispatch(hl.dsp.exec_cmd(browserLauncher .. "='https://www.youtube.com/'"))
 end)
-hl.bind(mainMod .. " + SHIFT + Y", hl.dsp.exec_cmd(browserLauncher .. "='https://music.youtube.com/'"))
+hl.bind(mainMod .. " + SHIFT + Y", function()
+    hl.dispatch(hl.dsp.focus({ workspace = 7 }))
+    hl.dispatch(hl.dsp.exec_cmd(browserLauncher .. "='https://music.youtube.com/'"))
+end
+)
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(browserLauncher .. "='https://mail.google.com/mail/u/1'"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(browserLauncher .. "='https://messages.google.com/web'"))
 hl.bind(mainMod .. " + SHIFT + S",
