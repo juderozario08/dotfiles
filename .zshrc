@@ -211,3 +211,8 @@ export PATH=/opt/rocm/bin:$PATH
 export ROCM_PATH=/opt/rocm
 export HIP_PATH=/opt/rocm
 export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/juderozario/.lmstudio/bin"
+# End of LM Studio CLI section
+

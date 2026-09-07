@@ -11,3 +11,8 @@ PS1='[\u@\h \W]\$ '
 . "$HOME/.cargo/env"
 
 . "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/juderozario/.lmstudio/bin"
+# End of LM Studio CLI section
+

@@ -11,6 +11,10 @@
                 },
                 {
                     "timeout": 1320,
+                    "idleAction": "suspend"
+                },
+                {
+                    "timeout": 2400,
                     "idleAction": [
                         "suspendThenHibernate"
                     ]
