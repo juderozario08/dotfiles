@@ -5,9 +5,11 @@ return {
     ---@type render.md.UserConfig
     opts = {},
     config = function()
-        require("render-markdown").setup({
+        local markdown = require("render-markdown")
+        markdown.setup({
             latex = { enabled = false },
-            enabled = false
+            enabled = true,
         })
+        vim.keymap.set("n", "<leader>md", markdown.toggle, { desc = "Toggle Markdown Render" })
     end
 }
