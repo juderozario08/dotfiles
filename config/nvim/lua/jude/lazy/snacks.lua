@@ -18,9 +18,11 @@ return {
         scope = { enabled = true },
         scroll = { enabled = false },
         statuscolumn = { enabled = false },
+        terminal = { enabled = true },
         words = { enabled = false },
     },
     keys = {
+        { "<C-t>",           function() Snacks.terminal() end,               desc = "Toggle Terminal", mode = { "n", "t" } },
         -- Top Pickers & Explorer
         { "<leader><space>", function() Snacks.picker.smart() end,           desc = "Smart Find Files" },
         { "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
