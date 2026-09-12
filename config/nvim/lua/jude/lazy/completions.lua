@@ -4,7 +4,6 @@ return {
         version = "*",
         dependencies = {
             "rafamadriz/friendly-snippets",
-            "echasnovski/mini.snippets",
         },
         event = "InsertEnter",
         opts = {
@@ -61,7 +60,7 @@ return {
                 },
             },
             snippets = {
-                preset = "mini_snippets",
+                preset = "default",
             },
             signature = {
                 enabled = true,
