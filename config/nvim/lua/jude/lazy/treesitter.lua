@@ -8,10 +8,6 @@ return {
             "nvim-treesitter/nvim-treesitter-textobjects",
         },
         config = function()
-            -- Neovim 0.12 compatibility fix for nvim-treesitter query directives & predicates:
-            -- In Neovim 0.12+, query callbacks receive tables of nodes (TSNode[]) rather than
-            -- scalar nodes. Directives like #set-lang-from-info-string! fail with:
-            -- 'attempt to call method range (a nil value)' unless nodes are unpacked.
             local query = require("vim.treesitter.query")
 
             local non_filetype_match_injection_language_aliases = {
