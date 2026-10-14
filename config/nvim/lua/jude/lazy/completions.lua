@@ -4,7 +4,6 @@ return {
         version = "*",
         dependencies = {
             "rafamadriz/friendly-snippets",
-            "echasnovski/mini.snippets",
         },
         event = "InsertEnter",
         opts = {
@@ -51,17 +50,30 @@ return {
                 default = { "lazydev", "lsp", "path", "snippets", "buffer" },
                 providers = {
                     lsp = {
+                        fallbacks = {},
                         score_offset = 100,
+                    },
+                    path = {
+                        fallbacks = {},
                     },
                     lazydev = {
                         name = "LazyDev",
                         module = "lazydev.integrations.blink",
                         score_offset = 100,
                     },
+                    buffer = {
+                        opts = {
+                            get_bufnrs = function()
+                                return vim.tbl_filter(function(bufnr)
+                                    return vim.bo[bufnr].buftype == ""
+                                end, vim.api.nvim_list_bufs())
+                            end,
+                        },
+                    },
                 },
             },
             snippets = {
-                preset = "mini_snippets",
+                preset = "default",
             },
             signature = {
                 enabled = true,
