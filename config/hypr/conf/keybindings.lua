@@ -112,27 +112,22 @@ hl.bind(mainMod .. " + CTRL + 8", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo
 hl.bind(mainMod .. " + CTRL + 9", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh 9 "))
 hl.bind(mainMod .. " + CTRL + 0", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh 10"))
 
-hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
-hl.define_submap("resize", function()
-    hl.bind("right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
-    hl.bind("left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
-    hl.bind("up", hl.dsp.window.resize({ x = 0, y = 25, relative = true }), { repeating = true })
-    hl.bind("down", hl.dsp.window.resize({ x = 0, y = -25, relative = true }), { repeating = true })
-    hl.bind("escape", hl.dsp.submap("reset"))
+hl.bind(mainMod .. " + R", function()
+    hl.config({ general = { col = { active_border = { colors = { "rgba(ff0000ff)" } } } } })
+    hl.dispatch(hl.dsp.submap("resize"))
 end)
-
-hl.bind(mainMod .. " + R",
-    hl.dsp.exec_cmd("hyprctl keyword general:col.active_border \"rgba(ff0000ff)\"; hyprctl dispatch submap resize"))
-
 hl.define_submap("resize", function()
     hl.bind("right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
     hl.bind("left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
     hl.bind("up", hl.dsp.window.resize({ x = 0, y = 25, relative = true }), { repeating = true })
     hl.bind("down", hl.dsp.window.resize({ x = 0, y = -25, relative = true }), { repeating = true })
+    hl.bind("l", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
+    hl.bind("h", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
+    hl.bind("k", hl.dsp.window.resize({ x = 0, y = -25, relative = true }), { repeating = true })
+    hl.bind("j", hl.dsp.window.resize({ x = 0, y = 25, relative = true }), { repeating = true })
     hl.bind("escape", function()
-        hl.dsp.exec_cmd(
-            "hyprctl keyword general:col.active_border \"rgba(33ccffee) rgba(00ff99ee) 45deg\"; hyprctl dispatch submap reset")
-        hl.dsp.submap("reset")
+        hl.config({ general = { col = { active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 } } } })
+        hl.dispatch(hl.dsp.submap("reset"))
     end)
 end)
 

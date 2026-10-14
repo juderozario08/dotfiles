@@ -12,7 +12,7 @@ config.font = wezterm.font_with_fallback({
     "FiraCode Nerd Font Mono",
     "JetBrainsMono Nerd Font",
 })
-config.font_size = 13
+config.font_size = 14
 config.automatically_reload_config = true
 config.window_background_opacity = 0.90
 config.window_decorations = "NONE"
