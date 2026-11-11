@@ -112,6 +112,14 @@ hl.bind(mainMod .. " + CTRL + 8", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo
 hl.bind(mainMod .. " + CTRL + 9", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh 9 "))
 hl.bind(mainMod .. " + CTRL + 0", hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh 10"))
 
+-- HDMI-A-1 workspaces 11-15 on F1-F5
+for i = 1, 5 do
+    local ws = 10 + i
+    hl.bind(mainMod .. " + F" .. i, hl.dsp.focus({ workspace = ws }))
+    hl.bind(mainMod .. " + SHIFT + F" .. i, hl.dsp.window.move({ workspace = ws }))
+    hl.bind(mainMod .. " + CTRL + F" .. i, hl.dsp.exec_cmd("~/.config/hypr/scripts/moveTo.sh " .. ws))
+end
+
 hl.bind(mainMod .. " + R", function()
     hl.config({ general = { col = { active_border = { colors = { "rgba(ff0000ff)" } } } } })
     hl.dispatch(hl.dsp.submap("resize"))
