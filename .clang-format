@@ -2,5 +2,5 @@ BasedOnStyle: LLVM
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
-ColumnLimit: 130
+ColumnLimit: 120
 FixNamespaceComments: false

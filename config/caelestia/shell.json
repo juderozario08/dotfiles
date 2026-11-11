@@ -11,7 +11,9 @@
                 },
                 {
                     "timeout": 1320,
-                    "idleAction": "suspend"
+                    "idleAction": [
+                        "suspend"
+                    ]
                 },
                 {
                     "timeout": 2400,
@@ -33,7 +35,6 @@
     },
     "services": {
         "audioIncrement": 0.02,
-        "maxVolume": 1.0,
-        "useFahrenheit": false
+        "maxVolume": 1.0
     }
 }

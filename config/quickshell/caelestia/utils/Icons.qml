@@ -212,7 +212,7 @@ Singleton {
     function getSpecialWsIcon(name: string): string {
         name = name.toLowerCase().slice("special:".length);
 
-        for (const iconConfig of GlobalConfig.bar.workspaces.specialWorkspaceIcons)
+        for (const iconConfig of GlobalConfig.bar.workspaces.specialWorkspaceIcons.values)
             if (matchIconConfig(name, iconConfig))
                 return iconConfig.icon;
 

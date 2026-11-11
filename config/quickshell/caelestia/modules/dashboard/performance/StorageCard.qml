@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Caelestia.Config
+import Caelestia.I18n
 import Caelestia.Services
 import qs.components
 import qs.components.controls
@@ -88,13 +89,7 @@ StyledRect {
                 }
 
                 StyledText {
-                    text: {
-                        if (!Storage.primaryDisk)
-                            return qsTr("No disks detected");
-
-                        const fmt = UsageFmt.formatKib(Storage.primaryDisk.used, Storage.primaryDisk.total);
-                        return `${+fmt.value.toFixed(1)} / ${+fmt.total.toFixed(1)} ${fmt.unit}`;
-                    }
+                    text: Storage.primaryDisk ? Units.formatKibUsage(Storage.primaryDisk.used, Storage.primaryDisk.total) : qsTr("No disks detected")
                     font: Tokens.font.body.large
                     color: root.accent
                 }
