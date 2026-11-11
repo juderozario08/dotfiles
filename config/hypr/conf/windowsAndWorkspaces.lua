@@ -151,21 +151,25 @@ hl.window_rule({
 
 -- Workspace Assignments
 hl.window_rule({
-    match = { title = "(.*WebCord.*)" },
-    workspace = "6",
+    match = { class = "(?i)(vesktop|discord|webcord)" },
+    workspace = "11",
 })
 hl.window_rule({
-    match = { title = "(.*Spotify.*)" },
-    workspace = "7",
+    match = { class = "(brave-www\\.youtube\\.com.*)" },
+    workspace = "11",
+})
+hl.window_rule({
+    match = { class = "(brave-music\\.youtube\\.com.*)" },
+    workspace = "12",
+})
+hl.window_rule({
+    match = { class = "(?i)(spotify)" },
+    workspace = "12",
 })
 hl.window_rule({
     match = { title = "(.*Open [fF]iles.*)" },
     float = true,
     center = true,
-})
-hl.window_rule({
-    match = { title = "(.*Discord.*)" },
-    workspace = "6",
 })
 hl.window_rule({
     match = { title = "(.*Firefox.*)" },

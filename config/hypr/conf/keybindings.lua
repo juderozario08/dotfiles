@@ -14,11 +14,11 @@ local mainMod = "SUPER"
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminalBak))
 hl.bind(mainMod .. " + Y", function()
-    hl.dispatch(hl.dsp.focus({ workspace = 6 }))
+    hl.dispatch(hl.dsp.focus({ workspace = 11 }))
     hl.dispatch(hl.dsp.exec_cmd(browserLauncher .. "='https://www.youtube.com/'"))
 end)
 hl.bind(mainMod .. " + SHIFT + Y", function()
-    hl.dispatch(hl.dsp.focus({ workspace = 7 }))
+    hl.dispatch(hl.dsp.focus({ workspace = 12 }))
     hl.dispatch(hl.dsp.exec_cmd(browserLauncher .. "='https://music.youtube.com/'"))
 end
 )
@@ -26,7 +26,6 @@ hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(browserLauncher .. "='https://mail.go
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(browserLauncher .. "='https://messages.google.com/web'"))
 hl.bind(mainMod .. " + SHIFT + S",
     hl.dsp.exec_cmd(browserLauncher .. "='https://calendar.google.com/calendar/u/1/r?pli=1'"))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("spotify"))
 hl.bind(mainMod .. " + CTRL + C", hl.dsp.exec_cmd(clipboard))
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd(clipboard))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
@@ -34,7 +33,17 @@ hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(browserBak))
 hl.bind(mainMod .. " + I",
     hl.dsp.exec_cmd(
         "firefox https://www.intern-list.com/?k=swe https://docs.google.com/document/u/1/ https://docs.google.com/spreadsheets/u/1/ https://drive.google.com/drive/u/1/home"))
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(discord))
+
+hl.bind(mainMod .. " + S", function()
+    hl.dispatch(hl.dsp.focus({ workspace = 12 }))
+    hl.dispatch(hl.dsp.exec_cmd("spotify"))
+end
+)
+hl.bind(mainMod .. " + D", function()
+    hl.dispatch(hl.dsp.focus({ workspace = 11 }))
+    hl.dispatch(hl.dsp.exec_cmd(discord))
+end
+)
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " start --class yazi yazi"))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(launcher))
