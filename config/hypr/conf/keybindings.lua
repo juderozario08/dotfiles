@@ -59,7 +59,7 @@ hl.bind("ALT + PRINT", hl.dsp.exec_cmd("hyprshot -m window --clipboard-only"))
 hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 hl.bind(mainMod .. " + SHIFT + T", function()
     hl.dispatch(hl.dsp.window.bring_to_top())
-    hl.dispatch(hl.dsp.exec_cmd(terminal .. " -e btop"))
+    hl.dispatch(hl.dsp.exec_cmd("missioncenter"))
 end)
 
 hl.bind(mainMod .. " + C", hl.dsp.window.close())

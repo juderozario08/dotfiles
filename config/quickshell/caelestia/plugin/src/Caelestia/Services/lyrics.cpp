@@ -767,6 +767,7 @@ void Lyrics::fetchNetEaseLyricsById(const QString& id, int reqId) {
 
 QNetworkReply* Lyrics::getJson(const QUrl& url, const QHash<QByteArray, QByteArray>& headers) {
     QNetworkRequest req(url);
+    req.setAttribute(QNetworkRequest::Http2AllowedAttribute, false);
     req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::AlwaysNetwork);
     req.setRawHeader("Cache-Control"_ba, "no-cache, no-store"_ba);
     req.setRawHeader("Pragma"_ba, "no-cache"_ba);
