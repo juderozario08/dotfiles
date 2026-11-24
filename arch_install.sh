@@ -47,6 +47,10 @@ install_dependencies() {
         hyprpaper hyprlock hypridle hyprshot grim swaync wezterm hyprcursor xdg-desktop-portal-hyprland \
         qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg gum eog --noconfirm
 
+    # Caelestia shell stack (Hyprland bar/launcher) + what hypr/conf/autostart.lua launches
+    yay -S --needed --noconfirm caelestia-shell caelestia-cli quickshell-git libcava qt6-m3shapes-git \
+        libnotify mpvpaper cliphist wl-clipboard network-manager-applet
+
     if [ ! -e "$HOME/fzf-git.sh" ]; then
         cd ~
         git clone https://github.com/junegunn/fzf-git.sh
@@ -111,6 +115,15 @@ link_dots() {
     done
 }
 
+# caelestia-doctor: detects AUR packages broken by repo upgrades (soname bumps, Qt bumps)
+# and rebuilds them. The pacman hook warns after every transaction; Hyprland autostart
+# notifies at login. Copied (not symlinked) because the hook runs it as root.
+setup_caelestia_doctor() {
+    sudo install -Dm755 "$HOME/dotfiles/system/bin/caelestia-doctor" /usr/local/bin/caelestia-doctor
+    sudo install -Dm644 "$HOME/dotfiles/system/pacman-hooks/zz-caelestia-doctor.hook" \
+        /etc/pacman.d/hooks/zz-caelestia-doctor.hook
+}
+
 setup_rofi() {
     sudo cp "$HOME"/.config/rofi/colors/tokyonight.rasi /usr/share/rofi/themes/
     sudo cp "$HOME"/.config/rofi/colors/catppuccin.rasi /usr/share/rofi/themes/
@@ -124,8 +137,12 @@ install_yay
 install_dependencies
 link_dots
 setup_sddm
+setup_caelestia_doctor
 
 sudo pacman -Syu --noconfirm && yay -Syu --noconfirm
+
+# Rebuild any Caelestia AUR packages the upgrade above may have broken
+caelestia-doctor --fix || echo "caelestia-doctor --fix failed; rerun it manually." >&2
 
 if [[ "$(echo "$SHELL" | grep zsh)" ]]; then
     source "$HOME"/.zshrc

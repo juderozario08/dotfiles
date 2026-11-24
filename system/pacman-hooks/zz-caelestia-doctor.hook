@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Checking Caelestia shell for broken libraries...
+When = PostTransaction
+Exec = /usr/local/bin/caelestia-doctor --hook

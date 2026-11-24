@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+# caelestia-doctor — detect and repair Caelestia shell breakage after system upgrades.
+#
+# Caelestia depends on several AUR packages (libcava, quickshell-git, caelestia-shell,
+# qt6-m3shapes-git). When an official repo library they link against bumps its soname
+# (e.g. sndio .so.7 -> .so.9) or Qt gets a new minor version, those AUR builds break
+# until they are rebuilt. This script finds which ones are broken and rebuilds them.
+#
+#   caelestia-doctor            check, print report (exit 1 if broken)
+#   caelestia-doctor --fix      check, then rebuild broken AUR packages and restart the shell
+#   caelestia-doctor --hook     check, quiet unless broken (used by the pacman hook)
+#   caelestia-doctor --startup  check, notify if broken, then launch the shell (used by Hyprland)
+
+set -uo pipefail
+
+# Order matters: dependencies first.
+AUR_PKGS=(libcava qt6-m3shapes-git quickshell-git caelestia-shell)
+
+mode="${1:-check}"
+mode="${mode#--}"
+
+broken=()          # packages that need a rebuild
+reasons=()
+
+add_broken() {     # pkg reason
+    local p
+    for p in "${broken[@]}"; do [[ $p == "$1" ]] && { reasons+=("$1: $2"); return; }; done
+    broken+=("$1"); reasons+=("$1: $2")
+}
+
+# 1. Missing shared libraries, attributed to the package whose file *directly* needs them.
+for pkg in "${AUR_PKGS[@]}"; do
+    pacman -Qq "$pkg" &>/dev/null || continue
+    while IFS= read -r f; do
+        [[ -f $f && ! -L $f ]] || continue
+        case "$f" in *.so|*.so.*|/usr/bin/*) ;; *) continue ;; esac
+        head -c4 "$f" 2>/dev/null | grep -q $'\x7fELF' || continue
+        missing=$(ldd "$f" 2>/dev/null | awk '/not found/ {print $1}' | sort -u)
+        [[ -n $missing ]] || continue
+        needed=$(readelf -d "$f" 2>/dev/null | sed -n 's/.*NEEDED.*\[\(.*\)\]/\1/p')
+        for lib in $missing; do
+            grep -qxF "$lib" <<<"$needed" && add_broken "$pkg" "$f needs missing $lib"
+        done
+    done < <(pacman -Qlq "$pkg" 2>/dev/null)
+done
+
+# 2. Qt version mismatch (quickshell ships its own checker). If quickshell needs a
+#    rebuild, the Caelestia plugin was built against the same old Qt, so rebuild it too.
+if command -v quickshell &>/dev/null; then
+    compat=$(quickshell --private-check-compat 2>&1)
+    if [[ -n $compat ]]; then
+        add_broken quickshell-git "Qt version changed since it was built"
+        add_broken caelestia-shell "Qt version changed since it was built"
+    fi
+fi
+
+# Keep rebuild order stable.
+ordered=()
+for p in "${AUR_PKGS[@]}"; do
+    for b in "${broken[@]}"; do [[ $p == "$b" ]] && ordered+=("$p"); done
+done
+
+report() {
+    if ((${#ordered[@]} == 0)); then
+        echo "caelestia-doctor: all good."
+        return
+    fi
+    printf '\e[1;31m==> Caelestia shell is BROKEN by this upgrade.\e[0m\n'
+    printf '    %s\n' "${reasons[@]}"
+    printf '\e[1;33m==> Fix it with:  caelestia-doctor --fix\e[0m\n'
+}
+
+aur_helper() {
+    if command -v paru &>/dev/null; then echo paru
+    elif command -v yay &>/dev/null; then echo yay
+    fi
+}
+
+case "$mode" in
+    check)
+        report
+        ((${#ordered[@]} == 0))
+        ;;
+    hook)
+        ((${#ordered[@]} == 0)) || report
+        exit 0   # never fail the pacman transaction
+        ;;
+    startup)
+        if ((${#ordered[@]} > 0)) && command -v notify-send &>/dev/null; then
+            notify-send -u critical -a caelestia-doctor "Caelestia shell is broken" \
+                "Needs rebuild: ${ordered[*]}. Run: caelestia-doctor --fix"
+        fi
+        exec caelestia shell
+        ;;
+    fix)
+        if ((${#ordered[@]} == 0)); then
+            echo "caelestia-doctor: nothing to fix."
+            exit 0
+        fi
+        if ((EUID == 0)); then
+            echo "Run --fix as your normal user, not root (AUR helpers refuse root)." >&2
+            exit 1
+        fi
+        report
+        helper=$(aur_helper)
+        [[ -n $helper ]] || { echo "No AUR helper (paru/yay) found." >&2; exit 1; }
+        echo "==> Rebuilding: ${ordered[*]}"
+        if [[ $helper == paru ]]; then
+            paru -S --rebuild --noconfirm "${ordered[@]}" || exit 1
+        else
+            yay -S --rebuild --noconfirm --answerclean All --answerdiff None "${ordered[@]}" || exit 1
+        fi
+        echo "==> Re-checking..."
+        "$0" check || exit 1
+        if [[ -n ${WAYLAND_DISPLAY:-} ]]; then
+            echo "==> Restarting Caelestia shell"
+            pkill -x qs 2>/dev/null; pkill -x quickshell 2>/dev/null
+            setsid -f caelestia shell >/dev/null 2>&1
+        fi
+        ;;
+    *)
+        sed -n '2,13p' "$0"; exit 2 ;;
+esac
