@@ -42,14 +42,41 @@ install_yay() {
 install_dependencies() {
     yay -Syu --needed git base-devel fd ripgrep npm eza zoxide btop tokei bat fzf zsh tmux deno alacritty firefox paru \
         pyenv vivid inetutils nwg-look man-db man-pages gtk3 gtk4 picom nautilus pavucontrol sddm usleep lazygit font-manager \
-        i3-wm hyprland obsidian obs-studio sddm-sugar-dark systemd gnome-tweaks usleep vesktop-bin \
+        i3-wm hyprland obsidian obs-studio sddm-sugar-dark systemd gnome-tweaks usleep vesktop \
         lxappearance spotify bash-pipes blueman polybar rofi maim xclip ttf-firacode-nerd lua luarocks \
         hyprpaper hyprlock hypridle hyprshot grim swaync wezterm hyprcursor xdg-desktop-portal-hyprland \
         qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg gum eog --noconfirm
 
     # Caelestia shell stack (Hyprland bar/launcher) + what hypr/conf/autostart.lua launches
     yay -S --needed --noconfirm caelestia-shell caelestia-cli quickshell-git libcava qt6-m3shapes-git \
-        libnotify mpvpaper cliphist wl-clipboard network-manager-applet
+        libnotify mpvpaper cliphist wl-clipboard network-manager-applet \
+        qtengine darkly papirus-icon-theme
+
+    # Apps & dev tools
+    yay -S --needed --noconfirm claude-code visual-studio-code-bin zed neovim vim nano google-chrome brave-nightly-bin \
+        discord lmstudio-bin localsend-bin antigravity-cli anydesk-legacy-bin virtualbox-bin yazi htop mise \
+        sdkman-bin appimagelauncher raddebugger qml-lsp-git cava wget openssh lldb
+
+    # Java / Android
+    yay -S --needed --noconfirm jdk21-openjdk openjdk21-doc jdk25-openjdk openjdk25-doc gradle \
+        android-sdk android-sdk-cmdline-tools-latest android-emulator
+
+    # System & hardware utilities, fonts
+    yay -S --needed --noconfirm bluez bluez-utils cups cups-pk-helper system-config-printer \
+        noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-dejavu ttf-liberation zram-generator \
+        amdgpu_top rocm-smi-lib fancontrol-gui smartmontools hyprlauncher hyprsysteminfo uwsm \
+        networkmanager pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber gst-plugin-pipewire \
+        xdg-utils xdg-user-dirs-gtk
+
+    # GNOME desktop (available as a fallback session; SDDM stays the login manager, gdm is not enabled)
+    yay -S --needed --noconfirm gnome-shell gnome-session gnome-settings-daemon gnome-control-center gdm \
+        gnome-backgrounds gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-color-manager \
+        gnome-connections gnome-console gnome-contacts gnome-disk-utility gnome-font-viewer gnome-keyring \
+        gnome-logs gnome-maps gnome-menus gnome-music gnome-remote-desktop gnome-software gnome-system-monitor \
+        gnome-text-editor gnome-tour gnome-user-docs gnome-user-share gnome-weather xdg-desktop-portal-gnome \
+        gvfs gvfs-afc gvfs-dnssd gvfs-goa gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-onedrive gvfs-smb gvfs-wsdd \
+        baobab decibels epiphany grilo-plugins gst-thumbnailers loupe malcontent orca papers rygel showtime \
+        simple-scan snapshot sushi tecla yelp
 
     if [ ! -e "$HOME/fzf-git.sh" ]; then
         cd ~
@@ -91,7 +118,15 @@ link_dots() {
     remove_path_if_exists "$HOME/.clang-format"
     remove_path_if_exists "$HOME/.fehbg"
     remove_path_if_exists "$HOME/.clangd"
+    remove_path_if_exists "$HOME/tpm"
+    remove_path_if_exists "$HOME/.gtkrc-2.0"
+    remove_path_if_exists "$HOME/.p10k.zsh"
+    remove_path_if_exists "$HOME/.zshenv"
+    remove_path_if_exists "$HOME/.bash_profile"
 
+    link_path "$HOME/dotfiles/.p10k.zsh" "$HOME/.p10k.zsh"
+    link_path "$HOME/dotfiles/.zshenv" "$HOME/.zshenv"
+    link_path "$HOME/dotfiles/.bash_profile" "$HOME/.bash_profile"
     link_path "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
     link_path "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
     link_path "$HOME/dotfiles/.icons" "$HOME/.icons"
@@ -115,6 +150,31 @@ link_dots() {
     done
 }
 
+# pacman.conf: colored output, verbose package lists, parallel downloads, multilib repo.
+# Runs before any package install so multilib packages resolve.
+setup_pacman_conf() {
+    sudo sed -i -E \
+        -e 's/^#\s*Color$/Color/' \
+        -e 's/^#\s*VerbosePkgLists$/VerbosePkgLists/' \
+        -e 's/^#?\s*ParallelDownloads\s*=.*/ParallelDownloads = 5/' \
+        /etc/pacman.conf
+    # Uncomment the [multilib] section header and its Include line
+    sudo sed -i -E '/^#\s*\[multilib\]$/{s/^#\s*//;n;s/^#\s*//}' /etc/pacman.conf
+    sudo pacman -Sy
+}
+
+# Services, zram swap, and user groups
+setup_system() {
+    sudo install -Dm644 "$HOME/dotfiles/system/etc/zram-generator.conf" /etc/systemd/zram-generator.conf
+
+    sudo systemctl enable sddm.service NetworkManager.service bluetooth.service \
+        sshd.service cups.service lm_sensors.service
+
+    # VirtualBox USB passthrough needs vboxusers
+    getent group vboxusers >/dev/null && sudo usermod -aG vboxusers "$USER"
+    systemctl --user enable xdg-user-dirs.service || true
+}
+
 # caelestia-doctor: detects AUR packages broken by repo upgrades (soname bumps, Qt bumps)
 # and rebuilds them. The pacman hook warns after every transaction; Hyprland autostart
 # notifies at login. Copied (not symlinked) because the hook runs it as root.
@@ -132,11 +192,13 @@ setup_rofi() {
 }
 
 gain_sudo
+setup_pacman_conf
 install_rust
 install_yay
 install_dependencies
 link_dots
 setup_sddm
+setup_system
 setup_caelestia_doctor
 
 sudo pacman -Syu --noconfirm && yay -Syu --noconfirm
