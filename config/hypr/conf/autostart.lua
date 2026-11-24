@@ -3,7 +3,8 @@
 -- exec-once = ~/.config/hypr/scripts/wallpaper.sh
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("caelestia shell")
+    -- caelestia-doctor checks for libs broken by upgrades (notifies if so), then runs `caelestia shell`
+    hl.exec_cmd("if command -v caelestia-doctor >/dev/null; then caelestia-doctor --startup; else caelestia shell; fi")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
